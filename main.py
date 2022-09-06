@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, url_for, request, redirect, render_template
 from markupsafe import escape
 
@@ -9,7 +8,7 @@ app = Flask(__name__)
 def index():
     # return the render of the home page in the frotend folder
 
-    return render_template('home.html')
+    return render_template('index.html')
     # return redirect(url_for('frontend', filename='home.html'))
 
 
@@ -38,7 +37,7 @@ def get_city_data():
         return "<h1>Toma tu data: ......</h1>"
 
 
-@app.route('/json-example', method=['POST'])
+@app.route('/json-example', methods=['POST'])
 def json_example():
 
     data = request.get_json()
