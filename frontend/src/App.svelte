@@ -1,9 +1,19 @@
 <script>
   import svelteLogo from './assets/svelte.svg'
   import Counter from './lib/Counter.svelte'
+  import golum from './assets/golumbrandt.png'
+
+
+  const eat = () => {
+    alert('I am eating. Sweeeeet!')
+  }
+
 </script>
 
 <main>
+
+  <img on:click={eat} src={golum} alt="">
+
   <div>
     <a href="https://vitejs.dev" target="_blank"> 
       <img src="/vite.svg" class="logo" alt="Vite Logo" />
