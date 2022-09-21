@@ -3,27 +3,29 @@
 Berkut is an app to connect and have fun with friends that share our same interests
 
 ---
-### How to run the app
+
+### How to run the app (backend)
+
 - To run the flask app type this command in the console
 
-`python main.py` or `flask app noseque dev`
+`python main.py` or `flask --app main --debug run`
 
-- To run  the frontend type this command in the console
+- To run the frontend type this command in the console
 
-`cmando`
-
-- To run the **backend** tests type this command in the console
-
-`comando`
+`npm run dev`
 
 ---
+
 ### How to create a virtual environment
+
 - In the proyect root folder run this command
 
 `python venv <name of virtualenv> .`
 
 ---
-### How do I make a good changelog? 
+
+### How do I make a good changelog?
+
 Guiding Principles
 
     Changelogs are for humans, not machines.
