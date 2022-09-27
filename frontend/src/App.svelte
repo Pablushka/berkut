@@ -41,10 +41,19 @@
     <Collapse {isOpen} navbar expand="md">
       <Nav class="ms-auto" navbar>
         <NavItem>
-          <NavLink href="#components/">Components</NavLink>
+          <NavLink href="#components/">Historia</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="https://github.com/bestguy/sveltestrap">GitHub</NavLink>
+          <NavLink href="">Miembros</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="">Galería</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="">Calendario</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="">Tienda</NavLink>
         </NavItem>
       </Nav>
     </Collapse>
