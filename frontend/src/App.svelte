@@ -3,44 +3,63 @@
   import Counter from './lib/Counter.svelte'
   import golum from './assets/golumbrandt.png'
 
+  import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle
+  } from 'sveltestrap';
+
+  let isOpen = false;
+
+  const toggle = () => {
+    isOpen = !isOpen;
+  }
 
   const eat = () => {
     alert('I am eating. Sweeeeet!')
   }
 
+  function handleUpdate(event) {
+    isOpen = event.detail.isOpen;
+  }
+
 </script>
 
+<header>
 
-<main>
-  
-  <header class="p-3 mb-4 text-bg-dark background-header">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          @
-        </a> 
-  
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        </ul>
-  
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-        </form>
-  
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
-        </div>
-      </div>
-    </div>
-  </header>
-  
-  
+  <Navbar class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <NavbarBrand href="/" class="me-auto">BERKUT</NavbarBrand>
+    <NavbarToggler on:click={toggle} class="me-2" />
+    <Collapse {isOpen} navbar expand="md">
+      <Nav class="ms-auto" navbar>
+        <NavItem>
+          <NavLink href="#components/">Components</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="https://github.com/bestguy/sveltestrap">GitHub</NavLink>
+        </NavItem>
+      </Nav>
+    </Collapse>
+  </Navbar>
+
+</header>
+
+<main >
+
+  <div class="container">
+    <h1 class="mt-5">Bienvenidos a Berkut</h1>
+    <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
+    <p>Back to <a href="/docs/5.0/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
+  </div>
+ 
   <img on:click={eat} src={golum} alt="">
 
   <div>
