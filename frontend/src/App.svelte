@@ -1,9 +1,18 @@
 <script>
+
+  // routes imports
+  import Router from 'svelte-spa-router';
+  import HomePage from './pages/home_page.svelte';
+  import HistoryPage from './pages/history_page.svelte';
+
+  import Timeline from './components/timeline.svelte';
+  
   import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
+  import Counter from './components/Counter.svelte'
   import golum from './assets/golumbrandt.png'
 
   import {
+    Col, Container, Row,
     Collapse,
     Navbar,
     NavbarToggler,
@@ -31,17 +40,42 @@
     isOpen = event.detail.isOpen;
   }
 
+  let routes = {
+    '/': HomePage,
+    '/history': HistoryPage,
+  };
+  
+  let my_events = [
+    {
+      datetime: '9 de dic de 1989', 
+      title: 'Fundación de Berkut', 
+      text: 'Fundación de Berkut en la ciudad de Bogotá, Colombia.'
+    },
+
+    {
+      datetime: '25 de enero de 2007', 
+      title: 'Primer campamento con cero muertos', 
+      text: 'Todo un hito porque nadie salio herido!'
+    },
+
+    {
+      datetime: '1 de marzo de 2020', 
+      title: 'Ultimo campamento', 
+      text: 'Realizado en la ciudad de Kyoto con los chicos del fan clu de anime.'
+    },
+
+  ];
+
 </script>
 
 <header>
-
   <Navbar class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <NavbarBrand href="/" class="me-auto">BERKUT</NavbarBrand>
     <NavbarToggler on:click={toggle} class="me-2" />
     <Collapse {isOpen} navbar expand="md">
       <Nav class="ms-auto" navbar>
         <NavItem>
-          <NavLink href="#components/">Historia</NavLink>
+          <NavLink href="#/history">Historia</NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="">Miembros</NavLink>
@@ -61,7 +95,27 @@
 
 </header>
 
-<main >
+<main>
+
+  <Container>
+    <Row>
+      <Col sm="3" style="border: 1px solid">
+        Nada aqui
+      </Col>
+      <Col>
+        <Router {routes} />
+      </Col>
+    </Row>
+  </Container>
+
+  <Timeline events={my_events}/>
+
+  <Timeline caption="Hola manola!"/>
+
+</main>
+
+
+<!-- <main >
 
   <div class="container">
     <h1 class="mt-5">Bienvenidos a Berkut</h1>
@@ -92,7 +146,7 @@
   <p class="read-the-docs">
     Click on the Vite and Svelte logos to learn more
   </p>
-</main>
+</main> -->
 
 <style>
   .logo {
