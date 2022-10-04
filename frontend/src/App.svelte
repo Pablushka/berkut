@@ -5,6 +5,9 @@
   import HomePage from './pages/home_page.svelte';
   import HistoryPage from './pages/history_page.svelte';
 
+  // full camelcase: HomePage, UnaLindaVariable
+  // camelcase: homePage, unaLindaVariable
+
   import Timeline from './components/timeline.svelte';
   
   import svelteLogo from './assets/svelte.svg'
