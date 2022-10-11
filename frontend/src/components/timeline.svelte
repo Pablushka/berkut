@@ -13,8 +13,6 @@
 
   let last_event_ix = events.length - 1;
 
-
-
 </script>
 
 <h2 class="text-center py-3">{caption}</h2>
@@ -28,23 +26,15 @@
                 <!-- timeline item 1 left dot -->
                 <div class="col-auto text-center flex-column d-none d-sm-flex">
                     <div class="row h-50">
-                      {#if i == 0}
-                        <div class="col">&nbsp;</div>
-                      {:else}
-                        <div class="col border-end border-primary">&nbsp;</div>
-                      {/if}
-                        <div class="col">&nbsp;</div>
+                      <div class="col {i==0 ? "":"border-end border-primary"}">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
                     </div>
                     <h5 class="m-2">
                         <span class="badge bg-primary border shadow-sm">&nbsp;</span>
                     </h5>
                     <div class="row h-50">
-                      {#if i == last_event_ix}
-                        <div class="col">&nbsp;</div>
-                      {:else}
-                        <div class="col border-end border-primary">&nbsp;</div>
-                      {/if}
-                        <div class="col">&nbsp;</div>
+                      <div class="col {i==last_event_ix ? "":"border-end border-primary"}">&nbsp;</div>
+                      <div class="col">&nbsp;</div>
                     </div>
                 </div>
                 <!-- timeline item 1 event content -->
