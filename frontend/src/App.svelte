@@ -4,6 +4,10 @@
   import Router from 'svelte-spa-router';
   import HomePage from './pages/home_page.svelte';
   import HistoryPage from './pages/history_page.svelte';
+  import GalleryPage from './pages/gallery_page.svelte';
+  import CalendarPage from './pages/calendar_page.svelte';
+  import MarketPage from './pages/market_page.svelte';
+
 
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
@@ -48,7 +52,10 @@
   let routes = {
     '/': HomePage,
     '/history': HistoryPage,
-    '/members': MembersPage
+    '/members': MembersPage,
+    '/gallery': GalleryPage,
+    '/calendar': CalendarPage,
+    '/market': MarketPage
   };
 
 </script>
@@ -66,13 +73,13 @@
           <NavLink on:click={toggle}  href="#/members">Miembros</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="">Galería</NavLink>
+          <NavLink on:click={toggle}  href="#/gallery">Galería</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="">Calendario</NavLink>
+          <NavLink on:click={toggle}  href="#/calendar">Calendario</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="">Tienda</NavLink>
+          <NavLink on:click={toggle}  href="#/market">Tienda</NavLink>
         </NavItem>
       </Nav>
     </Collapse>
