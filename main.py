@@ -1,3 +1,4 @@
+from typing import Dict
 from flask import Flask, url_for, request, redirect, render_template
 from markupsafe import escape
 
@@ -40,7 +41,13 @@ def get_city_data():
 @app.route('/json-example', methods=['POST'])
 def json_example():
 
-    data = request.get_json()
+    data = {'name': '', 'population': ''}
+
+    request_data = request.get_json()
+
+    if request_data:
+        data = request_data
+
     return f"<h1>{escape(data['name'])} tiene {escape(data['population'])} habitantes</h1>"
 
 
