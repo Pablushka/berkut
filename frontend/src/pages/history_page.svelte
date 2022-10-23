@@ -21,6 +21,12 @@ let my_events = [
       text: 'Realizado en la ciudad de Kyoto con los chicos del fan clu de anime.'
     },
 
+    {
+      datetime: '10 de diciembre de 2024', 
+      title: 'Ultimo campamento', 
+      text: 'Comimo mucho.'
+    },
+
   ];
 
 

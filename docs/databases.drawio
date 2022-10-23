@@ -1,0 +1,121 @@
+<mxfile host="65bd71144e">
+    <diagram id="xTdRPYhxW4MQraRpHJVd" name="Page-1">
+        <mxGraphModel dx="1247" dy="673" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="37" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="685" y="191.25" width="410" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="&lt;font style=&quot;font-size: 24px&quot;&gt;&lt;b&gt;SQL&lt;/b&gt;&lt;/font&gt;&lt;br&gt;MariaDB / MySQL&lt;br&gt;Oracle&lt;br&gt;PostgreSQL&lt;br&gt;SQLite" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="20" width="120" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;NO-SQL&lt;/font&gt;&lt;/b&gt;&lt;br&gt;MongoDB&lt;br&gt;RocksDB&lt;br&gt;Cassandra&lt;br&gt;DynamoDB&lt;br&gt;ElasticSearch" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="830" y="20" width="120" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Structure&lt;br&gt;Query&lt;br&gt;Languaje" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="255" y="40" width="60" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="14" target="23">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="300" y="430" as="sourcePoint"/>
+                        <mxPoint x="400" y="330" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="Fecha: 2 enero 2022&lt;br&gt;Titulo: Evento Freya&amp;nbsp;&lt;br&gt;Texto: Sacrificamos 3 cabras y un chanchito." style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="55" y="680" width="170" height="78.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Fecha: 2 enero 2022&lt;br&gt;Titulo: Evento Freya&amp;nbsp;&lt;br&gt;Texto: Sacrificamos 3 cabras y un chanchito." style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="65" y="690" width="170" height="78.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Fecha: 2 enero 2022&lt;br&gt;Titulo: Evento Freya&amp;nbsp;&lt;br&gt;Texto: Sacrificamos 3 cabras y un chanchito." style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="75" y="700" width="170" height="78.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Fecha: 2 enero 2022&lt;br&gt;Titulo: Evento Freya&amp;nbsp;&lt;br&gt;Texto: Sacrificamos 3 cabras y un chanchito." style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="85" y="710" width="170" height="78.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Fecha: 2 enero 2022&lt;br&gt;Titulo: Evento Freya&amp;nbsp;&lt;br&gt;Texto: Sacrificamos 3 cabras y un chanchito." style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="95" y="720" width="170" height="78.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Fecha: 2 enero 2022&lt;br&gt;Titulo: Evento Freya&amp;nbsp;&lt;br&gt;Texto: Sacrificamos 3 cabras y un chanchito." style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="105" y="730" width="170" height="78.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="Fecha: 2 enero 2022&lt;br&gt;Titulo: Evento Freya&amp;nbsp;&lt;br&gt;Texto: Sacrificamos 3 cabras y un chanchito." style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="115" y="740" width="170" height="78.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="Patente:&lt;br&gt;Chasis:&lt;br&gt;Marca:&lt;br&gt;Modelo:&lt;br&gt;Año:&lt;br&gt;Dueño:&lt;br&gt;Concesionario:&lt;br&gt;&lt;div&gt;Sedan: SI/NO&lt;/div&gt;&lt;div&gt;CantidadPuertas:&lt;/div&gt;&lt;div&gt;TipoConbustible:&lt;/div&gt;&lt;div&gt;CodigoVIN:&lt;/div&gt;&lt;div&gt;ABS: SI/NO&lt;/div&gt;&lt;div&gt;Color:&lt;/div&gt;&lt;div&gt;CajaDeCambios:&lt;/div&gt;&lt;div&gt;Descapotable:&lt;/div&gt;&lt;div&gt;TechoDeArriba:&lt;/div&gt;&lt;div&gt;Traccion:&lt;/div&gt;&lt;div&gt;DuracionBateria:&lt;/div&gt;" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="360" width="360" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="{&lt;br&gt;Patente: 2342342,&lt;br&gt;Chasis: 3423432,&lt;br&gt;Marca: Ford,&lt;br&gt;Modelo:&lt;br&gt;Año:&lt;br&gt;Dueño:&lt;br&gt;Concesionario:&lt;br&gt;&lt;div&gt;Sedan: SI/NO&lt;/div&gt;&lt;div&gt;CantidadPuertas:&lt;/div&gt;&lt;div&gt;TipoConbustible:&lt;/div&gt;&lt;div&gt;CodigoVIN:&lt;/div&gt;&lt;div&gt;ABS: SI/NO&lt;/div&gt;&lt;div&gt;Color:&lt;/div&gt;&lt;div&gt;CajaDeCambios:&lt;/div&gt;&lt;div&gt;Descapotable:&lt;/div&gt;&lt;div&gt;TechoDeArriba:&lt;/div&gt;&lt;div&gt;Traccion:&lt;/div&gt;&lt;div&gt;DuracionBateria: 600km&lt;/div&gt;}" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="715" y="231.25" width="210" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="{&lt;br&gt;Patente: 2345243,&lt;br&gt;Chasis: 567567,&lt;br&gt;Marca: Chevrolet,&lt;br&gt;Modelo: Onix&lt;br&gt;}" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="855" y="276.25" width="210" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Coleccion: Autos" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="840" y="191.25" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="171.25" width="270" height="143.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Cliente: Pablo&lt;br&gt;Producto Vendido: Jaboncito&lt;br&gt;Precio: $5500" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="191.25" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Cliente: Pablo&lt;br&gt;Producto Vendido: Jaboncito&lt;br&gt;Precio: $5500" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="201.25" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Cliente: Pablo&lt;br&gt;Producto Vendido: Jaboncito&lt;br&gt;Precio: $5500" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="211.25" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Cliente: Pablo&lt;br&gt;Producto Vendido: Jaboncito&lt;br&gt;Precio: $5500" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="221.25" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="Cliente: Pablo&lt;br&gt;Producto Vendido: Jaboncito&lt;br&gt;Precio: $5500" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="231.25" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Tabla: Ventas" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="415" y="171.25" width="90" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="163" width="260" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Nombre: Pablo&lt;br&gt;Tel: 555-9933&lt;br&gt;Direccion: Rue Laii PupU&lt;br&gt;🤪" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="35" y="180" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Nombre: Pablo&lt;br&gt;Tel: 555-9933&lt;br&gt;Direccion: Rue Laii PupU&lt;br&gt;🤪" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="45" y="190" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Nombre: Pablo&lt;br&gt;Tel: 555-9933&lt;br&gt;Direccion: Rue Laii PupU&lt;br&gt;🤪" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="55" y="200" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Nombre: Pablo&lt;br&gt;Tel: 555-9933&lt;br&gt;Direccion: Rue Laii PupU&lt;br&gt;🤪" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="65" y="210" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Nombre: Pablo&lt;br&gt;Tel: 555-9933&lt;br&gt;Direccion: Rue Laii PupU&lt;br&gt;🤪" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="75" y="220" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Nombre: Pablo&lt;br&gt;Tel: 555-9933&lt;br&gt;Direccion: Rue Laii PupU&lt;br&gt;🤪" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="85" y="230" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Tabla: Clientes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="95" y="160" width="90" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="Record" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="85" y="291.25" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="Record" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="281.25" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="Record" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="205" y="620" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="Document" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="715" y="531.25" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="Document" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="895" y="441.25" width="70" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

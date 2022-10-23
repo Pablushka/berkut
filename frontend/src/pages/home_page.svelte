@@ -1,5 +1,6 @@
 <script>
 import berkut_logo from '../assets/img/berkut_logo_fa.jpg';
+import vite_logo from '../../public/vite.svg';
 </script>
 
 <div class="welcome_text">
@@ -11,7 +12,9 @@ import berkut_logo from '../assets/img/berkut_logo_fa.jpg';
   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus molestiae praesentium eius dignissimos voluptatem soluta magni, unde dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque hic ratione ipsam?</p>
   
   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus molestiae praesentium eius dignissimos voluptatem soluta magni, unde dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque hic ratione ipsam?</p>
-    
+  
+  <img src={vite_logo} alt="">
+
 </div>
 
 
