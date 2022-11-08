@@ -1,9 +1,0 @@
-GET http://localhost:5000/city
-
-###
-
-POST http://localhost:5000/city
-Content-Type: application/x-www-form-urlencoded
-
-name=Bahjia Blanka
-&population=18000000

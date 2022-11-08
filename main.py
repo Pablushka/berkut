@@ -1,8 +1,19 @@
-from typing import Dict
-from flask import Flask, url_for, request, redirect, render_template
+from flask import Flask, redirect, render_template, request, url_for
+from flask_migrate import Migrate
 from markupsafe import escape
 
+from database import db
+from models.event import Event
+
+from datetime import datetime
+
+
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./db/project.sqlite"
+
+db.init_app(app)
+
+migrate = Migrate(app, db)
 
 
 @app.route('/')
@@ -11,6 +22,16 @@ def index():
 
     return render_template('index.html')
     # return redirect(url_for('frontend', filename='home.html'))
+
+
+@app.route('/events/<string:fecha>/<string:title>/<string:text>')
+def events(fecha, title, text):
+
+    new_date = datetime.strptime(fecha, "%d-%m-%Y")
+
+    db.session.add(Event(date=new_date, title=title,  text=text))
+    db.session.commit()
+    return f"Event('{fecha}', '{title}', '{text}')"
 
 
 @app.route('/byebye')

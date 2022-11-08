@@ -1,0 +1,13 @@
+GET http://127.0.0.1:5000/events/25-01-2022/Hola/texto_evento HTTP/1.1
+
+###
+
+POST http://127.0.0.1:5000/events HTTP/1.1
+Content-Type: application/json
+
+{
+    "date": "25-01-2022",
+    "title": "Hola",
+    "text": "texto_evento"
+}
+
