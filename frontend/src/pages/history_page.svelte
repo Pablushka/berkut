@@ -1,33 +1,22 @@
 <script>
   import Timeline from "../components/timeline.svelte";
+	import { onMount } from 'svelte';
 
+  let my_events
+  
+  // fetch from endpoint
+  async function getEvents() {
 
-let my_events = [
-    {
-      datetime: '9 de dic de 1989', 
-      title: 'Fundación de Berkut', 
-      text: 'Fundación de Berkut en la ciudad de Bogotá, Colombia.'
-    },
+    let response = await fetch("http://localhost:5000/events");
+    let events = await response.json();
+    return events;
 
-    {
-      datetime: '25 de enero de 2007', 
-      title: 'Primer campamento con cero muertos', 
-      text: 'Todo un hito porque nadie salio herido!'
-    },
+  }
 
-    {
-      datetime: '1 de marzo de 2020', 
-      title: 'Ultimo campamento', 
-      text: 'Realizado en la ciudad de Kyoto con los chicos del fan clu de anime.'
-    },
+  onMount(async () => {
+    my_events = await getEvents()
+  })
 
-    {
-      datetime: '10 de diciembre de 2024', 
-      title: 'Ultimo campamento', 
-      text: 'Comimo mucho.'
-    },
-
-  ];
 
 
 </script>
