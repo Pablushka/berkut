@@ -16,7 +16,7 @@ class Event(db.Model):  # type: ignore
     def to_dict(self):
         return {
             'id': self.id,
-            'date': self.date,
+            'date': self.date.strftime("%d-%m-%Y"),
             'title': self.title,
             'text': self.text
         }

@@ -1,4 +1,5 @@
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, jsonify
+from flask_cors import CORS
 from flask_migrate import Migrate
 from markupsafe import escape
 
@@ -9,7 +10,9 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./db/project.sqlite"
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/db/project.sqlite"
 
 db.init_app(app)
 
@@ -24,14 +27,41 @@ def index():
     # return redirect(url_for('frontend', filename='home.html'))
 
 
-@app.route('/events/<string:fecha>/<string:title>/<string:text>')
-def events(fecha, title, text):
+@app.route('/events/<string:edate>/<string:title>/<string:text>')
+def eventsByGet(edate, title, text):
 
-    new_date = datetime.strptime(fecha, "%d-%m-%Y")
+    new_date = datetime.strptime(edate, "%d-%m-%Y")
 
     db.session.add(Event(date=new_date, title=title,  text=text))
     db.session.commit()
-    return f"Event('{fecha}', '{title}', '{text}')"
+    return f"Event('{edate}', '{title}', '{text}')"
+
+
+@app.route('/events', methods=['GET'])  # type: ignore
+def getEvents():
+    # event = db.get_or_404(Event, 1, description="Event not found")
+
+    events = Event.query.all()
+
+    return jsonify([e.to_dict() for e in events])
+
+
+@app.route('/events', methods=['POST'])  # type: ignore
+def create_event():
+    if request.method == 'POST':
+
+        request_data = request.get_json()
+
+        if request_data:
+            data = request_data
+
+            new_date = datetime.strptime(data['date'], "%d-%m-%Y")
+            title = data['title']
+            text = data['text']
+
+            db.session.add(Event(date=new_date, title=title,  text=text))
+            db.session.commit()
+            return f"Event('{new_date}', '{title}', '{text}')"
 
 
 @app.route('/byebye')
