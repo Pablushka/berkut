@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 
   // routes imports
   import Router from 'svelte-spa-router';
@@ -7,6 +9,7 @@
   import GalleryPage from './pages/gallery_page.svelte';
   import CalendarPage from './pages/calendar_page.svelte';
   import MarketPage from './pages/market_page.svelte';
+  import AdminTimelinePage from './pages/admin_timeline_page.svelte';
 
 
   // full camelcase: HomePage, UnaLindaVariable
@@ -30,11 +33,14 @@
     Dropdown,
     DropdownItem,
     DropdownMenu,
-    DropdownToggle
+    DropdownToggle,
+    ButtonDropdown
   } from 'sveltestrap';
   import MembersPage from './pages/members_page.svelte';
 
   let isOpen = false;
+  let isAdminOpen = false;
+  
 
   // Esta funciion invierte el valor de isOpen
   const toggle = () => {
@@ -55,7 +61,8 @@
     '/members': MembersPage,
     '/gallery': GalleryPage,
     '/calendar': CalendarPage,
-    '/market': MarketPage
+    '/market': MarketPage,
+    '/admin_timeline': AdminTimelinePage
   };
 
 </script>
@@ -81,6 +88,26 @@
         <NavItem>
           <NavLink on:click={toggle}  href="#/market">Tienda</NavLink>
         </NavItem>
+
+        <NavItem>
+          <ButtonDropdown {isAdminOpen}>
+            <DropdownToggle color="primary" caret on:click={() => (isAdminOpen = !isAdminOpen)}>
+              Administrador
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem header>Time line</DropdownItem>
+              <DropdownItem>
+                <a href="#/admin_timeline" class="link">Administrar</a>
+              </DropdownItem>
+              <DropdownItem disabled>Action (disabled)</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Foo Action</DropdownItem>
+              <DropdownItem>Bar Action</DropdownItem>
+              <DropdownItem>Quo Action</DropdownItem>
+            </DropdownMenu>
+          </ButtonDropdown>          
+        </NavItem>
+
       </Nav>
     </Collapse>
   </Navbar>
@@ -91,57 +118,17 @@
   <Router {routes} />
 </main>
 
-
-<!-- <main >
-
-  <div class="container">
-    <h1 class="mt-5">Bienvenidos a Berkut</h1>
-    <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
-    <p>Back to <a href="/docs/5.0/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
-  </div>
- 
-  <img on:click={eat} src={golum} alt="">
-
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main> -->
-
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
-
-  .background-header {
-    background-color: #000;
+  .link {
+    display: block;
+    width: 100%;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
   }
 </style>
