@@ -3,7 +3,7 @@
 
   export let events = [
       {
-        datetime: '9 de dic de 1989', 
+        date: '09-12-1989', 
         title: 'Fundación de Berkut', 
         text: 'Fundación de Berkut en la ciudad de Bogotá, Colombia.'
       }
@@ -20,7 +20,7 @@
     <div class="container py-2 mt-1 mb-1">
         <div class="container py-2 mt-1 mb-1">
 
-          {#each events as { datetime, title, text }, i}
+          {#each events as { date, title, text }, i}
             <!-- timeline item 1 -->
             <div class="row">
                 <!-- timeline item 1 left dot -->
@@ -41,7 +41,7 @@
                 <div class="col py-2">
                     <div class="card shadow">
                         <div class="card-body">
-                            <div class="float-right text-muted">{datetime}</div>
+                            <div class="float-right text-muted">{date}</div>
                             <h4 class="card-title">{title}</h4>
                             <p class="card-text">{text}</p>
                         </div>
