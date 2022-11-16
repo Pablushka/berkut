@@ -102,6 +102,18 @@ def json_example():
     return f"<h1>{escape(data['name'])} tiene {escape(data['population'])} habitantes</h1>"
 
 
+@app.errorhandler(500)
+def server_error_500(e):
+    app.logger.error('An error occurred during a request. %s', e)
+    return "An internal error occured", 500
+
+
+@app.errorhandler(404)
+def server_error_404(e):
+    app.logger.error('Resource does not exists. %s', e)
+    return "Resource does not exists", 404
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
