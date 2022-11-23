@@ -41,9 +41,21 @@ def eventsByGet(edate, title, text):
 def getEvents():
     # event = db.get_or_404(Event, 1, description="Event not found")
 
-    events = Event.query.all()
+    # get all events ordered by date
+    events = Event.query.order_by(Event.date).all()
 
     return jsonify([e.to_dict() for e in events])
+
+
+@app.route('/events/<int:id>', methods=['DELETE'])  # type: ignore
+def deleteEvent(id):
+    # TODO: averiguar porque el mensaje de descripcion no se muestra
+    event = Event.query.get_or_404(id, description="Event not found")
+
+    db.session.delete(event)
+    db.session.commit()
+
+    return jsonify(event.to_dict())
 
 
 @app.route('/events', methods=['POST'])  # type: ignore

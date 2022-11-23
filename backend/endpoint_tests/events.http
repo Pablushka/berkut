@@ -1,3 +1,4 @@
+
 GET http://127.0.0.1:5000/events HTTP/1.1
 
 
@@ -16,3 +17,7 @@ Content-Type: application/json
     "text": "Roció tuvo un accidente con las flechas y se rompieron todas. Murió en el intento."
 }
 
+
+###
+
+DELETE http://127.0.0.1:5000/events/999 HTTP/1.1
