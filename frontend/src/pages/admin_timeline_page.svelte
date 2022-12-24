@@ -1,21 +1,68 @@
 <script>
-  import { onMount } from 'svelte';
-  import { Form, Button, FormGroup, FormText, Input, Label } from 'sveltestrap';
-  let radioGroup;
+// @ts-nocheck
 
+  import { onMount } from 'svelte';
+  import { Form, Button, FormGroup, FormText, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'sveltestrap';
+
+
+  let open = false;
+
+  let current_event = null;
+  
+  const toggle = () => (open = !open);
+  
+  const fill = () => {
+    
+    if (current_event == null) {
+      
+      let date_parts = (new Date()).toLocaleDateString().split('/')
+      let today = date_parts[2] + '-' + date_parts[1] + '-' + date_parts[0];
+
+      document.getElementById("field_date").value = today;
+      return;
+    }
+
+    let components = current_event.date.split("-");
+    
+    // convierto la fecha a YYYY-MM-DD por requerimiento de chrome
+    let new_date = `${components[2]}-${components[1]}-${components[0]}`;
+
+    document.getElementById("field_date").value = new_date;
+    document.getElementById("field_id").value = current_event.id;
+    document.getElementById("field_title").value = current_event.title;
+    document.getElementById("field_text").value = current_event.text;
+  }
+
+  const form_fill = (the_event) => {
+
+    toggle();
+
+    current_event = the_event;
+  };
+    
+
+  // function toggle2() {
+  //   open = !open;
+  // }
+
+  let radioGroup;
   let my_events=[];
+  let modal;
 
   async function getEvents() {
 
     let response = await fetch("http://localhost:5000/events");
     let events = await response.json();
+  
     return events;
 
   }
 
   onMount(async () => {
     my_events = await getEvents();
-    console.log(my_events);
+    const modal = new bootstrap.Modal('#exampleModal');
+    modal.show();
+    // console.log(my_events);
   })
 
   const deleteEvent = (id) => {
@@ -44,6 +91,60 @@
     });
 
   }
+
+  const saveEvent = () => {
+
+    let id = document.getElementById("field_id").value;
+    let date = document.getElementById("field_date").value;
+    let title = document.getElementById("field_title").value;
+    let text = document.getElementById("field_text").value;
+
+    let components = date.split("-");
+
+    // convierto la fecha a DD-MM-YYYY por requerimiento de la API
+    let new_date = `${components[2]}-${components[1]}-${components[0]}`;
+
+    let event = {
+      id: id,
+      date: new_date,
+      title: title,
+      text: text,
+    };
+
+    let httpMethod = id == '' ? "POST" : "PATCH";
+
+    fetch("http://localhost:5000/events", {
+      method: httpMethod,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(event),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+      getEvents().then((events) => {
+        my_events = events;
+      });
+
+      toggle();
+
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  }
+
+  const newEvent = () => {
+    toggle();
+
+    current_event = null;
+
+  }
+
+  let formLabel = "text-align: left; font-weight: bold;";
+
 </script>
 
 <div class="page-container">
@@ -60,11 +161,11 @@
     <tbody>
       {#each my_events as event}
       <tr>
-        <td>{event.date}</td>
-        <td>{event.title}</td>
+        <td style="white-space: nowrap;">{event.date}</td>
+        <td style="white-space: nowrap;">{event.title}</td>
         <td>{event.text}</td>
         <td>
-          <button class="btn btn-primary btn-sm btn-berkut">Editar</button>
+          <button on:click={()=>form_fill(event)} class="btn btn-primary btn-sm btn-berkut">Editar</button>
         </td>
         <td>
           <button class="btn btn-danger btn-sm btn-berkut" on:click={()=>{deleteEvent(event.id)}}>Eliminar</button>
@@ -72,11 +173,78 @@
       </tr>
       {/each}
 
-
-
     </tbody>
 
   </table>
+
+  <div>
+    
+
+    <Modal on:open={fill} isOpen={open} {toggle} id="event_modal">
+      <ModalHeader {toggle}>Evento</ModalHeader>
+      <ModalBody>
+        <Form>
+          
+            <input value="" 
+            id="field_id" 
+            type="hidden"
+            name="id"/>
+
+          <FormGroup style={formLabel}>
+            <Label for="date">Fecha</Label>
+            <Input
+              type="date"
+              name="date"
+              id="field_date"
+              placeholder="date placeholder"
+            />
+          </FormGroup>
+
+          <FormGroup style={formLabel}>
+            <Label for="title">Título</Label>
+            <Input value="" 
+            id="field_title" 
+            name="title"/>
+          </FormGroup>
+
+          <FormGroup style={formLabel}>
+            <Label for="text">Texto</Label>
+            <Input type="textarea" 
+            name="text" 
+            id="field_text"/>
+          </FormGroup>
+
+        </Form>
+
+      </ModalBody>
+
+      <ModalFooter>
+        <Button color="primary" on:click={saveEvent}>Guardar</Button>
+        <Button color="secondary" on:click={toggle}>Cancelar</Button>
+      </ModalFooter>
+
+    </Modal>
+
+  </div>
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" on:click={newEvent} class="btn btn-primary">
+  Nuevo Evento
+</button>
+
+
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  
+  <hr>
 
   <Form>
     <FormGroup>
@@ -242,7 +410,7 @@
       <Input id="c1" type="checkbox" label="Check me out" />
     </FormGroup>
     <FormGroup>
-      <Input id="c2" type="checkbox" reverse label="Reverse Label" />
+      <Input id="c2" type="checkbox" label="Reverse Label" />
     </FormGroup>
     <FormGroup>
       <Input id="c3" type="switch" label="Switch me on" />
@@ -260,9 +428,14 @@
     margin-top: 39px;
     border-radius: 25px;
     text-align: left;
-}
+  }
 
-.btn-berkut {
-  width: 77px;
-}
+  .btn-berkut {
+    width: 77px;
+  } 
+
+  .event-field {
+   text-align: left;
+  }
+
 </style>

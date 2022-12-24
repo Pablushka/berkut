@@ -57,23 +57,75 @@ def deleteEvent(id):
 
     return jsonify(event.to_dict())
 
+# @app.route('/events', methods=['PATCH'])  # type: ignore
+# def update_event():
+#     if request.method == 'PATCH':
 
-@app.route('/events', methods=['POST'])  # type: ignore
-def create_event():
+#         # se obtiene el json del request
+#         data = request.get_json()
+
+#         # si el request tiene data (no es None), se crea un nuevo evento
+#         if data:
+
+#             id = data['id']
+#             new_date = datetime.strptime(data['date'], "%d-%m-%Y")
+#             title = data['title']
+#             text = data['text']
+
+#             event = Event.query.get_or_404(id, description="Event not found")
+
+#             event.date = new_date
+#             event.title = title
+#             event.text = text
+
+#             db.session.commit()
+#             return f"Event('{new_date}', '{title}', '{text}')"
+
+
+@app.route('/events', methods=['POST', 'PATCH'])  # type: ignore
+def create_or_update_event():
+
+    # si el request es un post, se crea un nuevo evento
     if request.method == 'POST':
 
-        request_data = request.get_json()
+        # se obtiene el json del request
+        data = request.get_json()
 
-        if request_data:
-            data = request_data
+        # si el request tiene data (no es None), se crea un nuevo evento
+        if data:
 
             new_date = datetime.strptime(data['date'], "%d-%m-%Y")
             title = data['title']
             text = data['text']
 
-            db.session.add(Event(date=new_date, title=title,  text=text))
+            event = Event(date=new_date, title=title,  text=text)
+            db.session.add(event)
             db.session.commit()
-            return f"Event('{new_date}', '{title}', '{text}')"
+
+            return jsonify(event.to_dict())
+
+    if request.method == 'PATCH':
+
+        # se obtiene el json del request
+        data = request.get_json()
+
+        # si el request tiene data (no es None), se crea un nuevo evento
+        if data:
+
+            id = data['id']
+            new_date = datetime.strptime(data['date'], "%d-%m-%Y")
+            title = data['title']
+            text = data['text']
+
+            event = Event.query.get_or_404(id, description="Event not found")
+
+            event.date = new_date
+            event.title = title
+            event.text = text
+
+            db.session.commit()
+            # return event as json
+            return jsonify(event.to_dict())
 
 
 @app.route('/byebye')

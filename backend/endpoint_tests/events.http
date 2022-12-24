@@ -12,11 +12,22 @@ POST http://127.0.0.1:5000/events HTTP/1.1
 Content-Type: application/json
 
 {
-    "date": "27-01-2022",
-    "title": "Compra de felchas",
-    "text": "Roció tuvo un accidente con las flechas y se rompieron todas. Murió en el intento."
+    "date": "23-12-2022",
+    "title": "Vitel ton'e",
+    "text": "Rocio se comio todo el vitel toné."
 }
 
+###
+
+PATCH http://127.0.0.1:5000/events HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "date": "25-01-2022",
+    "title": "Modificado desde un patch",
+    "text": "texto_evento"
+}
 
 ###
 
