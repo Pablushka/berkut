@@ -3,6 +3,7 @@
 
   import { onMount } from 'svelte';
   import { Form, Button, FormGroup, FormText, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'sveltestrap';
+  import {bad_words_validator} from '../helpers/admin_helpers.js'
 
 
   let open = false;
@@ -97,23 +98,7 @@
     let text = document.getElementById("field_text").value;
 
     // Validar que los camposr title y text no tengan malas palabras
-    let bad_words = ['culo', 'puto el que lee', 'macri', 'chupito el pame']
-
-    let list_bad_title = title.split(' ');
-    let list_bad_text = text.split(' ');
-
-    let form_bad_words = []
-
-
-    // for each word in list_title
-    // || or
-    // && and
-    // ! not
-    bad_words.forEach(bad_word => {
-      if (list_bad_title.includes(bad_word) || list_bad_text.includes(bad_word)) {
-        form_bad_words.push(bad_word)
-      }
-    })
+    let form_bad_words = bad_words_validator(title + ' ' + text)
 
     if (form_bad_words.length > 0) {
       alert(`Por favor no utilice estas palabras en el formulario: ${form_bad_words}`) 
