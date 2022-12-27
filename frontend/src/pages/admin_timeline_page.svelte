@@ -60,10 +60,7 @@
 
   onMount(async () => {
     my_events = await getEvents();
-    const modal = new bootstrap.Modal('#exampleModal');
-    modal.show();
-    // console.log(my_events);
-  })
+ })
 
   const deleteEvent = (id) => {
 
