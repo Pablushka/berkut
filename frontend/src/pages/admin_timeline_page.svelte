@@ -96,6 +96,30 @@
     let title = document.getElementById("field_title").value;
     let text = document.getElementById("field_text").value;
 
+    // Validar que los camposr title y text no tengan malas palabras
+    let bad_words = ['culo', 'puto el que lee', 'macri', 'chupito el pame']
+
+    let list_bad_title = title.split(' ');
+    let list_bad_text = text.split(' ');
+
+    let form_bad_words = []
+
+
+    // for each word in list_title
+    // || or
+    // && and
+    // ! not
+    bad_words.forEach(bad_word => {
+      if (list_bad_title.includes(bad_word) || list_bad_text.includes(bad_word)) {
+        form_bad_words.push(bad_word)
+      }
+    })
+
+    if (form_bad_words.length > 0) {
+      alert(`Por favor no utilice estas palabras en el formulario: ${form_bad_words}`) 
+      return
+    }
+    
     let components = date.split("-");
 
     // convierto la fecha a DD-MM-YYYY por requerimiento de la API
