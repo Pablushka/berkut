@@ -98,10 +98,10 @@
     let text = document.getElementById("field_text").value;
 
     // Validar que los camposr title y text no tengan malas palabras
-    let form_bad_words = bad_words_validator(title + ' ' + text)
+    let {bad_words, valid} = bad_words_validator(title + ' ' + text)
 
-    if (form_bad_words.length > 0) {
-      alert(`Por favor no utilice estas palabras en el formulario: ${form_bad_words}`) 
+    if (!valid) {
+      alert(`Por favor no utilice estas palabras en el formulario: ${bad_words}`) 
       return
     }
     

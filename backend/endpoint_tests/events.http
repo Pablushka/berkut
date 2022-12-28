@@ -12,9 +12,9 @@ POST http://127.0.0.1:5000/events HTTP/1.1
 Content-Type: application/json
 
 {
-    "date": "23-12-2022",
-    "title": "Vitel ton'e",
-    "text": "Rocio se comio todo el vitel toné."
+    "date": "13-12-2022",
+    "title": "Lorem ipsum",
+    "text": "lorewm ipsum"
 }
 
 ###

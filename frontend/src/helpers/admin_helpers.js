@@ -7,15 +7,46 @@ export const bad_words_validator  =  (text)  => {
 
     let form_bad_words = []
 
+    bad_words.forEach(bad_word => {
+        form_bad_words = searchInText( bad_word, list_bad_text, form_bad_words)
+    })
 
     // for each word in list_title
     // || or
     // && and
     // ! not
-    bad_words.forEach(bad_word => {
-        if (list_bad_text.includes(bad_word) || list_bad_text.includes(bad_word)) {
-        form_bad_words.push(bad_word)
+
+    // let response = []
+
+    // if (form_bad_words.length > 0) {
+    //     response = [form_bad_words, false]
+    // } else {
+    //     response = [ [], true]
+    // }
+    
+    // return response
+    
+    let response = {}
+
+    if (form_bad_words.length > 0) {
+        response = {
+            bad_words: form_bad_words,
+            valid: false
         }
-    })
-    return form_bad_words
+    } else {
+        response = {
+            bad_words: [],
+            valid: true
+        }
+    }
+
+    return response
+}
+
+const searchInText = (searchFor, content, result) => {
+    if (content.includes(searchFor) || content.includes(searchFor)) {
+        result.push(searchFor)
+    }
+
+    return result 
 }
