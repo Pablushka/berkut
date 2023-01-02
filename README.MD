@@ -14,6 +14,17 @@ Berkut is an app to connect and have fun with friends that share our same intere
 
 `npm run dev`
 
+
+---
+
+### How to create a migration repository
+`flask --app main.py db init`
+
+---
+
+### How to migrate the database
+`flask --app main.py db upgrade`
+
 ---
 
 ### How to create a virtual environment
