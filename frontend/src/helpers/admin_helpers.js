@@ -3,7 +3,26 @@ export const bad_words_validator  =  (text)  => {
     // Validar que los camposr title y text no tengan malas palabras
     let bad_words = ['culo', 'puto el que lee', 'macri', 'chupito el pame']
 
-    let list_bad_text = text.split(' ');
+    // Se pudo haber usado map: x.map(word => word.toLowerCase());
+    // separa todas las palabras del texto por el espacio en blanco y las pone en una lista
+    let list_bad_text = text.toLowerCase().split(' ').map(word => {
+        if (word.includes(',')) {
+            return word.replace(',', '')
+        } 
+
+        if (word.includes('.')) {
+            return word.replace('.', '')
+        } 
+
+        if (word.includes(';')) {
+            return word.replace(';', '')
+        } 
+
+        //...
+
+        return word
+
+    })
 
     let form_bad_words = []
 
@@ -44,7 +63,8 @@ export const bad_words_validator  =  (text)  => {
 }
 
 const searchInText = (searchFor, content, result) => {
-    if (content.includes(searchFor) || content.includes(searchFor)) {
+    debugger
+    if ( content.includes(searchFor) ) {
         result.push(searchFor)
     }
 
