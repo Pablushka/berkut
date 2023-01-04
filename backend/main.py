@@ -5,6 +5,7 @@ from markupsafe import escape
 
 from database import db
 from models.event import Event
+from models.user import User
 
 from datetime import datetime
 
@@ -16,7 +17,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/db/project.sqlite
 
 db.init_app(app)
 
-migrate = Migrate(app, db)
+# render_as_batch=True is needed for SQLite support
+migrate = Migrate(app, db, render_as_batch=True)
 
 
 @app.route('/')
@@ -25,6 +27,36 @@ def index():
 
     return render_template('index.html')
     # return redirect(url_for('frontend', filename='home.html'))
+
+
+@app.route('/users', methods=['GET'])  # type: ignore
+def getUsers():
+    # get all users ordered by name
+    users = User.query.order_by(User.name).all()
+
+    return jsonify([u.to_dict() for u in users])
+
+
+@app.route('/users', methods=['POST'])  # type: ignore
+def createUser():
+    # get the json from the request
+    data = request.get_json()
+
+    # if the request has data (is not None), create a new user
+    if data:
+        name = data['name']
+        email = data['email']
+        password = data['password']
+        last_login = datetime.strptime(data['last_login'], "%d-%m-%Y")
+        is_active = data['is_active']
+        is_admin = data['is_admin']
+
+        user = User(name=name, email=email, password=password,
+                    last_login=last_login, is_active=is_active, is_admin=is_admin)
+
+        db.session.add(user)
+        db.session.commit()
+        return jsonify(user.to_dict())
 
 
 @app.route('/events/<string:edate>/<string:title>/<string:text>')
@@ -56,30 +88,6 @@ def deleteEvent(id):
     db.session.commit()
 
     return jsonify(event.to_dict())
-
-# @app.route('/events', methods=['PATCH'])  # type: ignore
-# def update_event():
-#     if request.method == 'PATCH':
-
-#         # se obtiene el json del request
-#         data = request.get_json()
-
-#         # si el request tiene data (no es None), se crea un nuevo evento
-#         if data:
-
-#             id = data['id']
-#             new_date = datetime.strptime(data['date'], "%d-%m-%Y")
-#             title = data['title']
-#             text = data['text']
-
-#             event = Event.query.get_or_404(id, description="Event not found")
-
-#             event.date = new_date
-#             event.title = title
-#             event.text = text
-
-#             db.session.commit()
-#             return f"Event('{new_date}', '{title}', '{text}')"
 
 
 @app.route('/events', methods=['POST', 'PATCH'])  # type: ignore
@@ -126,44 +134,6 @@ def create_or_update_event():
             db.session.commit()
             # return event as json
             return jsonify(event.to_dict())
-
-
-@app.route('/byebye')
-def good_bye():
-    return '<h1>Adios monchito!</h1>'
-
-
-@app.route('/greet/<int:doc>')
-def add_surname(doc):
-    return f"<h1>Hola persona con el doc # {escape(doc)}</h1>"
-
-
-@app.route('/greet/<name>')
-def greet_user(name):
-    return f"<h1>Hola, {escape(name)}!</h1>"
-
-
-@app.route('/city', methods=['GET', 'POST'])
-def get_city_data():
-    if request.method == 'POST':
-        name = request.form['name']
-        pop = request.form['population']
-        return f"<h1>{escape(name)} tiene {escape(pop)} habitantes</h1>"
-    else:
-        return "<h1>Toma tu data: ......</h1>"
-
-
-@app.route('/json-example', methods=['POST'])
-def json_example():
-
-    data = {'name': '', 'population': ''}
-
-    request_data = request.get_json()
-
-    if request_data:
-        data = request_data
-
-    return f"<h1>{escape(data['name'])} tiene {escape(data['population'])} habitantes</h1>"
 
 
 @app.errorhandler(500)
