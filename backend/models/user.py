@@ -23,5 +23,6 @@ class User(db.Model):  # type: ignore
             'name': self.name,
             'email': self.email,
             'last_login': self.last_login.strftime("%d-%m-%Y"),
-            'is_active': self.is_active
+            'is_active': self.is_active,
+            'is_admin': self.is_admin
         }

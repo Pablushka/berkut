@@ -2,6 +2,7 @@ from flask import Flask, redirect, render_template, request, url_for, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from markupsafe import escape
+import hashlib
 
 from database import db
 from models.event import Event
@@ -9,6 +10,7 @@ from models.user import User
 
 from datetime import datetime
 
+hash = hashlib.sha256()
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -29,6 +31,21 @@ def index():
     # return redirect(url_for('frontend', filename='home.html'))
 
 
+@app.route('/login', methods=['POST'])  # type: ignore
+def login():
+    # get the json from the request
+    data = request.get_json()
+
+    # if the request has data (is not None), create a new user
+    if data:
+        email = data['email']
+        password = data['password']
+
+        # buscar el usuario en la base de datos
+        # checquear que su password es correcta
+        # si es correcta, darle acceso a la app
+
+
 @app.route('/users', methods=['GET'])  # type: ignore
 def getUsers():
     # get all users ordered by name
@@ -37,26 +54,85 @@ def getUsers():
     return jsonify([u.to_dict() for u in users])
 
 
-@app.route('/users', methods=['POST'])  # type: ignore
-def createUser():
+@app.route('/users', methods=['POST', 'PATCH'])  # type: ignore
+def create_or_update_user():
     # get the json from the request
     data = request.get_json()
 
-    # if the request has data (is not None), create a new user
-    if data:
-        name = data['name']
-        email = data['email']
-        password = data['password']
-        last_login = datetime.strptime(data['last_login'], "%d-%m-%Y")
-        is_active = data['is_active']
-        is_admin = data['is_admin']
+    if request.method == 'POST':
+        # if the request has data (is not None), create a new user
+        if data:
+            name = data['name']
+            email = data['email']
 
-        user = User(name=name, email=email, password=password,
-                    last_login=last_login, is_active=is_active, is_admin=is_admin)
+            hash.update(data['password'].encode('utf-8'))
+            password = hash.hexdigest()
 
-        db.session.add(user)
-        db.session.commit()
-        return jsonify(user.to_dict())
+            last_login = datetime.strptime(data['last_login'], "%d-%m-%Y")
+            is_active = data['is_active']
+            is_admin = data['is_admin']
+
+            user = User(name=name, email=email, password=password,
+                        last_login=last_login, is_active=is_active, is_admin=is_admin)
+
+            db.session.add(user)
+            db.session.commit()
+            return jsonify(user.to_dict())
+
+    if request.method == 'PATCH':
+
+        if data:
+            id = data['id']
+            name = data['name']
+            email = data['email']
+
+            user = User.query.get_or_404(id, description="User not found")
+
+            user.name = name
+            user.email = email
+
+            db.session.commit()
+            # return event as json
+            return jsonify(user.to_dict())
+
+
+@app.route('/users/<int:id>', methods=['DELETE'])  # type: ignore
+def delete_user(id):
+    # TODO: averiguar porque el mensaje de descripcion no se muestra
+    user = User.query.get_or_404(id, description="User not found")
+
+    # borrado fisico
+    # db.session.delete(user)
+    # db.session.commit()
+
+    # borrado logico
+    user.is_active = False
+    db.session.commit()
+
+    return jsonify(user.to_dict())
+
+
+@app.route('/users/<int:id>', methods=['PATCH'])  # type: ignore
+def undelete_user(id):
+    # TODO: averiguar porque el mensaje de descripcion no se muestra
+    user = User.query.get_or_404(id, description="User not found")
+
+    # borrado fisico
+    # db.session.delete(user)
+    # db.session.commit()
+
+    # borrado logico
+    user.is_active = True
+    db.session.commit()
+
+    return jsonify(user.to_dict())
+
+
+@app.route('/users/<int:id>', methods=['GET'])  # type: ignore
+def get_user(id):
+    user = User.query.get_or_404(id, description="User not found")
+
+    return jsonify(user.to_dict())
 
 
 @app.route('/events/<string:edate>/<string:title>/<string:text>')
