@@ -91,16 +91,26 @@
 
         <NavItem>
           <ButtonDropdown {isAdminOpen}>
-            <DropdownToggle color="primary" caret on:click={() => (isAdminOpen = !isAdminOpen)}>
+            <DropdownToggle color="danger" caret on:click={() => (isAdminOpen = !isAdminOpen)}>
               Administrador
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem header>Time line</DropdownItem>
               <DropdownItem>
-                <a href="#/admin_timeline" class="link">Administrar</a>
+                <a href="#/admin_timeline" class="link">Administrar Timeline</a>
               </DropdownItem>
-              <DropdownItem disabled>Action (disabled)</DropdownItem>
+
               <DropdownItem divider />
+              <DropdownItem header>Usuarios</DropdownItem>
+              <DropdownItem>
+                <a href="#/admin_users" class="link">Administrar Usuarios</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="#/role_users" class="link">Dar Permisos</a>
+              </DropdownItem>
+
+              <DropdownItem divider />
+              <DropdownItem disabled>Action (disabled)</DropdownItem>
               <DropdownItem>Foo Action</DropdownItem>
               <DropdownItem>Bar Action</DropdownItem>
               <DropdownItem>Quo Action</DropdownItem>
