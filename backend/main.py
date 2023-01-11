@@ -10,8 +10,6 @@ from models.user import User
 
 from datetime import datetime
 
-hash = hashlib.sha256()
-
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -60,6 +58,8 @@ def create_or_update_user():
     data = request.get_json()
 
     if request.method == 'POST':
+        hash = hashlib.sha256()
+
         # if the request has data (is not None), create a new user
         if data:
             name = data['name']
