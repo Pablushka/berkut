@@ -1,32 +1,43 @@
+<script>
+  import sirenowoman from '../../public/img/sirenowoman.jpg'
+  import sirenaman from '../../public/img/sirenaman.jpg'
+</script>
+
 <h1 class="mt-5">Integrantes del grupo</h1>
+<h2>Un vistazo a los miembros</h2>
 
 <div class="members">
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
 
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
+  <div>
+    <img class="member_photo" src={sirenowoman} alt="Natalia Cesario">
+    <h3>Natalia Cesario</h3>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, repellendus dolorem? Autem commodi nesciunt reprehenderit nostrum consequuntur magnam sint? Quisquam tempore provident, quia aut voluptatum quod reiciendis tenetur veritatis delectus!</p>
+  </div>
 
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
+  <div>
+    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
+    <p>Natalia Cesario</p> 
+  </div>
 
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
+  <div>
+    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
+    <p>Natalia Cesario</p> 
+  </div>
 
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
+  <div>
+    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
+    <p>Natalia Cesario</p> 
+  </div>
 
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
+  <div>
+    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
+    <p>Natalia Cesario</p> 
+  </div>
 
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
-
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
-
-  <img class="member_photo" src="https://st.depositphotos.com/3489481/4885/i/600/depositphotos_48855027-stock-photo-sad-daydreaming-little-girl.jpg" alt="Natalia Cesario">
-  Natalia Cesario
+  <div>
+    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
+    <p>Natalia Cesario</p> 
+  </div>
 
 </div>
 
@@ -42,6 +53,21 @@
     flex-wrap: wrap;
     justify-content: space-around;
 
+  }
+
+  .members div {
+    width: 300px;
+    min-height: 300px;
+    margin: 10pt;
+    padding: 10pt;
+    text-align: center;
+    background-color: #b35837be;
+    border-radius: 15px;
+  }
+
+  .members div p {
+    text-align: left;
+    font-size: 1em;
   }
 
 </style>

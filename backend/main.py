@@ -58,6 +58,7 @@ def create_or_update_user():
     data = request.get_json()
 
     if request.method == 'POST':
+        # reemplazar por hashlib.sha256('SALTA'.encode('utf-8') + 'passwords'.encode('utf-8')).hexdigest()
         hash = hashlib.sha256()
 
         # if the request has data (is not None), create a new user
