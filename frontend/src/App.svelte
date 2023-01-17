@@ -114,6 +114,9 @@
               <DropdownItem>Foo Action</DropdownItem>
               <DropdownItem>Bar Action</DropdownItem>
               <DropdownItem>Quo Action</DropdownItem>
+              <DropdownItem>
+                <a href="#/members" class="link">Miembros</a>
+              </DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>          
         </NavItem>
