@@ -3,6 +3,11 @@
     src: url('fonts/viking.ttf');
 }
 
+@font-face {
+    font-family: PR Viking;
+    src: url('fonts/PR Viking.ttf');
+}
+
 h1{
-    font-family: Viking-Normal;
+    font-family: PR Viking;
 }

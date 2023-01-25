@@ -75,7 +75,7 @@
     <Collapse {isOpen} navbar expand="md">
       <Nav class="ms-auto" navbar>
         <NavItem>
-          <NavLink href="#/">Recreación Medieval del Este de Europa</NavLink>
+          <NavLink href="#/"><span class="berkut-sub-header">Recreación Medieval del Este de Europa</span></NavLink>
         </NavItem>
 
         <NavItem>
@@ -136,6 +136,11 @@
     src: url('fonts/viking.ttf');
   }
 
+  @font-face {
+    font-family: PR Viking;
+    src: url('fonts/PR Viking.ttf');
+  }
+
   :global(.titular){
     background-color: #474747;
     margin-left: 10px;
@@ -161,6 +166,11 @@
   .berkut-header{
     font-family: Viking-Normal;
     font-size: 30pt;
+  }
+
+  .berkut-sub-header{
+    font-family: PR Viking;
+    font-size: 25pt;
   }
 
   :global(.boton-color){
