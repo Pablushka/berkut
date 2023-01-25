@@ -1,6 +1,9 @@
 <script>
-  import sirenowoman from '../../public/img/sirenowoman.jpg'
-  import sirenaman from '../../public/img/sirenaman.jpg'
+  import ale from '../../public/img/ale.png'
+  import jonny from '../../public/img/jonny.png'
+  import maga from '../../public/img/maga.png'
+  import mati_p from '../../public/img/mati_p.png'
+  import victor from '../../public/img/victor.png'
   import trini from '../../public/img/trini.png'
 </script>
 
@@ -21,28 +24,53 @@
   </div>
 
   <div class="card">
-    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
-    <p>Natalia Cesario</p> 
+    <div>
+      <img class="member_photo" src={ale} alt="Natalia Cesario">
+    </div>
+    <div>
+      <h3>Alejandra</h3>
+      <p>Encargada de redes sociales</p>
+    </div>
   </div>
 
   <div class="card">
-    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
-    <p>Natalia Cesario</p> 
+    <div>
+      <img class="member_photo" src={jonny} alt="Natalia Cesario">
+    </div>
+    <div>
+      <h3>Jonny</h3>
+      <p>Jarl, encargado de relaciones publicas</p>
+    </div>
   </div>
 
   <div class="card">
-    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
-    <p>Natalia Cesario</p> 
+    <div>
+      <img class="member_photo" src={maga} alt="Natalia Cesario">
+    </div>
+    <div>
+      <h3>Magali</h3>
+      <p>Modista principal del grupo</p>
+    </div>
   </div>
 
   <div class="card">
-    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
-    <p>Natalia Cesario</p> 
+    <div>
+      <img class="member_photo" src={mati_p} alt="Natalia Cesario">
+    </div>
+    <div>
+      <h3>Matias M</h3>
+      <p>Guerrero encargado de lanzas</p>
+    </div>
   </div>
 
   <div class="card">
-    <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
-    <p>Natalia Cesario</p> 
+    <div>
+      <img class="member_photo" src={victor} alt="Natalia Cesario">
+    </div>
+    <div>
+      <h3>Victor</h3>
+      <p>Maestro carpintero</p>
+    </div>
   </div>
 
 </div>
@@ -51,7 +79,6 @@
   .member_photo {
     width: 200px;
     border-radius: 10%;
-    padding: 10pt;
   }
 
   .members {
@@ -67,8 +94,8 @@
     margin: 10pt;
     padding: 10pt;
     text-align: center;
-    background-color: #b35837be;
-    border-radius: 15px;
+    background-color: #ffffffbe;
+    border-radius: 45px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
