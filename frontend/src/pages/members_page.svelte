@@ -1,6 +1,7 @@
 <script>
   import sirenowoman from '../../public/img/sirenowoman.jpg'
   import sirenaman from '../../public/img/sirenaman.jpg'
+  import trini from '../../public/img/trini.png'
 </script>
 
 <h1 class="mt-5">Integrantes del grupo</h1>
@@ -8,33 +9,38 @@
 
 <div class="members">
 
-  <div>
-    <img class="member_photo" src={sirenowoman} alt="Natalia Cesario">
-    <h3>Natalia Cesario</h3>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, repellendus dolorem? Autem commodi nesciunt reprehenderit nostrum consequuntur magnam sint? Quisquam tempore provident, quia aut voluptatum quod reiciendis tenetur veritatis delectus!</p>
+  <div class="card">
+    <div>
+      <img class="member_photo" src={trini} alt="Natalia Cesario">
+    </div>
+    <div>
+      <h3>Trini</h3>
+      <p>Druida del grupo, lectora de la fortuna</p>
+    </div>
+    
   </div>
 
-  <div>
+  <div class="card">
     <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
     <p>Natalia Cesario</p> 
   </div>
 
-  <div>
+  <div class="card">
     <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
     <p>Natalia Cesario</p> 
   </div>
 
-  <div>
+  <div class="card">
     <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
     <p>Natalia Cesario</p> 
   </div>
 
-  <div>
+  <div class="card">
     <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
     <p>Natalia Cesario</p> 
   </div>
 
-  <div>
+  <div class="card">
     <img class="member_photo" src={sirenaman} alt="Natalia Cesario">
     <p>Natalia Cesario</p> 
   </div>
@@ -55,19 +61,30 @@
 
   }
 
-  .members div {
-    width: 300px;
+  .members .card {
+    width: 500px;
     min-height: 300px;
     margin: 10pt;
     padding: 10pt;
     text-align: center;
     background-color: #b35837be;
     border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
 
-  .members div p {
+  .members .card p {
     text-align: left;
     font-size: 1em;
+  }
+
+  .member_titel{
+    
+  }
+
+  .member_text {
+    font-size: large;
   }
 
 </style>

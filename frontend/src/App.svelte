@@ -2,6 +2,7 @@
 // @ts-nocheck
 
 
+
   // routes imports
   import Router from 'svelte-spa-router';
   import HomePage from './pages/home_page.svelte';
@@ -69,39 +70,27 @@
 
 <header>
   <Navbar class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <NavbarBrand href="#/" class="me-auto">BERKUT</NavbarBrand>
+    <NavbarBrand href="#/" class="me-auto"><span class="berkut-header">BERKUT</span></NavbarBrand>
     <NavbarToggler on:click={toggle} class="me-2" />
     <Collapse {isOpen} navbar expand="md">
       <Nav class="ms-auto" navbar>
         <NavItem>
-          <NavLink on:click={toggle} href="#/history">Historia</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink on:click={toggle}  href="#/members">Miembros</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink on:click={toggle}  href="#/gallery">Galería</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink on:click={toggle}  href="#/calendar">Calendario</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink on:click={toggle}  href="#/market">Tienda</NavLink>
+          <NavLink href="#/">Recreación Medieval del Este de Europa</NavLink>
         </NavItem>
 
         <NavItem>
-          <ButtonDropdown {isAdminOpen}>
-            <DropdownToggle color="danger" caret on:click={() => (isAdminOpen = !isAdminOpen)}>
-              Administrador
+          <ButtonDropdown  {isAdminOpen}>
+            <DropdownToggle color="info" caret on:click={() => (isAdminOpen = !isAdminOpen)}>
+              MENÚ
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem header>Time line</DropdownItem>
+              <DropdownItem header class="titular">Time line</DropdownItem>
               <DropdownItem>
                 <a href="#/admin_timeline" class="link">Administrar Timeline</a>
               </DropdownItem>
 
               <DropdownItem divider />
-              <DropdownItem header>Usuarios</DropdownItem>
+              <DropdownItem header class="titular">Admin</DropdownItem>
               <DropdownItem>
                 <a href="#/admin_users" class="link">Administrar Usuarios</a>
               </DropdownItem>
@@ -110,12 +99,21 @@
               </DropdownItem>
 
               <DropdownItem divider />
-              <DropdownItem disabled>Action (disabled)</DropdownItem>
-              <DropdownItem>Foo Action</DropdownItem>
-              <DropdownItem>Bar Action</DropdownItem>
-              <DropdownItem>Quo Action</DropdownItem>
+              <DropdownItem header class="titular">Publico</DropdownItem>
               <DropdownItem>
                 <a href="#/members" class="link">Miembros</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="#/history" class="link">Historia</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="#/gallery" class="link">Galeria</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="#/calendar" class="link">Calendario de Ferias</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="#/market" class="link">Shop</a>
               </DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>          
@@ -132,6 +130,21 @@
 </main>
 
 <style>
+
+  @font-face {
+    font-family: Viking-Normal;
+    src: url('fonts/viking.ttf');
+  }
+
+  :global(.titular){
+    background-color: #474747;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
   .link {
     display: block;
     width: 100%;
@@ -144,4 +157,14 @@
     background-color: transparent;
     border: 0;
   }
+
+  .berkut-header{
+    font-family: Viking-Normal;
+    font-size: 30pt;
+  }
+
+  :global(.boton-color){
+    background-color: blue-800;
+  }
+
 </style>
