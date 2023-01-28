@@ -21,10 +21,10 @@
     <div>
       <img class="member_photo" src={trini} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Trini</h3>
-      <p class="member_text">Druida, lectora de la fortuna</p>
-    </div>
+      <p class="member_text">Druida, lectora de la fortuna lalala     lalalalal     alalalala    lalala lalalalal  a</p>
+    </div> 
     
   </div>
 
@@ -32,7 +32,7 @@
     <div>
       <img class="member_photo" src={ale} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Alejandra</h3>
       <p class="member_text">Encargada de redes sociales</p>
     </div>
@@ -42,7 +42,7 @@
     <div>
       <img class="member_photo" src={jonny} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Jonny</h3>
       <p class="member_text">Jarl, encargado de relaciones publicas</p>
     </div>
@@ -52,7 +52,7 @@
     <div>
       <img class="member_photo" src={maga} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Magali</h3>
       <p class="member_text">Modista principal del grupo</p>
     </div>
@@ -62,7 +62,7 @@
     <div>
       <img class="member_photo" src={mati_p} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Matias M</h3>
       <p class="member_text">Guerrero encargado de lanzas</p>
     </div>
@@ -72,7 +72,7 @@
     <div>
       <img class="member_photo" src={victor} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Victor</h3>
       <p class="member_text">Maestro carpintero</p>
     </div>
@@ -82,7 +82,7 @@
     <div>
       <img class="member_photo" src={mati_b} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Matias B</h3>
       <p class="member_text">Locutor oficial del grupo</p>
     </div>
@@ -92,7 +92,7 @@
     <div>
       <img class="member_photo" src={mati_s} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Matias S</h3>
       <p class="member_text">Segundo jarl, encargado de armas</p>
     </div>
@@ -102,7 +102,7 @@
     <div>
       <img class="member_photo" src={nati} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Natalia</h3>
       <p class="member_text">Segunda modista del grupo</p>
     </div>
@@ -112,7 +112,7 @@
     <div>
       <img class="member_photo" src={nico} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Nicolas</h3>
       <p class="member_text">Encargado de la cocina</p>
     </div>
@@ -122,7 +122,7 @@
     <div>
       <img class="member_photo" src={pablo_a} alt="Natalia Cesario">
     </div>
-    <div>
+    <div class="contenedor_member_text">
       <h3 class="member_titel">Pablo A</h3>
       <p class="member_text"> Guerrero encargado de armas</p>
     </div>
@@ -167,7 +167,7 @@
   }
 
   .members .card p {
-    text-align: left;
+    text-align: center;
     font-size: 1em;
   }
 
@@ -178,7 +178,13 @@
 
   .member_text {
     font-family: PR Viking;
-    font-size: 50pt;    
+    font-size: 50pt;
+    text-align: center;    
+  }
+
+  .contenedor_member_text{
+    width: 50%;
+    
   }
 
 </style>
