@@ -133,7 +133,7 @@
 
 @font-face {
     font-family: PR Viking;
-    src: url('fonts/PR Viking.ttf');
+    src: url('fonts/PR_Viking.ttf');
   }
 
   @font-face {
