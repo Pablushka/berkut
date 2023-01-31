@@ -23,7 +23,7 @@
     </div>
     <div class="contenedor_member_text">
       <h3 class="member_titel">Trini</h3>
-      <p class="member_text">Druida, lectora de la fortuna lalala     lalalalal     alalalala    lalala lalalalal  a</p>
+      <p class="member_text">Druida, lectora de la fortuna</p>
     </div> 
     
   </div>
@@ -157,7 +157,6 @@
     width: 500px;
     min-height: 300px;
     margin: 10pt;
-    padding: 10pt;
     text-align: center;
     background-color: #ffffffbe;
     border-radius: 45px;
@@ -168,7 +167,7 @@
 
   .members .card p {
     text-align: center;
-    font-size: 1em;
+    font-size: 1.5em;
   }
 
   .member_titel{
