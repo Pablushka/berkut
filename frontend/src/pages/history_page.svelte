@@ -30,10 +30,22 @@
 
 </script>
 
-<h1 class="mt-5">Historia del grupo y coso...</h1>
+<h1 class="mt-5"><span class="titel_text">Historia del grupo y coso...</span></h1>
 {#await my_events}
 <p><img src="https://gifdb.com/images/high/dancing-monkey-action-8omvxbqaq0qqpsgx.gif" alt="Monito bailarin"></p>
 {:then events}
   <Timeline events={my_events} caption="Historia de Berkut!" />
 {/await}
+
+<style>
+
+  @font-face {
+      font-family: PR Viking;
+      src: url('fonts/PR_Viking.ttf');
+    }
   
+    .titel_text{
+      font-family: PR Viking;
+    }
+    
+</style>

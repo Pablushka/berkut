@@ -20,7 +20,6 @@
   
   import svelteLogo from './assets/svelte.svg'
   import Counter from './components/Counter.svelte'
-  import golum from './assets/golumbrandt.png'
 
   import {
     Col, Container, Row,

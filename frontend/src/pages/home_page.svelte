@@ -4,25 +4,27 @@ import vite_logo from '../../public/vite.svg';
 </script>
 
 <div class="welcome_text">
-  <h1>Hello!</h1>
+  <h1 class="titel_text">Hello!</h1>
 
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus molestiae praesentium eius dignissimos voluptatem soluta magni, unde dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque hic ratione ipsam?</p>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus molestiae praesentium eius dignissimos voluptatem soluta magni, unde dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque hic ratione ipsam?</p>
-  
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus molestiae praesentium eius dignissimos voluptatem soluta magni, unde dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque hic ratione ipsam?</p>
-  
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus molestiae praesentium eius dignissimos voluptatem soluta magni, unde dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque hic ratione ipsam?</p>
-  
-  <img src={vite_logo} alt="">
+  <p class="titel_text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus molestiae praesentium eius dignissimos voluptatem soluta magni, unde dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque hic ratione ipsam?</p>
 
 </div>
 
 
 <style>
 
+  @font-face {
+      font-family: PR Viking;
+      src: url('fonts/PR_Viking.ttf');
+    }
+  
+    .titel_text{
+      font-family: PR Viking;
+    }
+
   .welcome_text {
-    background-color: #84202963;
-    color: #ddd5d5;
+    background-color: #bbb0b163;
+    color: #000000;
     padding-left: 84px;
     margin: 50px;
     padding-right: 84px;
