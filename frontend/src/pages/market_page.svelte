@@ -3,13 +3,15 @@
 
 <style>
 
-    @font-face {
-        font-family: PR Viking;
-        src: url('fonts/PR_Viking.ttf');
-      }
+  @font-face {
+    font-family: PR Viking;
+    src: url('fonts/PR_Viking.ttf');
+  }
     
-      .titel_text{
-        font-family: PR Viking;
-      }
+  .titel_text{
+    font-family: PR Viking;
+    font-size: 50pt;
+    text-align: center;
+  }
       
   </style>

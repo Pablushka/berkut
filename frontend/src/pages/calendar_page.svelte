@@ -44,5 +44,7 @@ const monthClick = (e) => {
 
   .months_titel{
     font-family: PR Viking;
+    font-size: 50pt;
+    text-align: center;
   }
 </style>
