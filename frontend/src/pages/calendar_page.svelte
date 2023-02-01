@@ -9,10 +9,9 @@ const monthClick = (e) => {
 </script>
 
 
-<h1 class="mt-5">Calendario de Ferias</h1>
+<h1 class="mt-5"><span class="months_titel"> Calendario de Ferias </span></h1>
 
 <div class="months">
-  <MonthCalendar month="Enero" onClick={monthClick}></MonthCalendar>
   <MonthCalendar month="Enero" onClick={monthClick}></MonthCalendar>
   <MonthCalendar month="Febrero" onClick={monthClick}></MonthCalendar>
   <MonthCalendar month="Marzo" onClick={monthClick}></MonthCalendar>
@@ -31,11 +30,19 @@ const monthClick = (e) => {
 
 <style>
 
+@font-face {
+    font-family: PR Viking;
+    src: url('fonts/PR_Viking.ttf');
+  }
 
   .months {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  .months_titel{
+    font-family: PR Viking;
   }
 </style>
