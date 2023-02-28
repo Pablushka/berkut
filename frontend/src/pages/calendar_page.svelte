@@ -25,11 +25,6 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: PR Viking;
-    src: url("fonts/PR_Viking.ttf");
-  }
-
   .months {
     display: flex;
     flex-wrap: wrap;

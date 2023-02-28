@@ -70,6 +70,23 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+@font-face {
+  font-family: Viking-Normal;
+  src: url("fonts/viking-n.ttf");
+}
+
+@font-face {
+  font-family: PR Viking;
+  src: url("fonts/PR_Viking.ttf");
+}
+
+@font-face {
+  font-family: Climate Crisis;
+  src: url("fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf");
+}
+
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

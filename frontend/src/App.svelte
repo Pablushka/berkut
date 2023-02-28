@@ -1,28 +1,27 @@
 <script>
-// @ts-nocheck
-
-
+  // @ts-nocheck
 
   // routes imports
-  import Router from 'svelte-spa-router';
-  import HomePage from './pages/home_page.svelte';
-  import HistoryPage from './pages/history_page.svelte';
-  import GalleryPage from './pages/gallery_page.svelte';
-  import CalendarPage from './pages/calendar_page.svelte';
-  import MarketPage from './pages/market_page.svelte';
-  import AdminTimelinePage from './pages/admin_timeline_page.svelte';
-
+  import Router from "svelte-spa-router";
+  import HomePage from "./pages/home_page.svelte";
+  import HistoryPage from "./pages/history_page.svelte";
+  import GalleryPage from "./pages/gallery_page.svelte";
+  import CalendarPage from "./pages/calendar_page.svelte";
+  import MarketPage from "./pages/market_page.svelte";
+  import AdminTimelinePage from "./pages/admin_timeline_page.svelte";
 
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
 
-  import Timeline from './components/timeline.svelte';
-  
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './components/Counter.svelte'
+  import Timeline from "./components/timeline.svelte";
+
+  import svelteLogo from "./assets/svelte.svg";
+  import Counter from "./components/Counter.svelte";
 
   import {
-    Col, Container, Row,
+    Col,
+    Container,
+    Row,
     Collapse,
     Navbar,
     NavbarToggler,
@@ -34,54 +33,64 @@
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
-    ButtonDropdown
-  } from 'sveltestrap';
-  import MembersPage from './pages/members_page.svelte';
+    ButtonDropdown,
+  } from "sveltestrap";
+  import MembersPage from "./pages/members_page.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
-  
 
   // Esta funciion invierte el valor de isOpen
   const toggle = () => {
     isOpen = !isOpen;
-  }
+  };
 
   const eat = () => {
-    alert('I am eating. Sweeeeet!')
-  }
+    alert("I am eating. Sweeeeet!");
+  };
 
   function handleUpdate(event) {
     isOpen = event.detail.isOpen;
   }
 
   let routes = {
-    '/': HomePage,
-    '/history': HistoryPage,
-    '/members': MembersPage,
-    '/gallery': GalleryPage,
-    '/calendar': CalendarPage,
-    '/market': MarketPage,
-    '/admin_timeline': AdminTimelinePage
+    "/": HomePage,
+    "/history": HistoryPage,
+    "/members": MembersPage,
+    "/gallery": GalleryPage,
+    "/calendar": CalendarPage,
+    "/market": MarketPage,
+    "/admin_timeline": AdminTimelinePage,
   };
-
 </script>
 
 <header>
   <Navbar class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <NavbarBrand href="#/" class="me-auto"><span class="berkut-header">BERKUT</span></NavbarBrand>
+    <NavbarBrand href="#/" class="me-auto"
+      ><span class="berkut-header">BERKUT</span></NavbarBrand
+    >
     <NavbarToggler on:click={toggle} class="me-2" />
     <Collapse {isOpen} navbar expand="md">
       <Nav class="ms-auto" navbar>
         <NavItem>
-          <NavLink href="#/"><span class="berkut-sub-header">Recreación Medieval del Este de Europa</span></NavLink>
+          <NavLink href="#/"
+            ><span class="berkut-sub-header"
+              >Recreación Medieval del Este de Europa</span
+            ></NavLink
+          >
         </NavItem>
 
         <NavItem>
-          <ButtonDropdown  {isAdminOpen}>
-            <DropdownToggle color="info" caret on:click={() => (isAdminOpen = !isAdminOpen)}>
-              MENÚ
-            </DropdownToggle>
+          <ButtonDropdown {isAdminOpen}>
+            <div style="margin-top: 12px;">
+              <DropdownToggle
+                color="info"
+                caret
+                on:click={() => (isAdminOpen = !isAdminOpen)}
+              >
+                MENÚ
+              </DropdownToggle>
+            </div>
             <DropdownMenu>
               <DropdownItem header class="titular">Time line</DropdownItem>
               <DropdownItem>
@@ -115,13 +124,11 @@
                 <a href="#/market" class="link">Shop</a>
               </DropdownItem>
             </DropdownMenu>
-          </ButtonDropdown>          
+          </ButtonDropdown>
         </NavItem>
-
       </Nav>
     </Collapse>
   </Navbar>
-
 </header>
 
 <main>
@@ -129,18 +136,7 @@
 </main>
 
 <style>
-
-  @font-face {
-    font-family: Viking-Normal;
-    src: url('fonts/viking.ttf');
-  }
-
-  @font-face {
-    font-family: PR Viking;
-    src: url('fonts/PR_Viking.ttf');
-  }
-
-  :global(.titular){
+  :global(.titular) {
     background-color: #474747;
     margin-left: 10px;
     margin-right: 10px;
@@ -148,7 +144,7 @@
     border-radius: 10px;
     text-align: center;
   }
-  
+
   .link {
     display: block;
     width: 100%;
@@ -162,18 +158,17 @@
     border: 0;
   }
 
-  .berkut-header{
-    font-family: Viking-Normal;
+  .berkut-header {
+    font-family: Climate Crisis;
     font-size: 30pt;
   }
 
-  .berkut-sub-header{
+  .berkut-sub-header {
     font-family: PR Viking;
     font-size: 25pt;
   }
 
-  :global(.boton-color){
+  :global(.boton-color) {
     background-color: blue-800;
   }
-
 </style>
