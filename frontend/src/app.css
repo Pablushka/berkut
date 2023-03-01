@@ -85,7 +85,10 @@ button:focus-visible {
   src: url("fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf");
 }
 
-
+@font-face {
+  font-family: Viking Hell;
+  src: url("fonts/Viking Hell.ttf");
+}
 
 @media (prefers-color-scheme: light) {
   :root {

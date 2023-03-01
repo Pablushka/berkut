@@ -159,8 +159,8 @@
   }
 
   .berkut-header {
-    font-family: Climate Crisis;
-    font-size: 30pt;
+    font-family: PR Viking;
+    font-size: 40pt;
   }
 
   .berkut-sub-header {
