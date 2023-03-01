@@ -142,11 +142,11 @@
   }
 
   .members .card {
-    width: 500px;
+    width: 550px;
     min-height: 300px;
     margin: 10pt;
     text-align: center;
-    background-color: #ffffffbe;
+    background-color: rgba(255, 255, 255, 0);
     border-radius: 45px;
     display: flex;
     flex-wrap: wrap;
@@ -166,7 +166,7 @@
     font-family: PR Viking;
     font-size: 50pt;
     text-align: center;
-    -webkit-text-stroke: 1px #bebebe;
+
   }
 
   .contenedor_member_text {

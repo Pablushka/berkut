@@ -160,7 +160,7 @@
 
   .berkut-header {
     font-family: PR Viking;
-    font-size: 40pt;
+    font-size: 35pt;
   }
 
   .berkut-sub-header {
