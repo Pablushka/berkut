@@ -159,7 +159,7 @@
   }
 
   .berkut-header {
-    font-family: PR Viking;
+    font-family: Viking Hell;
     font-size: 35pt;
   }
 

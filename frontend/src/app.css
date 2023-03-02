@@ -87,7 +87,7 @@ button:focus-visible {
 
 @font-face {
   font-family: Viking Hell;
-  src: url("fonts/Viking Hell.ttf");
+  src: url("fonts/Viking Hell.otf");
 }
 
 @media (prefers-color-scheme: light) {
