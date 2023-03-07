@@ -2,18 +2,22 @@ from flask import Flask, redirect, render_template, request, url_for, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from markupsafe import escape
-import hashlib
-
+from config import settings
 from database import db
 from models.event import Event
 from models.user import User
+
+import pyotp
+from qr import new_qr_code
+
+from emails import send_registration_email
 
 from datetime import datetime
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/db/project.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/project.sqlite"
 
 db.init_app(app)
 
@@ -58,27 +62,31 @@ def create_or_update_user():
     data = request.get_json()
 
     if request.method == 'POST':
-        # reemplazar por hashlib.sha256('SALTA'.encode('utf-8') + 'passwords'.encode('utf-8')).hexdigest()
-        hash = hashlib.sha256()
 
         # if the request has data (is not None), create a new user
         if data:
+
+            secret = pyotp.random_base32()
             name = data['name']
             email = data['email']
-
-            hash.update(data['password'].encode('utf-8'))
-            password = hash.hexdigest()
-
             last_login = datetime.strptime(data['last_login'], "%d-%m-%Y")
             is_active = data['is_active']
             is_admin = data['is_admin']
 
-            user = User(name=name, email=email, password=password,
+            user = User(name=name, email=email, secret=secret,
                         last_login=last_login, is_active=is_active, is_admin=is_admin)
 
             db.session.add(user)
             db.session.commit()
-            return jsonify(user.to_dict())
+
+            totp_uri = pyotp.totp.TOTP(secret, interval=45).provisioning_uri(
+                name=data["email"], issuer_name="Berkut")
+            qr_base64 = new_qr_code(totp_uri)
+
+            send_registration_email(
+                name=name, qr=qr_base64, secret=secret, user_id=user.id)
+
+            return jsonify({"user": user.to_dict(), "qr_image": qr_base64})
 
     if request.method == 'PATCH':
 
@@ -95,6 +103,11 @@ def create_or_update_user():
             db.session.commit()
             # return event as json
             return jsonify(user.to_dict())
+
+
+@app.route('/users/verify/<int:id>', methods=['GET'])  # type: ignore
+def verify_user(id):
+    pass
 
 
 @app.route('/users/<int:id>', methods=['DELETE'])  # type: ignore

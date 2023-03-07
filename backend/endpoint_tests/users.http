@@ -7,21 +7,21 @@ POST http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Pablito2 Clavo un Clavito",
+    "name": "Pablito3 Clavo un Clavito",
     "email": "pablito@nomades.com",
     "last_login": "31-01-2023",
     "is_active": true,
-    "is_admin": false,
-    "password": "tigre"
+    "is_admin": false
 }
 
 ###
 
+# gAAAAABkBiAcIsiM9ECninJSl4iVKq8nzRHouezzbPPldDTYZR8Fmy551tsXuTYuQftQV_C2fLx3HKluG5pMLnTuXlhPnkKqRA==
 PATCH http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "id":2,
+    "id":1,
     "name": "Jorgito",
     "email": "jorgito@nomades.com",
     "last_login": "31-01-2023",
