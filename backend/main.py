@@ -10,6 +10,11 @@ from models.user import User
 
 from datetime import datetime
 
+import pyotp
+from mails import send_registration_email
+from qr import new_qr_code
+
+
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -59,25 +64,38 @@ def create_or_update_user():
 
     if request.method == 'POST':
         # reemplazar por hashlib.sha256('SALTA'.encode('utf-8') + 'passwords'.encode('utf-8')).hexdigest()
-        hash = hashlib.sha256()
+        # hash = hashlib.sha256()
 
         # if the request has data (is not None), create a new user
         if data:
+
+            token = pyotp.random_base32()
+
             name = data['name']
             email = data['email']
 
-            hash.update(data['password'].encode('utf-8'))
-            password = hash.hexdigest()
+            # hash.update(data['password'].encode('utf-8'))
+            # password = hash.hexdigest()
 
             last_login = datetime.strptime(data['last_login'], "%d-%m-%Y")
-            is_active = data['is_active']
-            is_admin = data['is_admin']
+            is_active = False
+            is_admin = False
 
-            user = User(name=name, email=email, password=password,
+            user = User(name=name, email=email, token=token,
                         last_login=last_login, is_active=is_active, is_admin=is_admin)
 
             db.session.add(user)
             db.session.commit()
+
+            # genera codigo qr
+            totp_uri = pyotp.totp.TOTP(token, interval=45).provisioning_uri(
+                name=email, issuer_name="Berkut")
+
+            qr = new_qr_code(totp_uri)
+
+            # Enviar email al usuario con el token y las instrucciones para activar su cuenta
+            send_registration_email(email, name, qr, token, user.id)
+
             return jsonify(user.to_dict())
 
     if request.method == 'PATCH':

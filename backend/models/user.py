@@ -8,7 +8,7 @@ class User(db.Model):  # type: ignore
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(200), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    token = db.Column(db.String(254), nullable=False)
     last_login = db.Column(db.DateTime, nullable=True,
                            default=datetime.utcnow)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
