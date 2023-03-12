@@ -2,11 +2,15 @@ from flask import Flask, redirect, render_template, request, url_for, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from markupsafe import escape
-import hashlib
-
+from config import settings
 from database import db
 from models.event import Event
 from models.user import User
+
+import pyotp
+from qr import new_qr_code
+
+from emails import send_registration_email
 
 from datetime import datetime
 
@@ -18,7 +22,7 @@ from qr import new_qr_code
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/db/project.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/project.sqlite"
 
 db.init_app(app)
 
@@ -113,6 +117,11 @@ def create_or_update_user():
             db.session.commit()
             # return event as json
             return jsonify(user.to_dict())
+
+
+@app.route('/users/verify/<int:id>', methods=['GET'])  # type: ignore
+def verify_user(id):
+    pass
 
 
 @app.route('/users/<int:id>', methods=['DELETE'])  # type: ignore
