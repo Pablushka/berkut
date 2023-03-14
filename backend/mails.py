@@ -5,6 +5,7 @@ import ssl  # secure socket layer
 from email.mime.text import MIMEText
 # MIMEMultipart is a container for MIME messages
 from email.mime.multipart import MIMEMultipart
+from config import settings
 
 sender_email = "pablo@nomades.com.ar"
 receiver_email = ""
@@ -53,7 +54,8 @@ def send_registration_email(receiver: str, name: str, qr: str, token: str, user_
 
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL("smtp.fastmail.com", 465, context=context) as server:
-        server.login("pablo@nomades.com.ar", "q6cxv27x4y5bknwl")
+        server.login("pablo@nomades.com.ar",
+                     (settings["SMTP_MAIL_PASSWORD"] or ""))
         server.sendmail(
             sender_email, receiver, message.as_string()
         )

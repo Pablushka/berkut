@@ -2,7 +2,14 @@ from dataclasses import dataclass
 from datetime import datetime
 from database import db
 from sqlalchemy import event
-from config import settings, SECRET_KEY
+from cryptography.fernet import Fernet
+from config import settings
+
+secret = settings["SECRET_KEY"]
+if secret:
+    fernet = Fernet(secret)
+else:
+    raise Exception("No secret key")
 
 
 @dataclass
@@ -30,7 +37,7 @@ class User(db.Model):  # type: ignore
         }
 
     def get_secret(self):
-        return SECRET_KEY.decrypt(self.secret, 'ascii')
+        return fernet.decrypt(self.token)
 
 
 @ event.listens_for(User, 'before_insert')
@@ -38,7 +45,7 @@ def receive_before_insert(mapper, connection, target):
     "listen for the 'before_insert' event"
 
     print("before insert")
-    target.secret = SECRET_KEY.encrypt(bytes(target.secret, 'ascii'))
+    target.token = fernet.encrypt(bytes(target.token, 'ascii'))
 
 
 # @event.listens_for(User, 'before_update')
@@ -46,5 +53,5 @@ def receive_before_insert(mapper, connection, target):
 #     "listen for the 'before_update' event"
 
 #     print("before update")
-#     print(target.secret)
-#     target.secret = settings.encrypt(bytes(target.secret, 'ascii'))
+#     print(target.token)
+#     target.token = settings.encrypt(bytes(target.token, 'ascii'))

@@ -9,14 +9,10 @@
   import CalendarPage from "./pages/calendar_page.svelte";
   import MarketPage from "./pages/market_page.svelte";
   import AdminTimelinePage from "./pages/admin_timeline_page.svelte";
+  import NewUserPage from "./pages/new_user_page.svelte";
 
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
-
-  import Timeline from "./components/timeline.svelte";
-
-  import svelteLogo from "./assets/svelte.svg";
-  import Counter from "./components/Counter.svelte";
 
   import {
     Col,
@@ -61,6 +57,7 @@
     "/calendar": CalendarPage,
     "/market": MarketPage,
     "/admin_timeline": AdminTimelinePage,
+    "/new_user": NewUserPage,
   };
 </script>
 

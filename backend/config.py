@@ -1,6 +1,4 @@
-from dotenv_config import Config
-from cryptography.fernet import Fernet
+from dotenv import dotenv_values
 
-
-settings = Config('.env')
-SECRET_KEY = Fernet(settings('SECRET_KEY'))
+settings = dotenv_values(".env")
+print(settings)

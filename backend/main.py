@@ -10,7 +10,7 @@ from models.user import User
 import pyotp
 from qr import new_qr_code
 
-from emails import send_registration_email
+from mails import send_registration_email
 
 from datetime import datetime
 
