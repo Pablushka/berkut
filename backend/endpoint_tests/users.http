@@ -7,12 +7,8 @@ POST http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Pablito2 Clavo un Clavito",
-    "email": "pablito@nomades.com",
-    "last_login": "31-01-2023",
-    "is_active": true,
-    "is_admin": false,
-    "password": "tigre"
+    "name": "Pablito9",
+    "email": "pablushka@nomades.com.ar"
 }
 
 ###
