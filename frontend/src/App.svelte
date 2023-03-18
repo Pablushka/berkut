@@ -111,6 +111,9 @@
               <DropdownItem divider />
               <DropdownItem header class="titular">Publico</DropdownItem>
               <DropdownItem>
+                <a href="#/new_user" class="link">Crear Usuario</a>
+              </DropdownItem>
+              <DropdownItem>
                 <a href="#/members" class="link">Miembros</a>
               </DropdownItem>
               <DropdownItem>
