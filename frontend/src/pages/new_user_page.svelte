@@ -28,7 +28,7 @@
   };
 </script>
 
-<div class="fondo">
+<div class="fondo2">
   <h1 class="block">¡Date de alta como usuario!</h1>
 
   <Form>
@@ -45,12 +45,13 @@
 </div>
 
 <style>
-  .fondo {
+  .fondo2 {
     font-family: PR Viking;
     border: solid 3px;
-    background-color: #ffffffed;
+    background-color: #ffffffa8;
     border-radius: 42px;
-    width: 650px;   
+    width: 650px;
+    padding: 0 50px 20px 50px;  
   }
   .block {
     margin-block: revert;
