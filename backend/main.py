@@ -121,8 +121,13 @@ def create_or_update_user():
             return jsonify(user.to_dict())
 
 
-@app.route('/users/verify/<int:id>', methods=['GET'])  # type: ignore
-def verify_user(id):
+# type: ignore
+@app.route('/users/verify/<str:email>/<int:access_code>', methods=['GET'])
+def verify_user_token(email, access_code):
+    # buscar el usuario con ese email en la base de datos
+    # checkear que su token es correcto
+    # si es correcto, darle acceso a la app y emitimos un mensaje de bienvenida
+    # si no es correcto, emitimos un mensaje de error
     pass
 
 

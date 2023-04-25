@@ -10,6 +10,7 @@
   import MarketPage from "./pages/market_page.svelte";
   import AdminTimelinePage from "./pages/admin_timeline_page.svelte";
   import NewUserPage from "./pages/new_user_page.svelte";
+  import NewUserValidationPage from "./pages/new_user_validation_page.svelte";
 
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
@@ -63,6 +64,7 @@
     "/market": MarketPage,
     "/admin_timeline": AdminTimelinePage,
     "/new_user": NewUserPage,
+    "/new_user_validation": NewUserValidationPage,
   };
 </script>
 
