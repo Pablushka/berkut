@@ -3,3 +3,4 @@ entv/
 venv/
 instance/
 .venv/
+backend/.env
