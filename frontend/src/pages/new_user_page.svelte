@@ -28,8 +28,8 @@
   };
 </script>
 
-<div class="border p-3 fondo">
-  <h1>¡Date de alta como usuario!</h1>
+<div class="fondo2">
+  <h1 class="block">¡Date de alta como usuario!</h1>
 
   <Form>
     <FormGroup floating label="Tu e-mail aquí">
@@ -45,9 +45,17 @@
 </div>
 
 <style>
-  .fondo {
-    backdrop-filter: blur(5px);
-    background-color: #29b75f !important;
-    border: solid 3px red;
+  .fondo2 {
+    font-family: PR Viking;
+    border: solid 3px;
+    background-color: #ffffffa8;
+    border-radius: 42px;
+    width: 650px;
+    padding: 0 50px 20px 50px;  
+  }
+  .block {
+    margin-block: revert;
+    margin: 10pt;
+    text-align: center;
   }
 </style>
