@@ -11,6 +11,8 @@
       email: email,
     };
 
+
+
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {

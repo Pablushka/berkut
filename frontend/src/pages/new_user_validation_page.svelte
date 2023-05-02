@@ -26,7 +26,7 @@
 </script>
 
 <div class="fondo2">
-  <h1 class="block">¡Vaida tu código de acceso!</h1>
+  <h1 class="block">¡Valida tu código de acceso!</h1>
 
   <Form>
     <FormGroup floating label="Tu e-mail aquí">
@@ -43,7 +43,7 @@
       />
     </FormGroup>
 
-    <button on:click={validateNewUserToken}> Enviar </button>
+    <button on:click={validateNewUserToken}> Validar </button>
   </Form>
 </div>
 
