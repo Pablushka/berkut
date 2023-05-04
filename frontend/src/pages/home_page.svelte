@@ -4,24 +4,26 @@
 </script>
 
 <div class="welcome_text">
-  <h1 class="titel_text">Hello!</h1>
+  <h1>¡Bienvenidos!</h1>
 
   <p class="titel_text">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-    molestiae praesentium eius dignissimos voluptatem soluta magni, unde
-    dolores? Cupiditate vel dignissimos corporis eius quia! Rem earum doloremque
-    hic ratione ipsam?
+    Berkut es un grupo argentino, sin fines de lucro, de recreación histórica que busca encarnar el estilo de vida de la población del este de Europa, abarcando los siglos IX al XIII. En nuestro campamento podrán disfrutar de la inmersión de los miembros del grupo en sus roles, llevando al espectador por un recorrido de las áreas comunes de un campamento. 
+Pudiendo apreciar la cocina donde se prepara pan sin levadura y la comida para alimentar al grupo. Comida que será consumida en el comedor principal junto con un buen hidromiel. Siguiendo el recorrido podremos ver una típica habitación con cama, arcones, alfombras y ropas típicas exhibidas. 
+Pasaremos por el sector de armas, donde podrán apreciar el peso del armamento, escudos y armaduras. Los miembros del grupo estarán disponibles para contestar cualquier duda y realizar combates de exhibición para su disfrute. El espectador podrá participar de nuestro juego de lanzas, formar parte del muro de escudos y la venta de esclavos.
+Terminando el recorrido con el salón del trono, en el cual el espectador podrá ser parte de la historia usando las vestimentas de la época y así retratarse en foto esperando se lleven un lindo recuerdo de lo que es Berkut.
+
   </p>
 </div>
 
 <style>
   .titel_text {
     font-family: PR Viking;
-    font-size: 50pt;
+    font-size: 20pt;
     text-align: center;
   }
 
   .welcome_text {
+    font-family: PR Viking;
     background-color: #bbb0b163;
     color: #000000;
     padding-left: 84px;
