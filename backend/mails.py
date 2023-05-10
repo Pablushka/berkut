@@ -33,7 +33,7 @@ def send_registration_email(receiver: str, name: str, qr: str, token: str, user_
         
         <h1>Paso 2</h1>
         <p>Popr favor siga el siguiente link e ingrese el código generado por su app de autentication.</p>
-        <p> <a href="http://localhost:5000/users/verify/{user_id}"> Click aquí </a> </p>
+        <p> <a href="http://localhost:2000/?#/new_user_validation/{receiver}"> Click aquí </a> </p>
       </body>
     </html>
     """

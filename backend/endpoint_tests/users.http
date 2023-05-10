@@ -3,6 +3,15 @@ GET http://localhost:5000/users HTTP/1.1
 
 ###
 
+POST http://localhost:5000/users/verify HTTP/1.1
+Content-Type: application/json
+
+{
+    "access_code": 724339,
+    "email": "pablo@nomades.com.ar"
+}
+
+###
 POST http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 

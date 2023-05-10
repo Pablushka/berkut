@@ -64,7 +64,7 @@
     "/market": MarketPage,
     "/admin_timeline": AdminTimelinePage,
     "/new_user": NewUserPage,
-    "/new_user_validation": NewUserValidationPage,
+    "/new_user_validation/:email": NewUserValidationPage,
   };
 </script>
 

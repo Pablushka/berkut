@@ -1,27 +1,33 @@
 <script>
   import { Form, FormGroup, Input } from "sveltestrap";
 
+  export let params = {};
+
+  const new_user_email = params.email;
+
   const validateNewUserToken = () => {
-    // let name = document.getElementById("name").value;
-    // let email = document.getElementById("email").value;
-    // let new_user = {
-    //   name: name,
-    //   email: email,
-    // };
-    // fetch("http://localhost:5000/users", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(new_user),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("Success:", data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
+    let token = document.getElementById("token").value;
+    let email = document.getElementById("email").value;
+
+    let new_validation = {
+      token: token,
+      email: email,
+    };
+
+    fetch("http://localhost:5000/users/verify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(new_validation),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 </script>
 
@@ -29,9 +35,20 @@
   <h1 class="block">¡Valida tu código de acceso!</h1>
 
   <Form>
-    <FormGroup floating label="Tu e-mail aquí">
-      <Input id="email" type="email" placeholder="Ingrese un e-mail" />
+    <FormGroup floating label="Tu e-mail aquí" style="display: none;">
+      <Input
+        id="email"
+        type="email"
+        placeholder="Ingrese un e-mail"
+        value={new_user_email}
+        readonly
+      />
     </FormGroup>
+
+    <p>
+      Querido usurio, por favor revise su correo electrónico y copie el código
+      de acceso que le hemos enviado.
+    </p>
 
     <FormGroup floating label="Código de acceso">
       <Input
@@ -43,7 +60,7 @@
       />
     </FormGroup>
 
-    <button on:click={validateNewUserToken}> Validar </button>
+    <button on:click|preventDefault={validateNewUserToken}> Enviar </button>
   </Form>
 </div>
 

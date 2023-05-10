@@ -6,6 +6,7 @@ from config import settings
 from database import db
 from models.event import Event
 from models.user import User
+from sqlalchemy import select
 
 import pyotp
 from qr import new_qr_code
@@ -20,6 +21,7 @@ from qr import new_qr_code
 
 
 app = Flask(__name__)
+
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/project.sqlite"
@@ -122,13 +124,31 @@ def create_or_update_user():
 
 
 # type: ignore
-@app.route('/users/verify/<str:email>/<int:access_code>', methods=['GET'])
-def verify_user_token(email, access_code):
+@app.route('/users/verify', methods=['POST'])
+def verify_user_token():
+
+    # get the json from the request
+    data = request.get_json()
+
     # buscar el usuario con ese email en la base de datos
-    # checkear que su token es correcto
-    # si es correcto, darle acceso a la app y emitimos un mensaje de bienvenida
-    # si no es correcto, emitimos un mensaje de error
-    pass
+
+    user = User.query.filter_by(email=data['email']).first()
+
+    if user:
+        # checkear que su token es correcto
+        totp = pyotp.TOTP(user.token)
+        new_acces_code = totp.now()  # => '492039'
+
+        is_valid = data['access_code'] == int(new_acces_code)
+
+        if is_valid:
+            # si es correcto, darle acceso a la app y emitimos un mensaje de bienvenida
+            return {"ok": True, "message": "welcome"}
+        else:
+            # si no es correcto, emitimos un mensaje de error
+            return {"ok": False, "message": "invalid access code"}
+
+    return {"ok": False, "message": "user not found"}
 
 
 @app.route('/users/<int:id>', methods=['DELETE'])  # type: ignore

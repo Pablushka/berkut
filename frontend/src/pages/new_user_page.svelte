@@ -1,5 +1,6 @@
 <script>
   import { Form, FormGroup, Input } from "sveltestrap";
+  import { push, pop, replace } from "svelte-spa-router";
 
   const newUser = () => {
     let name = document.getElementById("name").value;
@@ -23,6 +24,9 @@
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        // redirect to new user validation page
+        // window.location.href = "/#/new_user_validation";
+        push(`/new_user_validation/${new_user.email}`);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -53,7 +57,7 @@
     background-color: #ffffffa8;
     border-radius: 42px;
     width: 650px;
-    padding: 0 50px 20px 50px;  
+    padding: 0 50px 20px 50px;
   }
   .block {
     margin-block: revert;

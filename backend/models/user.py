@@ -40,13 +40,18 @@ class User(db.Model):  # type: ignore
         return fernet.decrypt(self.token)
 
 
-@ event.listens_for(User, 'before_insert')
+@event.listens_for(User, 'before_insert')
 def receive_before_insert(mapper, connection, target):
-    "listen for the 'before_insert' event"
-
-    print("before insert")
+    # Justo antes de insertar el usuario en la base de datos, encriptar el token
     target.token = fernet.encrypt(bytes(target.token, 'ascii'))
 
+
+@event.listens_for(User, 'load')
+def receive_load(target, context):
+    # Justo despues de cargar el usuario de la base de datos, desencriptar el token
+    target.token = fernet.decrypt(target.token).decode('ascii')
+
+    # ... (event handling logic) ...
 
 # @event.listens_for(User, 'before_update')
 # def receive_before_update(mapper, connection, target):
