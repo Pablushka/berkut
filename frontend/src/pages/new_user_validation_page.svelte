@@ -6,11 +6,11 @@
   const new_user_email = params.email;
 
   const validateNewUserToken = () => {
-    let token = document.getElementById("token").value;
+    let access_code = document.getElementById("access_code").value;
     let email = document.getElementById("email").value;
 
     let new_validation = {
-      token: token,
+      access_code: access_code,
       email: email,
     };
 
@@ -52,8 +52,8 @@
 
     <FormGroup floating label="Código de acceso">
       <Input
-        id="token"
-        name="token"
+        id="access_code"
+        name="access_code"
         type="number"
         pattern="[0-9]+"
         placeholder="Ingrese el código de acceso"

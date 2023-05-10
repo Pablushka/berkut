@@ -7,7 +7,7 @@ POST http://localhost:5000/users/verify HTTP/1.1
 Content-Type: application/json
 
 {
-    "access_code": 724339,
+    "access_code": 568172,
     "email": "pablo@nomades.com.ar"
 }
 
