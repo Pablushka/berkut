@@ -66,6 +66,16 @@
     "/new_user": NewUserPage,
     "/new_user_validation/:email": NewUserValidationPage,
   };
+
+  // let user = JSON.parse(localStorage.getItem("user"));
+  let user = {
+    id: 1,
+    name: "admin",
+    email: "PABLO@NOMADE.SCO.AR",
+    is_admin: true,
+  };
+
+  // user = false;
 </script>
 
 <header>
@@ -74,6 +84,7 @@
       ><span class="berkut-header">BERKUT</span></NavbarBrand
     >
     <NavbarToggler on:click={toggle} class="me-2" />
+
     <Collapse {isOpen} navbar expand="md">
       <Nav class="ms-auto" navbar>
         <NavItem>
@@ -95,22 +106,28 @@
                 MENÚ
               </DropdownToggle>
             </div>
+
             <DropdownMenu>
-              <DropdownItem header class="titular">Time line</DropdownItem>
-              <DropdownItem>
-                <a href="#/admin_timeline" class="link">Administrar Timeline</a>
-              </DropdownItem>
+              {#if user}
+                <DropdownItem header class="titular">Time line</DropdownItem>
+                <DropdownItem>
+                  <a href="#/admin_timeline" class="link"
+                    >Administrar Timeline</a
+                  >
+                </DropdownItem>
 
-              <DropdownItem divider />
-              <DropdownItem header class="titular">Admin</DropdownItem>
-              <DropdownItem>
-                <a href="#/admin_users" class="link">Administrar Usuarios</a>
-              </DropdownItem>
-              <DropdownItem>
-                <a href="#/role_users" class="link">Dar Permisos</a>
-              </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem header class="titular">Admin</DropdownItem>
+                <DropdownItem>
+                  <a href="#/admin_users" class="link">Administrar Usuarios</a>
+                </DropdownItem>
+                <DropdownItem>
+                  <a href="#/role_users" class="link">Dar Permisos</a>
+                </DropdownItem>
 
-              <DropdownItem divider />
+                <DropdownItem divider />
+              {/if}
+
               <DropdownItem header class="titular">Publico</DropdownItem>
               <DropdownItem>
                 <a href="#/new_user" class="link">Crear Usuario</a>

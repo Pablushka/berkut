@@ -47,11 +47,18 @@ def send_registration_email(receiver: str, name: str, qr: str, token: str, user_
     message.attach(part2)
 
     context = ssl.create_default_context()
-    with smtplib.SMTP_SSL("smtp.fastmail.com", 465, context=context) as server:
-        server.login("pablo@nomades.com.ar",
-                     (settings["SMTP_MAIL_PASSWORD"] or ""))
-        server.sendmail(
-            sender_email, receiver, message.as_string()
-        )
 
-    message = None
+    try:
+        with smtplib.SMTP_SSL("smtp.fastmail.com", 465, context=context) as server:
+            server.login("pablo@nomades.com.ar",
+                         (settings["SMTP_MAIL_PASSWORD"] or ""))
+            server.sendmail(
+                sender_email, receiver, message.as_string()
+            )
+
+            message = None
+            return True
+
+    except:
+        message = None
+        return False

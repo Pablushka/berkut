@@ -75,6 +75,9 @@ def create_or_update_user():
         # if the request has data (is not None), create a new user
         if data:
 
+            if User.query.filter_by(email=data['email']).first():
+                return {"ok": False, "message": "email already exists"}
+
             token = pyotp.random_base32()
 
             name = data['name']
@@ -102,9 +105,10 @@ def create_or_update_user():
 
             # Enviar email al usuario con el token y las instrucciones para activar su cuenta
 
-            send_registration_email(email, name, qr, token, user.id)
-
-            return jsonify(user.to_dict())
+            if send_registration_email(email, name, qr, token, user.id):
+                return {"ok": True, "message": "email sent", "user": user.to_dict()}
+            else:
+                return {"ok": False, "message": "email not sent"}
 
     if request.method == 'PATCH':
 

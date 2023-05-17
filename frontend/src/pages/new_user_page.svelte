@@ -12,8 +12,6 @@
       email: email,
     };
 
-
-
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
@@ -24,9 +22,13 @@
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        // redirect to new user validation page
-        // window.location.href = "/#/new_user_validation";
-        push(`/new_user_validation/${new_user.email}`);
+
+        if (data["ok"]) {
+          alert("Usuario creado exitosamente");
+          push(`/new_user_validation/${new_user.email}`);
+        } else {
+          alert("Error: " + data["message"]);
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
