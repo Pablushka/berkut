@@ -1,4 +1,5 @@
-from flask import Flask, redirect, render_template, request, url_for, jsonify
+from flask import Flask, render_template, request, session, jsonify
+from flask_session import Session
 from flask_cors import CORS
 from flask_migrate import Migrate
 from markupsafe import escape
@@ -22,11 +23,19 @@ from qr import new_qr_code
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": "*"}})
-
+app.config["SECRET_KEY"] = settings["FLASK_SECRET_KEY"]
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/project.sqlite"
+app.config["SESSION_TYPE"] = 'sqlalchemy'
+
+cors = CORS(app, resources={r"/*": {"origins": "*"}},
+            supports_credentials=True)
 
 db.init_app(app)
+
+# Configuro la session para que use la base de datos
+app.config['SESSION_SQLALCHEMY'] = db
+# Creo una server side session
+ss_session = Session(app)
 
 # render_as_batch=True is needed for SQLite support
 migrate = Migrate(app, db, render_as_batch=True)
@@ -131,11 +140,15 @@ def create_or_update_user():
 @app.route('/users/verify', methods=['POST'])
 def verify_user_token():
 
+    if "user" in session:
+        print("Session ->", session.get("user"))
+    else:
+        print("Session ->", "No hay session")
+
     # get the json from the request
     data = request.get_json()
 
     # buscar el usuario con ese email en la base de datos
-
     user = User.query.filter_by(email=data['email']).first()
 
     if user:
@@ -143,11 +156,17 @@ def verify_user_token():
         totp = pyotp.TOTP(user.token)
         new_acces_code = totp.now()  # => '492039'
 
-        is_valid = data['access_code'] == int(new_acces_code)
+        is_valid = int(data['access_code']) == int(new_acces_code)
 
         if is_valid:
+            session["user"] = user.to_dict()
             # si es correcto, darle acceso a la app y emitimos un mensaje de bienvenida
-            return {"ok": True, "message": "welcome"}
+            # res = make_response(
+            #     jsonify({"ok": True, "message": "welcome", 'session': user.to_dict()}), 200)
+            # res.set_cookie('session_lokita', "Hola Manola")
+            # return res
+
+            return {"ok": True, "message": "welcome", 'session': user.to_dict()}
         else:
             # si no es correcto, emitimos un mensaje de error
             return {"ok": False, "message": "invalid access code"}

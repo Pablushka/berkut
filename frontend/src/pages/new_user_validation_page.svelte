@@ -1,5 +1,7 @@
 <script>
   import { Form, FormGroup, Input } from "sveltestrap";
+  import { getCookie, setCookie } from "../helpers/cookies";
+  import { push } from "svelte-spa-router";
 
   export let params = {};
 
@@ -15,6 +17,7 @@
     };
 
     fetch("http://localhost:5000/users/verify", {
+      credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,6 +27,14 @@
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+
+        if (data.ok) {
+          setCookie("berkut_session.user", JSON.stringify(data.session), 7);
+
+          push("/");
+        } else {
+          alert("Error: " + data.message);
+        }
       })
       .catch((error) => {
         console.error("Error:", error);

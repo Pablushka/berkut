@@ -11,6 +11,7 @@
   import AdminTimelinePage from "./pages/admin_timeline_page.svelte";
   import NewUserPage from "./pages/new_user_page.svelte";
   import NewUserValidationPage from "./pages/new_user_validation_page.svelte";
+  import { getCookie, setCookie } from "./helpers/cookies";
 
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
@@ -68,12 +69,7 @@
   };
 
   // let user = JSON.parse(localStorage.getItem("user"));
-  let user = {
-    id: 1,
-    name: "admin",
-    email: "PABLO@NOMADE.SCO.AR",
-    is_admin: true,
-  };
+  let user = getCookie("berkut_session.user");
 
   // user = false;
 </script>
