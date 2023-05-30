@@ -70,6 +70,7 @@
 
   // let user = JSON.parse(localStorage.getItem("user"));
   let user = getCookie("berkut_session.user");
+  
 
   // user = false;
 </script>

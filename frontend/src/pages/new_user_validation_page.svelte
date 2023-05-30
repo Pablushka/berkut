@@ -29,7 +29,7 @@
         console.log("Success:", data);
 
         if (data.ok) {
-          setCookie("berkut_session.user", JSON.stringify(data.session), 7);
+          setCookie("berkut_session.user", JSON.stringify(data.user), 7);
 
           push("/");
         } else {

@@ -166,7 +166,7 @@ def verify_user_token():
             # res.set_cookie('session_lokita', "Hola Manola")
             # return res
 
-            return {"ok": True, "message": "welcome", 'session': user.to_dict()}
+            return {"ok": True, "message": "welcome", 'user': {"id":user.id, "name":user.name}}
         else:
             # si no es correcto, emitimos un mensaje de error
             return {"ok": False, "message": "invalid access code"}
