@@ -12,6 +12,7 @@
   import NewUserPage from "./pages/new_user_page.svelte";
   import NewUserValidationPage from "./pages/new_user_validation_page.svelte";
   import { getCookie, setCookie } from "./helpers/cookies";
+  import AdminUserPage from "./pages/admin_user_page.svelte";
 
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
@@ -66,6 +67,7 @@
     "/admin_timeline": AdminTimelinePage,
     "/new_user": NewUserPage,
     "/new_user_validation/:email": NewUserValidationPage,
+    "/admin_users": AdminUserPage
   };
 
   // let user = JSON.parse(localStorage.getItem("user"));
@@ -109,12 +111,12 @@
                 <DropdownItem header class="titular">Time line</DropdownItem>
                 <DropdownItem>
                   <a href="#/admin_timeline" class="link"
-                    >Administrar Timeline</a
+                    >Administrar Eventos</a
                   >
                 </DropdownItem>
 
                 <DropdownItem divider />
-                <DropdownItem header class="titular">Admin</DropdownItem>
+                <DropdownItem header class="titular">Administrador</DropdownItem>
                 <DropdownItem>
                   <a href="#/admin_users" class="link">Administrar Usuarios</a>
                 </DropdownItem>
