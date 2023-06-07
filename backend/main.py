@@ -160,13 +160,11 @@ def verify_user_token():
 
         if is_valid:
             session["user"] = user.to_dict()
-            # si es correcto, darle acceso a la app y emitimos un mensaje de bienvenida
-            # res = make_response(
-            #     jsonify({"ok": True, "message": "welcome", 'session': user.to_dict()}), 200)
-            # res.set_cookie('session_lokita', "Hola Manola")
-            # return res
 
-            return {"ok": True, "message": "welcome", 'user': {"id":user.id, "name":user.name}}
+            user.is_active = True
+            db.session.commit()
+
+            return {"ok": True, "message": "welcome", 'user': {"id": user.id, "name": user.name}}
         else:
             # si no es correcto, emitimos un mensaje de error
             return {"ok": False, "message": "invalid access code"}
