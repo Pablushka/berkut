@@ -30,8 +30,8 @@
 
         if (data.ok) {
           setCookie("berkut_session.user", JSON.stringify(data.user), 7);
-
-          push("/");
+          window.location.href = "/";
+          // push("/");
         } else {
           alert("Error: " + data.message);
         }

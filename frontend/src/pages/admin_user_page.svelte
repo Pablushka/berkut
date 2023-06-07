@@ -37,7 +37,7 @@
     document.getElementById("field_user").value = current_user.name;
     document.getElementById("field_status").value = current_user.is_active;
     document.getElementById("field_is_admin").value = current_user.is_admin;
-    // document.getElementById("field_level").value = current_user.level;
+    document.getElementById("field_level").value = current_user.level;
   };
 
   const form_fill = (the_user) => {
@@ -184,7 +184,9 @@
           <td style="white-space: nowrap;"
             >{user.is_admin == 0 ? "NO" : "SI"}</td
           >
-          <td style="white-space: nowrap;">TO DO!</td>
+          <td style="white-space: nowrap;"
+            >{user.level == 2 ? "Super" : "Colab"}</td
+          >
           <td>
             <button
               on:click={() => form_fill(user)}
@@ -236,8 +238,8 @@
         <FormGroup style={formLabel}>
           <Label for="level">Nivel</Label>
           <Input type="select" value="" id="field_level" name="level">
-            <option value="0">Colaborador</option>
-            <option value="1">Super Admin</option>
+            <option value="1">Colaborador</option>
+            <option value="2">Super Admin</option>
           </Input>
         </FormGroup>
       </Form>

@@ -22,6 +22,7 @@ class User(db.Model):  # type: ignore
                            default=datetime.utcnow)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    level = db.Column(db.Integer, nullable=False, default=1)
 
     def __repr__(self):
         return f"User('{self.id}', '{self.name}', '{self.email}', '{self.last_login}', '{self.is_active}')"
@@ -33,7 +34,8 @@ class User(db.Model):  # type: ignore
             'email': self.email,
             'last_login': self.last_login.strftime("%d-%m-%Y"),
             'is_active': self.is_active,
-            'is_admin': self.is_admin
+            'is_admin': self.is_admin,
+            'level': self.level
         }
 
     def get_secret(self):
