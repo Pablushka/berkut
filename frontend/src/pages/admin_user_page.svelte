@@ -128,7 +128,7 @@
       level: level,
     };
 
-    let httpMethod = "PATCH";
+    let httpMethod = id == '' ? "POST" : "PATCH";
 
     fetch("http://localhost:5000/users", {
       method: httpMethod,
@@ -151,7 +151,7 @@
       });
   };
 
-  const newEvent = () => {
+  const editUser = () => {
     toggle();
 
     current_user = null;
@@ -248,7 +248,7 @@
     </ModalBody>
 
     <ModalFooter>
-      <Button color="primary" on:click={saveUser}>Guardar</Button>
+      <Button color="primary" on:click={editUser}>Guardar</Button>
       <Button color="secondary" on:click={toggle}>Cancelar</Button>
     </ModalFooter>
   </Modal>
