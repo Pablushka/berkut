@@ -30,8 +30,10 @@ Content-Type: application/json
     "name": "Jorgito",
     "email": "jorgito@nomades.com",
     "last_login": "31-01-2023",
-    "is_admin": false,
-    "password": "tigre"
+    "is_active": true,
+    "is_admin": true,
+    "password": "tigre",
+    "level": 2
 }
 
 ###
