@@ -101,6 +101,7 @@
     let last_login = document.getElementById("field_last_login").value;
     let is_active = document.getElementById("field_is_active").value;
     let is_admin = document.getElementById("field_is_admin").value;
+    let level = document.getElementById("field_level").value = current_user.level;
 
     // regular expression to check for bad words
     let pattern = /culo|puto el que lee|macri|chupito el pame/gim;
@@ -124,9 +125,10 @@
       last_login: last_login,
       is_active: is_active,
       is_admin: is_admin,
+      level: level,
     };
 
-    let httpMethod = id == "" ? "POST" : "PATCH";
+    let httpMethod = "PATCH";
 
     fetch("http://localhost:5000/users", {
       method: httpMethod,
