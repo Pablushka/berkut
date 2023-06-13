@@ -35,7 +35,7 @@
 
     document.getElementById("field_id").value = current_user.id;
     document.getElementById("field_user").value = current_user.name;
-    document.getElementById("field_status").value = current_user.is_active;
+    document.getElementById("field_is_active").value = current_user.is_active;
     document.getElementById("field_is_admin").value = current_user.is_admin;
     document.getElementById("field_level").value = current_user.level;
   };
@@ -45,7 +45,7 @@
 
     current_user = the_user;
 
-    console.log(current_user);
+    // console.log(current_user);
   };
 
   // function toggle2() {
@@ -96,42 +96,25 @@
 
   const saveUser = () => {
     let id = document.getElementById("field_id").value;
-    let name = document.getElementById("field_name").value;
-    let email = document.getElementById("field_email").value;
-    let last_login = document.getElementById("field_last_login").value;
+    let name = document.getElementById("field_user").value;
+    // let email = document.getElementById("field_email").value;
+    // let last_login = document.getElementById("field_last_login").value;
     let is_active = document.getElementById("field_is_active").value;
     let is_admin = document.getElementById("field_is_admin").value;
-    let level = document.getElementById("field_level").value = current_user.level;
-
-    // regular expression to check for bad words
-    let pattern = /culo|puto el que lee|macri|chupito el pame/gim;
-
-    let result = pattern.test(title + " " + text);
-
-    if (result) {
-      alert("Por favor no utilice estas palabras en el formulario: ");
-      return;
-    }
-
-    let components = date.split("-");
-
-    // convierto la fecha a DD-MM-YYYY por requerimiento de la API
-    let new_date = `${components[2]}-${components[1]}-${components[0]}`;
+    let level = document.getElementById("field_level").value;
 
     let user = {
       id: id,
       name: name,
-      email: email,
-      last_login: last_login,
       is_active: is_active,
       is_admin: is_admin,
       level: level,
     };
 
-    let httpMethod = id == '' ? "POST" : "PATCH";
+    // console.log("user ->", user);
 
     fetch("http://localhost:5000/users", {
-      method: httpMethod,
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -139,7 +122,7 @@
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        // console.log("Success:", data);
         getUsers().then((users) => {
           my_users = users;
         });
@@ -151,11 +134,11 @@
       });
   };
 
-  const editUser = () => {
-    toggle();
+  // const editUser = () => {
+  //   toggle();
 
-    current_user = null;
-  };
+  //   current_user = null;
+  // };
 
   let formLabel = "text-align: left; font-weight: bold;";
 </script>
@@ -223,7 +206,7 @@
 
         <FormGroup style={formLabel}>
           <Label for="status">Estado</Label>
-          <Input type="select" value="" id="field_status" name="status">
+          <Input type="select" value="" id="field_is_active" name="status">
             <option value="false">Inactivo</option>
             <option value="true">Activo</option>
           </Input>
@@ -248,7 +231,7 @@
     </ModalBody>
 
     <ModalFooter>
-      <Button color="primary" on:click={editUser}>Guardar</Button>
+      <Button color="primary" on:click={saveUser}>Guardar</Button>
       <Button color="secondary" on:click={toggle}>Cancelar</Button>
     </ModalFooter>
   </Modal>

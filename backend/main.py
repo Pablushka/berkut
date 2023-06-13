@@ -123,13 +123,20 @@ def create_or_update_user():
 
         if data:
             id = data['id']
-            name = data['name']
-            email = data['email']
+            is_admin = (data['is_admin'] == 'true')
+            is_active = (data['is_active'] == 'true')
+            level = data['level']
+
+            # email = data['email']
 
             user = User.query.get_or_404(id, description="User not found")
 
-            user.name = name
-            user.email = email
+            user.is_admin = is_admin
+            user.is_active = is_active
+            user.level = level
+
+            # user.name = name
+            # user.email = email
 
             db.session.commit()
             # return event as json
