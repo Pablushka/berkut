@@ -38,6 +38,7 @@
     DropdownMenu,
     DropdownToggle,
     ButtonDropdown,
+    Button,
   } from "sveltestrap";
   import MembersPage from "./pages/members_page.svelte";
 
@@ -67,7 +68,7 @@
     "/admin_timeline": AdminTimelinePage,
     "/new_user": NewUserPage,
     "/new_user_validation/:email": NewUserValidationPage,
-    "/admin_users": AdminUserPage
+    "/admin_users": AdminUserPage,
   };
 
   // let user = JSON.parse(localStorage.getItem("user"));
@@ -128,9 +129,11 @@
               {/if}
 
               <DropdownItem header class="titular">Publico</DropdownItem>
+            {#if user= null}
               <DropdownItem>
                 <a href="#/new_user" class="link">Crear Usuario</a>
               </DropdownItem>
+            {/if}
               <DropdownItem>
                 <a href="#/members" class="link">Miembros</a>
               </DropdownItem>
@@ -146,6 +149,7 @@
               <DropdownItem>
                 <a href="#/market" class="link">Shop</a>
               </DropdownItem>
+              <Button header class="titular-dos">Log Out</Button>
             </DropdownMenu>
           </ButtonDropdown>
         </NavItem>
@@ -162,6 +166,15 @@
   :global(.titular) {
     background-color: #474747;
     margin-left: 10px;
+    margin-right: 10px;
+    color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  :global(.titular-dos) {
+    background-color: #a01b1b;
+    margin-left: 50px;
     margin-right: 10px;
     color: #f8f9fa;
     border-radius: 10px;
