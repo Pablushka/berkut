@@ -171,7 +171,7 @@ def verify_user_token():
     # get the json from the request
     data = request.get_json()
     if check_attemp (data['email']) == False:
-        return {"ok": True, "message": "muchos intentos"}
+        return {"ok": False, "message": "muchos intentos"}
 
 
 

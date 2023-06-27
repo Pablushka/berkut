@@ -17,7 +17,7 @@
   let user = getCookie("berkut_session.user");
   if (user) {
     user = JSON.parse(user);
-    user_name = user.name;
+    user_name = user.name ?? "";
   } else {
     user_name = "";
   }
