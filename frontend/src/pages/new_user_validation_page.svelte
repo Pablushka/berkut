@@ -3,9 +3,11 @@
   import { getCookie, setCookie } from "../helpers/cookies";
   import { push } from "svelte-spa-router";
 
-  export let params = {};
+//  export let params = {};
 
-  const new_user_email = params.email;
+//  const new_user_email = params.email ?? "";
+  
+// const new_user_email = "megumi_kisukisu@hotmail.com"
 
   const validateNewUserToken = () => {
     let access_code = document.getElementById("access_code").value;
@@ -46,13 +48,11 @@
   <h1 class="block">¡Valida tu código de acceso!</h1>
 
   <Form>
-    <FormGroup floating label="Tu e-mail aquí" style="display: none;">
+    <FormGroup floating label="Tu e-mail aquí">
       <Input
         id="email"
         type="email"
         placeholder="Ingrese un e-mail"
-        value={new_user_email}
-        readonly
       />
     </FormGroup>
 

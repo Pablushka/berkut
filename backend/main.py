@@ -20,6 +20,8 @@ import pyotp
 from mails import send_registration_email
 from qr import new_qr_code
 
+attempt_list = {}
+
 
 app = Flask(__name__)
 
@@ -40,7 +42,21 @@ ss_session = Session(app)
 # render_as_batch=True is needed for SQLite support
 migrate = Migrate(app, db, render_as_batch=True)
 
+def login_attemp (email:str): 
+    if email in attempt_list:
+        attempt_list [email] +=1
+    else:
+        attempt_list [email] = 1
 
+def check_attemp (email:str):
+    if email in attempt_list:
+        if attempt_list [email] >= 3:
+            return False
+        else:
+            return True
+    
+    return True
+    
 @app.route('/')
 def index():
     # return the render of the home page in the frotend folder
@@ -154,6 +170,10 @@ def verify_user_token():
 
     # get the json from the request
     data = request.get_json()
+    if check_attemp (data['email']) == False:
+        return {"ok": True, "message": "muchos intentos"}
+
+
 
     # buscar el usuario con ese email en la base de datos
     user = User.query.filter_by(email=data['email']).first()
@@ -174,8 +194,12 @@ def verify_user_token():
             return {"ok": True, "message": "welcome", 'user': {"id": user.id, "name": user.name}}
         else:
             # si no es correcto, emitimos un mensaje de error
+            login_attemp (data['email'])
+            print (attempt_list)
             return {"ok": False, "message": "invalid access code"}
-
+    
+    login_attemp (data['email'])
+    print (attempt_list)
     return {"ok": False, "message": "user not found"}
 
 

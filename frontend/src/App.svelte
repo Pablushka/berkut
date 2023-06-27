@@ -13,6 +13,7 @@
   import NewUserValidationPage from "./pages/new_user_validation_page.svelte";
   import { getCookie, setCookie } from "./helpers/cookies";
   import AdminUserPage from "./pages/admin_user_page.svelte";
+  import { push, pop, replace } from "svelte-spa-router";
 
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
@@ -67,7 +68,7 @@
     "/market": MarketPage,
     "/admin_timeline": AdminTimelinePage,
     "/new_user": NewUserPage,
-    "/new_user_validation/:email": NewUserValidationPage,
+    "/new_user_validation/:email?": NewUserValidationPage,
     "/admin_users": AdminUserPage,
   };
 
@@ -76,6 +77,15 @@
   
 
   // user = false;
+  const LogOut = () => {
+    document.cookie = "berkut_session.user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+   // replace("/")
+   window.location = "/"
+   }
+
+
+
 </script>
 
 <header>
@@ -124,15 +134,18 @@
                 <DropdownItem>
                   <a href="#/role_users" class="link">Dar Permisos</a>
                 </DropdownItem>
-                <Button header class="titular-dos">Log Out</Button>
+
 
                 <DropdownItem divider />
               {/if}
 
               <DropdownItem header class="titular">Publico</DropdownItem>
-            {#if user= null}
+            {#if user== null}
               <DropdownItem>
                 <a href="#/new_user" class="link">Crear Usuario</a>
+              </DropdownItem>
+              <DropdownItem>
+                <a href="#/new_user_validation" class="link">Log In Usuario</a>
               </DropdownItem>
             {/if}
               <DropdownItem>
@@ -150,6 +163,9 @@
               <DropdownItem>
                 <a href="#/market" class="link">Shop</a>
               </DropdownItem>
+              {#if user}
+              <Button header class="titular-dos" on:click= {LogOut}>Log Out</Button>
+              {/if}
             </DropdownMenu>
           </ButtonDropdown>
         </NavItem>
