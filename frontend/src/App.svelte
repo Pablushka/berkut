@@ -124,6 +124,7 @@
                 <DropdownItem>
                   <a href="#/role_users" class="link">Dar Permisos</a>
                 </DropdownItem>
+                <Button header class="titular-dos">Log Out</Button>
 
                 <DropdownItem divider />
               {/if}
@@ -149,7 +150,6 @@
               <DropdownItem>
                 <a href="#/market" class="link">Shop</a>
               </DropdownItem>
-              <Button header class="titular-dos">Log Out</Button>
             </DropdownMenu>
           </ButtonDropdown>
         </NavItem>
