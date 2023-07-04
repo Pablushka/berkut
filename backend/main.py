@@ -14,14 +14,13 @@ from qr import new_qr_code
 
 from mails import send_registration_email
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import pyotp
 from mails import send_registration_email
 from qr import new_qr_code
 
-attempt_list = {}
-
+attempts = {}
 
 app = Flask(__name__)
 
@@ -42,19 +41,27 @@ ss_session = Session(app)
 # render_as_batch=True is needed for SQLite support
 migrate = Migrate(app, db, render_as_batch=True)
 
+
 def login_attemp (email:str): 
-    if email in attempt_list:
-        attempt_list [email] +=1
+    if email in attempts:
+        attempts [email]["attempts"] +=1
     else:
-        attempt_list [email] = 1
+        attempts [email] = {"attempts": 0, "block_time": None}
 
 def check_attemp (email:str):
-    if email in attempt_list:
-        if attempt_list [email] >= 3:
-            return False
+    if email in attempts:
+        if attempts[email]["block_time"] is None or attempts[email]["block_time"] <= datetime.now():
+            if attempts [email]["attempts"] >= 3 and attempts[email]["block_time"] is None:
+                attempts[email]["block_time"] = datetime.now() + timedelta(minutes = 5)
+    #checar si el usuario esta bloqueado en la ventana de tiempo de bloqueo, si esta bloqueado:
+                return False
+            else:
+                return True
         else:
-            return True
-    
+            attempts[email]["attempts"] = 0
+            attempts[email]["block_time"] = None
+            return False
+
     return True
     
 @app.route('/')
@@ -195,11 +202,11 @@ def verify_user_token():
         else:
             # si no es correcto, emitimos un mensaje de error
             login_attemp (data['email'])
-            print (attempt_list)
+            print (attempts)
             return {"ok": False, "message": "invalid access code"}
     
     login_attemp (data['email'])
-    print (attempt_list)
+    print (attempts)
     return {"ok": False, "message": "user not found"}
 
 
