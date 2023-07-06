@@ -46,23 +46,34 @@ def login_attemp (email:str):
     if email in attempts:
         attempts [email]["attempts"] +=1
     else:
-        attempts [email] = {"attempts": 0, "block_time": None}
+        attempts [email] = {"attempts": 1, "block_until": None}
 
-def check_attemp (email:str):
-    if email in attempts:
-        if attempts[email]["block_time"] is None or attempts[email]["block_time"] <= datetime.now():
-            if attempts [email]["attempts"] >= 3 and attempts[email]["block_time"] is None:
-                attempts[email]["block_time"] = datetime.now() + timedelta(minutes = 5)
-    #checar si el usuario esta bloqueado en la ventana de tiempo de bloqueo, si esta bloqueado:
-                return False
-            else:
-                return True
-        else:
+def is_not_block (email:str):
+    if not email in attempts:
+        return True
+    
+    # checar que si los intentos >=3 y no tiene fecha de vencimiento
+    # hay que devolver false
+    if attempts[email]["attempts"] >= 3 and attempts[email]["block_until"] is None:
+        attempts[email]["block_until"] = datetime.now() + timedelta(minutes = 10)
+        return False
+    
+    # si el usuario esta bloqueado y ademas esta dentro 
+    # de fecha de vencimiento hay que devolver false
+    if not attempts[email]["block_until"] is None:
+       if attempts[email]["block_until"] >= datetime.now():
+           return False
+       
+    # si pasa la fecha de vencimiento
+    # hay que devolver true
+    if not attempts[email]["block_until"] is None:
+        if attempts[email]["block_until"] <= datetime.now():
             attempts[email]["attempts"] = 0
-            attempts[email]["block_time"] = None
-            return False
-
+            attempts[email]["block_until"] = None
+            return True
+        
     return True
+       
     
 @app.route('/')
 def index():
@@ -170,16 +181,15 @@ def create_or_update_user():
 @app.route('/users/verify', methods=['POST'])
 def verify_user_token():
 
-    if "user" in session:
-        print("Session ->", session.get("user"))
-    else:
-        print("Session ->", "No hay session")
+    # if "user" in session:
+    #     print("Session ->", session.get("user"))
+    # else:
+    #     print("Session ->", "No hay session")
 
     # get the json from the request
     data = request.get_json()
-    if check_attemp (data['email']) == False:
-        return {"ok": False, "message": "muchos intentos"}
-
+    if is_not_block (data['email']) == False:
+        return {"ok": False, "message": "muchos intentos, usuario bloqueado por 10 min"}
 
 
     # buscar el usuario con ese email en la base de datos
@@ -202,11 +212,9 @@ def verify_user_token():
         else:
             # si no es correcto, emitimos un mensaje de error
             login_attemp (data['email'])
-            print (attempts)
             return {"ok": False, "message": "invalid access code"}
     
     login_attemp (data['email'])
-    print (attempts)
     return {"ok": False, "message": "user not found"}
 
 
