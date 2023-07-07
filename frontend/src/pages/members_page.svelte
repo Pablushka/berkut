@@ -1,15 +1,15 @@
 <script>
-  import ale from "../../public/img/ale.png";
-  import jonny from "../../public/img/jonny.png";
-  import maga from "../../public/img/maga.png";
-  import mati_p from "../../public/img/mati_p.png";
-  import victor from "../../public/img/victor.png";
-  import trini from "../../public/img/trini.png";
-  import mati_b from "../../public/img/mati_b.png";
-  import mati_s from "../../public/img/mati_s.png";
-  import nati from "../../public/img/nati.png";
-  import nico from "../../public/img/nico.png";
-  import pablo_a from "../../public/img/pablo_a.png";
+  import ale from "../../public/img/members/ale.png";
+  import jonny from "../../public/img/members/jonny.png";
+  import maga from "../../public/img/members/maga.png";
+  import mati_p from "../../public/img/members/mati_p.png";
+  import victor from "../../public/img/members/victor.png";
+  import trini from "../../public/img/members/trini.png";
+  import mati_b from "../../public/img/members/mati_b.png";
+  import mati_s from "../../public/img/members/mati_s.png";
+  import nati from "../../public/img/members/nati.png";
+  import nico from "../../public/img/members/nico.png";
+  import pablo_a from "../../public/img/members/pablo_a.png";
 </script>
 
 <div class="anti-pajaro">
