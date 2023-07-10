@@ -42,6 +42,7 @@
     Button,
   } from "sveltestrap";
   import MembersPage from "./pages/members_page.svelte";
+    import FmDelSur from "./pages/fm_del_sur.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
@@ -70,6 +71,7 @@
     "/new_user": NewUserPage,
     "/new_user_validation/:email?": NewUserValidationPage,
     "/admin_users": AdminUserPage,
+    "/fm_del_sur": FmDelSur,
   };
 
   // let user = JSON.parse(localStorage.getItem("user"));
