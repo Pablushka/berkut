@@ -11,6 +11,15 @@
 
 <div class="anti-pajaro">
   <h1 class="mt-5"><span class="gallery_text">Recuerdos de Eventos Pasados</span></h1>
+  
+  <div class="gallerys">
+    <div class="card">
+      <div>
+        <button class="image-button"><img class="gallery_photo" src={f_m_del_sur} alt="f_m_del_sur" /></button>
+        <p class="gallery_text">Feria Medieval Del Sur, Agosto 2022</p>
+      </div>
+    </div>
+  </div>
 
   <div class="gallerys">
     <div class="card">
@@ -25,16 +34,7 @@
     <div class="card">
       <div>
         <button class="image-button"><img class="gallery_photo" src={f_m_malvinas_argentinas} alt="f_m_malvinas_argentinas" /></button>
-        <p class="gallery_text">Feria Medieval Malvinas Argentinas, Julio 2023</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="gallerys">
-    <div class="card">
-      <div>
-        <button class="image-button"><img class="gallery_photo" src={f_m_del_sur} alt="f_m_del_sur" /></button>
-        <p class="gallery_text">Feria Medieval Del Sur, Agosto 2022</p>
+        <p class="gallery_text">Feria Medieval Malvinas Argentinas, Julio 2023 (proximamente)</p>
       </div>
     </div>
   </div>
