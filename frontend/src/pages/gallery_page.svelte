@@ -48,7 +48,7 @@
   }
 
   .gallerys {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-around;
     
