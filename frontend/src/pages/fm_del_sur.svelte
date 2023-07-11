@@ -73,15 +73,15 @@
   <div class="gallerys">
 
       <img class="gallery_photo" on:click={openCarousel} src={fm_01} alt="Natalia Cesario" /> 
-      <img class="gallery_photo" src={fm_02} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_03} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_04} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_05} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_06} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_07} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_08} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_09} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_10} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_02} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_03} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_04} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_05} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_06} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_07} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_08} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_09} alt="Natalia Cesario" />
+      <img class="gallery_photo" on:click={openCarousel} src={fm_10} alt="Natalia Cesario" />
 
   </div>
 </div>
