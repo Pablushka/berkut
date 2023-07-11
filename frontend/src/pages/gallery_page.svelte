@@ -7,30 +7,39 @@
   import { Button } from "sveltestrap";
   import Router from "svelte-spa-router";
   import fm_del_sur from "./fm_del_sur.svelte";
+  import {push, pop, replace} from 'svelte-spa-router';
+
+  const openPhotoGallery = () => {
+    push('/fm_del_sur')
+  }
+
 </script>
 
 <div class="anti-pajaro">
   <h1 class="mt-5"><span class="gallery_text">Recuerdos de Eventos Pasados</span></h1>
-  
+
   <div class="gallerys">
     <div class="card">
       <div>
-        <button class="image-button"><img class="gallery_photo" src={f_m_del_sur} alt="f_m_del_sur" /></button>
+        <img class="gallery_photo" on:click={openPhotoGallery} src={f_m_del_sur} alt="f_m_del_sur" />
         <p class="gallery_text">Feria Medieval Del Sur, Agosto 2022</p>
       </div>
     </div>
-  </div>
 
-  <div class="gallerys">
     <div class="card">
       <div>
         <button class="image-button"><img class="gallery_photo" src={avellaneda_viaja_en_el_tiempo} alt="avellaneda_viaja_en_el_tiempo" /></button>
         <p class="gallery_text">Avellaneda Viaja En El Tiempo, Mayo 2023</p>
       </div>
     </div>
-  </div>
 
-  <div class="gallerys">
+    <div class="card">
+      <div>
+        <button class="image-button"><img class="gallery_photo" src={f_m_malvinas_argentinas} alt="f_m_malvinas_argentinas" /></button>
+        <p class="gallery_text">Feria Medieval Malvinas Argentinas, Julio 2023 (proximamente)</p>
+      </div>
+    </div>
+
     <div class="card">
       <div>
         <button class="image-button"><img class="gallery_photo" src={f_m_malvinas_argentinas} alt="f_m_malvinas_argentinas" /></button>
@@ -43,27 +52,25 @@
 
 <style>
   .gallery_photo {
-    width: 200px;
     border-radius: 3%;
+    height: 250px;
   }
 
   .gallerys {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     
   }
 
   .gallerys .card {
-    min-height: 300px;
+    max-width: 300px;
     margin: 10pt;
     text-align: center;
     background-color: rgba(255, 255, 255, 0);
-    border-radius: 45px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 10px;
+    border: 0px;
   }
 
   .gallerys .card p {

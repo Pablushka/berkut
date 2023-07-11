@@ -1,5 +1,6 @@
 
 <script>
+    import { Button, Carousel, CarouselControl, CarouselItem, Styles } from 'sveltestrap';
     import fm_01 from "../../public/img/eventos/f_m_del_sur/fm_01.jpg";
     import fm_02 from "../../public/img/eventos/f_m_del_sur/fm_02.jpg";
     import fm_03 from "../../public/img/eventos/f_m_del_sur/fm_03.jpg";
@@ -10,63 +11,92 @@
     import fm_08 from "../../public/img/eventos/f_m_del_sur/fm_08.jpg";
     import fm_09 from "../../public/img/eventos/f_m_del_sur/fm_09.jpg";
     import fm_10 from "../../public/img/eventos/f_m_del_sur/fm_10.jpg";
+
+    const items = [
+    'https://picsum.photos/seed/1/800/400',
+    'https://picsum.photos/seed/2/800/400',
+    'https://picsum.photos/seed/3/800/400',
+    'https://picsum.photos/seed/4/800/400',
+		'https://picsum.photos/seed/5/800/400',
+		'https://picsum.photos/seed/6/800/400',
+  ];
+
+  let activeIndex = 1
+
+  const openCarousel = () => {
+    let carousel_container = document.getElementById("carousel")
+    let gallery_container = document.getElementById("gallery")
+    carousel_container.classList.remove("ocultadito")
+    carousel_container.classList.add("show-carousel")
+    gallery_container.classList.add("ocultadito")
+  }
+
+  const closeCarousel = () => {
+    let carousel_container = document.getElementById("carousel")
+    let gallery_container = document.getElementById("gallery")
+    carousel_container.classList.add("ocultadito")
+    gallery_container.classList.remove("ocultadito")
+  }
+
 </script>
+
+<div class ="show-carousel ocultadito" id="carousel">
+  <Carousel {items} bind:activeIndex>
+    <div class="carousel-inner">
+      {#each items as item, index}
+        <CarouselItem bind:activeIndex itemIndex={index}>
+          <img src={item} class="d-block w-100" alt={`${item} ${index + 1}`} />
+        </CarouselItem>
+      {/each}
+    </div>
   
-<div class="anti-pajaro">
-  <h1 class="mt-5"><span class="gallery_text">Feria Medieval del Sur</span></h1>
-  
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_01} alt="Natalia Cesario" />
-  </div>
-    
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_02} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_03} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_04} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_05} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_06} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_07} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_08} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_09} alt="Natalia Cesario" />
-  </div>
-
-  <div class="gallerys">
-    <img class="gallery_photo" src={fm_10} alt="Natalia Cesario" />
-  </div>
-  
+    <div class="d-flex justify-content-between p-2">
+      <Button on:click={() => activeIndex = Math.max(activeIndex - 1, 0)}>
+        Back
+      </Button>
+      <Button on:click={closeCarousel}>
+        Gallery
+      </Button>
+      <Button on:click={() => activeIndex = Math.min(activeIndex + 1, items.length - 1)}>
+        Next
+      </Button>
+    </div>
+  </Carousel>
 </div>
-  
+
+<div class="anti-pajaro" id="gallery">
+  <h1 class="mt-5"><span class="gallery_text">Feria Medieval del Sur</span></h1>
+  <div class="gallerys">
+
+      <img class="gallery_photo" on:click={openCarousel} src={fm_01} alt="Natalia Cesario" /> 
+      <img class="gallery_photo" src={fm_02} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_03} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_04} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_05} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_06} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_07} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_08} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_09} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_10} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_07} alt="Natalia Cesario" />
+      <img class="gallery_photo" src={fm_07} alt="Natalia Cesario" />
+
+  </div>
+</div>
+
+
 <style>
   .gallery_photo {
-    width: 200px;
     border-radius: 3%;
+    max-width: 300px;
+    margin: 10px;
   }
 
   .gallerys {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;      
+    justify-content: center;
+    align-items: center;      
   }
   
   .gallery_text {
@@ -81,6 +111,17 @@
     margin-top: 40px;
     background-color: #ffffffed;
     border-radius: 42px;
+  }
+
+  .ocultadito {
+    display: none !important;
+  }
+
+  .show-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
   }
   
 </style>
