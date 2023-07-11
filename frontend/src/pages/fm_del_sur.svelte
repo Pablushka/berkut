@@ -13,15 +13,19 @@
     import fm_10 from "../../public/img/eventos/f_m_del_sur/fm_10.jpg";
 
     const items = [
-    'https://picsum.photos/seed/1/800/400',
-    'https://picsum.photos/seed/2/800/400',
-    'https://picsum.photos/seed/3/800/400',
-    'https://picsum.photos/seed/4/800/400',
-		'https://picsum.photos/seed/5/800/400',
-		'https://picsum.photos/seed/6/800/400',
+      fm_01,
+      fm_02,
+      fm_03,
+      fm_04,
+      fm_05,
+      fm_06,
+      fm_07,
+      fm_08,
+      fm_09,
+      fm_10,
   ];
 
-  let activeIndex = 1
+  let activeIndex = 0
 
   const openCarousel = () => {
     let carousel_container = document.getElementById("carousel")
@@ -78,8 +82,6 @@
       <img class="gallery_photo" src={fm_08} alt="Natalia Cesario" />
       <img class="gallery_photo" src={fm_09} alt="Natalia Cesario" />
       <img class="gallery_photo" src={fm_10} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_07} alt="Natalia Cesario" />
-      <img class="gallery_photo" src={fm_07} alt="Natalia Cesario" />
 
   </div>
 </div>
@@ -121,7 +123,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center; 
+    text-align: center;
+    padding-top: 10px;
+    width: 1200px;
   }
   
 </style>

@@ -39,13 +39,7 @@
         <p class="gallery_text">Feria Medieval Malvinas Argentinas, Julio 2023 (proximamente)</p>
       </div>
     </div>
-
-    <div class="card">
-      <div>
-        <button class="image-button"><img class="gallery_photo" src={f_m_malvinas_argentinas} alt="f_m_malvinas_argentinas" /></button>
-        <p class="gallery_text">Feria Medieval Malvinas Argentinas, Julio 2023 (proximamente)</p>
-      </div>
-    </div>
+    
   </div>
 
 </div>
