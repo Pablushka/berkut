@@ -7,6 +7,8 @@ from config import settings
 from database import db
 from models.event import Event
 from models.user import User
+from models.gallery import Gallery
+from models.photo import Photo
 from sqlalchemy import select
 
 import pyotp
@@ -332,6 +334,51 @@ def create_or_update_event():
             db.session.commit()
             # return event as json
             return jsonify(event.to_dict())
+        
+@app.route('/gallery', methods=['POST', 'PATCH'])
+def create_gallery():
+    if request.method == 'POST':
+
+        data = request.get_json()
+
+        if data:
+            flyer = data['flyer']
+            title = data['title']
+            date = data['date']
+            datetime_object = datetime.strptime(date, '%Y-%m-%d')
+        
+            gallery = Gallery(title=title,  flyer=flyer, date=datetime_object)
+            db.session.add(gallery)
+            db.session.commit()
+
+            return jsonify(gallery.to_dict())
+        
+@app.route('/photo', methods=['POST', 'PATCH'])
+def create_photo():
+    if request.method == 'POST':
+
+        data = request.get_json()
+
+        if data:
+        
+            photo = Photo(image=data["image"],  gallery_id=data["gallery_id"])
+            db.session.add(photo)
+            db.session.commit()
+
+            return jsonify(photo.to_dict())
+        
+@app.route('/galleries', methods=['GET'])
+def get_galleries():
+    galleries = Gallery.query.order_by(Gallery.date).all()
+    return jsonify([gallery.to_dict() for gallery in galleries])
+    #return jsonify(galleries)
+
+@app.route('/photos', methods=['GET'])
+def get_photos():
+    photos = Photo.query.all()
+    return jsonify([photo.to_dict() for photo in photos])
+    
+
 
 
 @app.errorhandler(500)
@@ -348,6 +395,7 @@ def server_error_404(e):
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
+
 
 # Ejemplos de rutas
 # /user/create
