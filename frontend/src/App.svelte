@@ -18,11 +18,6 @@
   // full camelcase: HomePage, UnaLindaVariable
   // camelcase: homePage, unaLindaVariable
 
-  import Timeline from "./components/timeline.svelte";
-
-  import svelteLogo from "./assets/svelte.svg";
-  import Counter from "./components/Counter.svelte";
-
   import {
     Col,
     Container,
@@ -42,7 +37,7 @@
     Button,
   } from "sveltestrap";
   import MembersPage from "./pages/members_page.svelte";
-    import FmDelSur from "./pages/fm_del_sur.svelte";
+  import FmDelSur from "./pages/fm_del_sur.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
@@ -50,10 +45,6 @@
   // Esta funciion invierte el valor de isOpen
   const toggle = () => {
     isOpen = !isOpen;
-  };
-
-  const eat = () => {
-    alert("I am eating. Sweeeeet!");
   };
 
   function handleUpdate(event) {
@@ -74,20 +65,16 @@
     "/fm_del_sur": FmDelSur,
   };
 
-  // let user = JSON.parse(localStorage.getItem("user"));
-  let user = getCookie("berkut_session.user");
-  
+  let cookie_user = JSON.parse(getCookie("berkut_session.user"));
 
   // user = false;
   const LogOut = () => {
-    document.cookie = "berkut_session.user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "berkut_session.user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-   // replace("/")
-   window.location = "/"
-   }
-
-
-
+    // replace("/")
+    window.location = "/";
+  };
 </script>
 
 <header>
@@ -123,33 +110,33 @@
               {#if user}
                 <DropdownItem header class="titular">Time line</DropdownItem>
                 <DropdownItem>
-                  <a href="#/admin_timeline" class="link"
-                    >Administrar Eventos</a
+                  <a href="#/admin_timeline" class="link">Administrar Eventos</a
                   >
                 </DropdownItem>
 
                 <DropdownItem divider />
-                <DropdownItem header class="titular">Administrador</DropdownItem>
+                <DropdownItem header class="titular">Administrador</DropdownItem
+                >
                 <DropdownItem>
                   <a href="#/admin_users" class="link">Administrar Usuarios</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="#/role_users" class="link">Dar Permisos</a>
+                  <a href="#/post_edit" class="link">Editar posts</a>
                 </DropdownItem>
-
 
                 <DropdownItem divider />
               {/if}
 
               <DropdownItem header class="titular">Publico</DropdownItem>
-            {#if user== null}
-              <DropdownItem>
-                <a href="#/new_user" class="link">Crear Usuario</a>
-              </DropdownItem>
-              <DropdownItem>
-                <a href="#/new_user_validation" class="link">Log In Usuario</a>
-              </DropdownItem>
-            {/if}
+              {#if user == null}
+                <DropdownItem>
+                  <a href="#/new_user" class="link">Crear Usuario</a>
+                </DropdownItem>
+                <DropdownItem>
+                  <a href="#/new_user_validation" class="link">Log In Usuario</a
+                  >
+                </DropdownItem>
+              {/if}
               <DropdownItem>
                 <a href="#/members" class="link">Miembros</a>
               </DropdownItem>
@@ -166,7 +153,9 @@
                 <a href="#/market" class="link">Shop</a>
               </DropdownItem>
               {#if user}
-              <Button header class="titular-dos" on:click= {LogOut}>Log Out</Button>
+                <Button header class="titular-dos" on:click={LogOut}
+                  >Log Out</Button
+                >
               {/if}
             </DropdownMenu>
           </ButtonDropdown>
