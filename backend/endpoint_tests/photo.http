@@ -3,9 +3,22 @@ Content-Type: application/json
 
 {
     "image": "c:\\misdocumentos\\fotos.jpg",
-    "gallery_id": 1
+    "gallery_id": 2
 }
 
 ###
 
-GET http://127.0.0.1:5000/photos HTTP/1.1
+GET http://127.0.0.1:5000/gallery/1/photos HTTP/1.1
+
+
+###
+
+POST http://127.0.0.1:5000/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="gente_loka.jpg"
+Content-Type: image/jpeg
+
+<./gente_loka.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

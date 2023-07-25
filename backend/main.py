@@ -9,18 +9,34 @@ from models.event import Event
 from models.user import User
 from models.gallery import Gallery
 from models.photo import Photo
+from werkzeug.utils import secure_filename
 from sqlalchemy import select
-
+import os
 import pyotp
 from qr import new_qr_code
-
 from mails import send_registration_email
-
 from datetime import datetime, timedelta
-
 import pyotp
 from mails import send_registration_email
 from qr import new_qr_code
+
+
+# Lista de tipos de imágenes permitidas
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+# La carpeta que tiene las fotos
+UPLOAD_FOLDER = '../frontend/public/img/galleries'
+
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# Chequea que el filename tenga un punto. 
+# Luego divide el filename por el punto en dos partes
+# la segunda parte del array que devuleve es la extension
+# cehquea que esa extension este en ALLOW_EXTENSIONS
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 attempts = {}
 
@@ -42,6 +58,27 @@ ss_session = Session(app)
 
 # render_as_batch=True is needed for SQLite support
 migrate = Migrate(app, db, render_as_batch=True)
+
+
+@app.route('/upload/<string:filetype>/<int:gallery_id>', methods=['POST'])
+def upload(filetype, gallery_id):
+    if 'file' not in request.files:
+        return {'ok': False, 'message': 'File not received'}
+
+    file = request.files['file']
+    
+    if file.filename == '':
+        return {'ok': False, 'message': 'File without name'}
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        if filetype == "flyer":
+            filename = str(gallery_id) + "." + filename.split(".")[1]
+            file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+        return {'ok': True, 'message': 'File uploaded'}
+
+    return {'ok': False, 'message': 'File is invalid'}
 
 
 def login_attemp (email:str): 
@@ -373,13 +410,13 @@ def get_galleries():
     return jsonify([gallery.to_dict() for gallery in galleries])
     #return jsonify(galleries)
 
-@app.route('/photos', methods=['GET'])
-def get_photos():
-    photos = Photo.query.all()
-    return jsonify([photo.to_dict() for photo in photos])
+
+@app.route('/gallery/<int:gallery_id>/photos')
+def get_photos(gallery_id):
+    gallery = Gallery.query.get_or_404(gallery_id)
+    photos = [photo.to_dict() for photo in gallery.photos]
+    return jsonify({'photos': photos})
     
-
-
 
 @app.errorhandler(500)
 def server_error_500(e):

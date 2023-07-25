@@ -20,5 +20,6 @@ class Photo(db.Model):
         return {
             'id': self.id,
             'image': self.image,
-            'gallery_id': self.gallery_id
+            'gallery_id': self.gallery_id,
+            'gallery': self.gallery.to_dict()
         }
