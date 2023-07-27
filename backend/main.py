@@ -60,27 +60,6 @@ ss_session = Session(app)
 migrate = Migrate(app, db, render_as_batch=True)
 
 
-@app.route('/upload/<string:filetype>/<int:gallery_id>', methods=['POST'])
-def upload(filetype, gallery_id):
-    if 'file' not in request.files:
-        return {'ok': False, 'message': 'File not received'}
-
-    file = request.files['file']
-    
-    if file.filename == '':
-        return {'ok': False, 'message': 'File without name'}
-
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        if filetype == "flyer":
-            filename = str(gallery_id) + "." + filename.split(".")[1]
-            file.save(os.path.join(UPLOAD_FOLDER, filename))
-
-        return {'ok': True, 'message': 'File uploaded'}
-
-    return {'ok': False, 'message': 'File is invalid'}
-
-
 def login_attemp (email:str): 
     if email in attempts:
         attempts [email]["attempts"] +=1
@@ -113,6 +92,52 @@ def is_not_block (email:str):
         
     return True
        
+@app.route('/upload/<string:filetype>/<int:gallery_id>', methods=['POST'])
+def upload(filetype, gallery_id):
+    if 'file' not in request.files:
+        return {'ok': False, 'message': 'File not received'}
+
+    file = request.files['file']
+    
+    if file.filename == '':
+        return {'ok': False, 'message': 'File without name'}
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        if filetype == "flyer":
+            filename = str(gallery_id) + "." + filename.split(".")[1]
+            file.save(os.path.join(UPLOAD_FOLDER, filename))
+        else:
+            gallery_folder = str(gallery_id)
+            gallery_path = os.path.join(UPLOAD_FOLDER, gallery_folder)
+            if not os.path.exists(gallery_path):
+                os.makedirs(gallery_path)
+            file.save(os.path.join(UPLOAD_FOLDER, gallery_folder, filename))
+
+
+        return {'ok': True, 'message': 'File uploaded'}
+    
+    return {'ok': False, 'message': 'File is invalid'}
+    
+@app.route('/gallery/<string:filetype>/<int:gallery_id>/<string:photo>/', methods=['DELETE'])
+def delete(gallery_id, photo, filetype):
+
+    gallery_path = os.path.join(UPLOAD_FOLDER, str(gallery_id))
+    flyer_path = os.path.join(os.path.join(UPLOAD_FOLDER, photo))
+    photo_path = os.path.join(os.path.join(UPLOAD_FOLDER, str(gallery_id), photo))
+
+    if filetype == "flyer":
+         os.remove(flyer_path)
+         return {'ok': True, 'message': 'Flyer was deleted'}
+    else:
+        if os.path.isdir(gallery_path):
+            if os.path.isfile(photo_path):
+                os.remove(photo_path)
+                return {'ok': True, 'message': 'File was deleted'}
+        
+    return {'ok': False, 'message': 'File is invalid'}
+
+
     
 @app.route('/')
 def index():

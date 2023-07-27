@@ -1,8 +1,8 @@
 
 <script>
-  import avellaneda_viaja_en_el_tiempo from "../../public/img/eventos/avellaneda_viaja_en_el_tiempo.jpg";
-  import f_m_malvinas_argentinas from "../../public/img/eventos/f_m_malvinas_argentinas.jpg";
-  import f_m_del_sur from "../../public/img/eventos/f_m_del_sur.jpg";
+  import avellaneda_viaja_en_el_tiempo from "../../public/img/galleries/avellaneda_viaja_en_el_tiempo.jpg";
+  import f_m_malvinas_argentinas from "../../public/img/galleries/f_m_malvinas_argentinas.jpg";
+  import f_m_del_sur from "../../public/img/galleries/f_m_del_sur.jpg";
 
   import { Button } from "sveltestrap";
   import Router from "svelte-spa-router";

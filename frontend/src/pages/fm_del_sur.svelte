@@ -1,16 +1,16 @@
 
 <script>
     import { Button, Carousel, CarouselControl, CarouselItem, Styles } from 'sveltestrap';
-    import fm_01 from "../../public/img/eventos/f_m_del_sur/fm_01.jpg";
-    import fm_02 from "../../public/img/eventos/f_m_del_sur/fm_02.jpg";
-    import fm_03 from "../../public/img/eventos/f_m_del_sur/fm_03.jpg";
-    import fm_04 from "../../public/img/eventos/f_m_del_sur/fm_04.jpg";
-    import fm_05 from "../../public/img/eventos/f_m_del_sur/fm_05.jpg";
-    import fm_06 from "../../public/img/eventos/f_m_del_sur/fm_06.jpg";
-    import fm_07 from "../../public/img/eventos/f_m_del_sur/fm_07.jpg";
-    import fm_08 from "../../public/img/eventos/f_m_del_sur/fm_08.jpg";
-    import fm_09 from "../../public/img/eventos/f_m_del_sur/fm_09.jpg";
-    import fm_10 from "../../public/img/eventos/f_m_del_sur/fm_10.jpg";
+    import fm_01 from "../../public/img/galleries/f_m_del_sur/fm_01.jpg";
+    import fm_02 from "../../public/img/galleries/f_m_del_sur/fm_02.jpg";
+    import fm_03 from "../../public/img/galleries/f_m_del_sur/fm_03.jpg";
+    import fm_04 from "../../public/img/galleries/f_m_del_sur/fm_04.jpg";
+    import fm_05 from "../../public/img/galleries/f_m_del_sur/fm_05.jpg";
+    import fm_06 from "../../public/img/galleries/f_m_del_sur/fm_06.jpg";
+    import fm_07 from "../../public/img/galleries/f_m_del_sur/fm_07.jpg";
+    import fm_08 from "../../public/img/galleries/f_m_del_sur/fm_08.jpg";
+    import fm_09 from "../../public/img/galleries/f_m_del_sur/fm_09.jpg";
+    import fm_10 from "../../public/img/galleries/f_m_del_sur/fm_10.jpg";
 
     const items = [
       fm_01,
