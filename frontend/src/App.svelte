@@ -37,7 +37,7 @@
     Button,
   } from "sveltestrap";
   import MembersPage from "./pages/members_page.svelte";
-  import FmDelSur from "./pages/photo_page.svelte";
+  import PhotoPage from "./pages/photo_page.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
@@ -62,7 +62,7 @@
     "/new_user": NewUserPage,
     "/new_user_validation/:email?": NewUserValidationPage,
     "/admin_users": AdminUserPage,
-    "/fm_del_sur": FmDelSur,
+    "/photo_page": PhotoPage,
   };
 
   let cookie_user = JSON.parse(getCookie("berkut_session.user"));
