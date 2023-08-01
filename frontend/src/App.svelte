@@ -107,7 +107,7 @@
             </div>
 
             <DropdownMenu>
-              {#if user}
+              {#if cookie_user}
                 <DropdownItem header class="titular">Time line</DropdownItem>
                 <DropdownItem>
                   <a href="#/admin_timeline" class="link">Administrar Eventos</a
@@ -128,7 +128,7 @@
               {/if}
 
               <DropdownItem header class="titular">Publico</DropdownItem>
-              {#if user == null}
+              {#if cookie_user == null}
                 <DropdownItem>
                   <a href="#/new_user" class="link">Crear Usuario</a>
                 </DropdownItem>
@@ -152,7 +152,7 @@
               <DropdownItem>
                 <a href="#/market" class="link">Shop</a>
               </DropdownItem>
-              {#if user}
+              {#if cookie_user}
                 <Button header class="titular-dos" on:click={LogOut}
                   >Log Out</Button
                 >
