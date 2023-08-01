@@ -1,17 +1,24 @@
 
 <script>
-  import avellaneda_viaja_en_el_tiempo from "../../public/img/galleries/avellaneda_viaja_en_el_tiempo.jpg";
-  import f_m_malvinas_argentinas from "../../public/img/galleries/f_m_malvinas_argentinas.jpg";
-  import f_m_del_sur from "../../public/img/galleries/f_m_del_sur.jpg";
 
   import { Button } from "sveltestrap";
   import Router from "svelte-spa-router";
-  import fm_del_sur from "./fm_del_sur.svelte";
   import {push, pop, replace} from 'svelte-spa-router';
+  import {onMount} from "svelte";
+
+  let endpoint = "http://127.0.0.1:5000/galleries"
+  let galleries = []
+
+  onMount(async () => {
+    let response = await fetch(endpoint)
+    galleries = await response.json()
+    console.log(galleries)
+  })
 
   const openPhotoGallery = () => {
-    push('/fm_del_sur')
+    push('/photo_page.svelte')
   }
+
 
 </script>
 
@@ -19,26 +26,14 @@
   <h1 class="mt-5"><span class="gallery_text">Recuerdos de Eventos Pasados</span></h1>
 
   <div class="gallerys">
-    <div class="card">
-      <div>
-        <img class="gallery_photo" on:click={openPhotoGallery} src={f_m_del_sur} alt="f_m_del_sur" />
-        <p class="gallery_text">Feria Medieval Del Sur, Agosto 2022</p>
+    {#each galleries as {flyer, title}}
+      <div class="card">
+        <div>
+          <img class="gallery_photo" on:click={openPhotoGallery} src="/img/galleries/{flyer}" alt={title} />
+          <p class="gallery_text">{title}</p>
+        </div>
       </div>
-    </div>
-
-    <div class="card">
-      <div>
-        <button class="image-button"><img class="gallery_photo" src={avellaneda_viaja_en_el_tiempo} alt="avellaneda_viaja_en_el_tiempo" /></button>
-        <p class="gallery_text">Avellaneda Viaja En El Tiempo, Mayo 2023</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div>
-        <button class="image-button"><img class="gallery_photo" src={f_m_malvinas_argentinas} alt="f_m_malvinas_argentinas" /></button>
-        <p class="gallery_text">Feria Medieval Malvinas Argentinas, Julio 2023 (proximamente)</p>
-      </div>
-    </div>
+    {/each}
     
   </div>
 

@@ -114,28 +114,34 @@ def upload(filetype, gallery_id):
                 os.makedirs(gallery_path)
             file.save(os.path.join(UPLOAD_FOLDER, gallery_folder, filename))
 
+        photo = Photo(image = filename, gallery_id = gallery_id, type = filetype)
+        db.session.add(photo)
+        db.session.commit()
 
         return {'ok': True, 'message': 'File uploaded'}
     
     return {'ok': False, 'message': 'File is invalid'}
     
-@app.route('/gallery/<string:filetype>/<int:gallery_id>/<string:photo>/', methods=['DELETE'])
-def delete(gallery_id, photo, filetype):
+@app.route('/gallery/<string:filetype>/<int:gallery_id>/<int:photo_id>/', methods=['DELETE'])
+def delete(gallery_id, photo_id, filetype):
 
+    image = Photo.query.get_or_404(photo_id, description="Photo not found")
     gallery_path = os.path.join(UPLOAD_FOLDER, str(gallery_id))
-    flyer_path = os.path.join(os.path.join(UPLOAD_FOLDER, photo))
-    photo_path = os.path.join(os.path.join(UPLOAD_FOLDER, str(gallery_id), photo))
+    flyer_path = os.path.join(os.path.join(UPLOAD_FOLDER, image.image))
+    photo_path = os.path.join(os.path.join(UPLOAD_FOLDER, str(gallery_id), image.image))
 
     if filetype == "flyer":
          os.remove(flyer_path)
-         return {'ok': True, 'message': 'Flyer was deleted'}
+
     else:
         if os.path.isdir(gallery_path):
             if os.path.isfile(photo_path):
                 os.remove(photo_path)
-                return {'ok': True, 'message': 'File was deleted'}
+            
+    db.session.delete(image)
+    db.session.commit()
         
-    return {'ok': False, 'message': 'File is invalid'}
+    return {'ok': True, 'message': 'File was deleted'}
 
 
     
@@ -415,19 +421,33 @@ def create_gallery():
 
             return jsonify(gallery.to_dict())
         
-@app.route('/photo', methods=['POST', 'PATCH'])
+@app.route('/photo', methods=['POST'])
 def create_photo():
-    if request.method == 'POST':
+    data = request.get_json()
+    
+    if data:
+        # Obtener el nombre de la imagen y la carpeta
+        image_name = data["image"]
+        gallery_id = data["gallery_id"]
 
-        data = request.get_json()
+        # Verificar si la imagen existe en la carpeta
+        save_path = os.path.join(UPLOAD_FOLDER, str(gallery_id))
+        image_path = os.path.join(save_path, image_name)
+        if os.path.exists(image_path):
+            return {"ok": False, "message": "Image exist in the folder"}
 
-        if data:
-        
+        # Verificar si la imagen existe en la base de datos
+        existing_photo = Photo.query.filter_by(image=image_name).first()
+        if existing_photo:
+            return {"ok": False, "message": "Image exist in the database"}
+        else:
             photo = Photo(image=data["image"],  gallery_id=data["gallery_id"])
             db.session.add(photo)
             db.session.commit()
 
-            return jsonify(photo.to_dict())
+        return jsonify(photo.to_dict())
+    
+    return {"ok": False, "message": "No photo"}
         
 @app.route('/galleries', methods=['GET'])
 def get_galleries():
@@ -436,10 +456,10 @@ def get_galleries():
     #return jsonify(galleries)
 
 
-@app.route('/gallery/<int:gallery_id>/photos')
-def get_photos(gallery_id):
+@app.route('/gallery/<int:gallery_id>/<string:type>')
+def get_photos(gallery_id, type):
     gallery = Gallery.query.get_or_404(gallery_id)
-    photos = [photo.to_dict() for photo in gallery.photos]
+    photos = [photo.to_dict() for photo in gallery.photos if photo.type == type]
     return jsonify({'photos': photos})
     
 

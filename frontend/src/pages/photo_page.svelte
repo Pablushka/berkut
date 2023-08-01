@@ -1,28 +1,10 @@
 
 <script>
     import { Button, Carousel, CarouselControl, CarouselItem, Styles } from 'sveltestrap';
-    import fm_01 from "../../public/img/galleries/f_m_del_sur/fm_01.jpg";
-    import fm_02 from "../../public/img/galleries/f_m_del_sur/fm_02.jpg";
-    import fm_03 from "../../public/img/galleries/f_m_del_sur/fm_03.jpg";
-    import fm_04 from "../../public/img/galleries/f_m_del_sur/fm_04.jpg";
-    import fm_05 from "../../public/img/galleries/f_m_del_sur/fm_05.jpg";
-    import fm_06 from "../../public/img/galleries/f_m_del_sur/fm_06.jpg";
-    import fm_07 from "../../public/img/galleries/f_m_del_sur/fm_07.jpg";
-    import fm_08 from "../../public/img/galleries/f_m_del_sur/fm_08.jpg";
-    import fm_09 from "../../public/img/galleries/f_m_del_sur/fm_09.jpg";
-    import fm_10 from "../../public/img/galleries/f_m_del_sur/fm_10.jpg";
+    //import fm_01 from "../../public/img/galleries/f_m_del_sur/fm_01.jpg";
 
     const items = [
       fm_01,
-      fm_02,
-      fm_03,
-      fm_04,
-      fm_05,
-      fm_06,
-      fm_07,
-      fm_08,
-      fm_09,
-      fm_10,
   ];
 
   let activeIndex = 0

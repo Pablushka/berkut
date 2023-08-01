@@ -37,7 +37,7 @@
     Button,
   } from "sveltestrap";
   import MembersPage from "./pages/members_page.svelte";
-  import FmDelSur from "./pages/fm_del_sur.svelte";
+  import FmDelSur from "./pages/photo_page.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
