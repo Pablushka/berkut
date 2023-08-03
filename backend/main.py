@@ -460,7 +460,7 @@ def get_galleries():
 def get_photos(gallery_id, type):
     gallery = Gallery.query.get_or_404(gallery_id)
     photos = [photo.to_dict() for photo in gallery.photos if photo.type == type]
-    return jsonify({'photos': photos})
+    return jsonify(photos)
     
 
 @app.errorhandler(500)
