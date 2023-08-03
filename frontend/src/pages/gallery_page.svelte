@@ -16,7 +16,7 @@
   })
 
   const openPhotoGallery = () => {
-    push('/photo_page.svelte')
+    push('/photo_page')
   }
 
 
