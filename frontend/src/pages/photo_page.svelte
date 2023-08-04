@@ -1,46 +1,49 @@
 
 <script>
   import { Button, Carousel, CarouselControl, CarouselItem, Styles } from 'sveltestrap';
-  //import fm_01 from "../../public/img/galleries/f_m_del_sur/fm_01.jpg";
+  //import fm_01 from "../../public/img/galleries/1/1.jpg";
   import {push, pop, replace} from 'svelte-spa-router';
   import {onMount} from "svelte";
-
+  
   //let endpoint = "http://127.0.0.1:5000/gallery/1/photo"
-  let endpoint ="http://127.0.0.1:5000/gallery/<int:gallery_id>/<string:type>"
-  let myphotos = []
+  const gallery_id = new URLSearchParams (window.location.search).has("gallery_id") 
+  
+  let endpoint =`http://127.0.0.1:5000/gallery/${gallery_id}/photo`
+  let photos = []
+
 
   onMount(async () => {
     let response = await fetch(endpoint)
-    myphotos = await response.json()
-    console.log(myphotos)
+    photos = await response.json()
+    console.log(photos)
   })
 
-  const items = myphotos
+  const items = photos
 
   // const items = [
   //   fm_01,
   // ];
 
-  // let activeIndex = 0
+  let activeIndex = 0
 
-  // const openCarousel = () => {
-  //   let carousel_container = document.getElementById("carousel")
-  //   let gallery_container = document.getElementById("gallery")
-  //   carousel_container.classList.remove("ocultadito")
-  //   carousel_container.classList.add("show-carousel")
-  //   gallery_container.classList.add("ocultadito")
-  // }
+  const openCarousel = () => {
+    let carousel_container = document.getElementById("carousel")
+    let gallery_container = document.getElementById("gallery")
+    carousel_container.classList.remove("ocultadito")
+    carousel_container.classList.add("show-carousel")
+    gallery_container.classList.add("ocultadito")
+  }
 
-  // const closeCarousel = () => {
-  //   let carousel_container = document.getElementById("carousel")
-  //   let gallery_container = document.getElementById("gallery")
-  //   carousel_container.classList.add("ocultadito")
-  //   gallery_container.classList.remove("ocultadito")
-  // }
+  const closeCarousel = () => {
+    let carousel_container = document.getElementById("carousel")
+    let gallery_container = document.getElementById("gallery")
+    carousel_container.classList.add("ocultadito")
+    gallery_container.classList.remove("ocultadito")
+  }
 
 </script>
 
-<!-- <div class ="show-carousel ocultadito" id="carousel">
+<div class ="show-carousel ocultadito" id="carousel">
   <Carousel {items} bind:activeIndex>
     <div class="carousel-inner">
       {#each items as item, index}
@@ -62,16 +65,16 @@
       </Button>
     </div>
   </Carousel>
-</div> -->
+</div>
 
 <div class="anti-pajaro" id="gallery">
   <h1 class="mt-5"><span class="gallery_text">Feria Medieval del Sur</span></h1>
   <div class="gallerys">
 
-    {#each myphotos as {image, gallery_id}}
+    {#each photos as {image, gallery_id}}
       <div class="card">
         <div>
-          <img class="gallery_photo" src="/img/galleries/{gallery_id}/{image}" alt="la foto no sale AHHHHHHH"/>
+          <img class="gallery_photo" on:click={openCarousel} src="/img/galleries/{gallery_id}/{image}" alt="la foto no sale AHHHHHHH"/>
         </div>
       </div>
     {/each}

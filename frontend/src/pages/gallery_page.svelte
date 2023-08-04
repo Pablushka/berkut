@@ -15,8 +15,8 @@
     console.log(galleries)
   })
 
-  const openPhotoGallery = () => {
-    push('/photo_page')
+  const openPhotoGallery = (id) => {
+    push(`/photo_page/${id}`)
   }
 
 
@@ -26,10 +26,10 @@
   <h1 class="mt-5"><span class="gallery_text">Recuerdos de Eventos Pasados</span></h1>
 
   <div class="gallerys">
-    {#each galleries as {flyer, title}}
+    {#each galleries as {flyer, title, id}}
       <div class="card">
         <div>
-          <img class="gallery_photo" on:click={openPhotoGallery} src="/img/galleries/{flyer}" alt={title} />
+          <img class="gallery_photo" on:click={openPhotoGallery(id)} src="/img/galleries/{flyer}" alt={title} />
           <p class="gallery_text">{title}</p>
         </div>
       </div>
@@ -79,10 +79,6 @@
     margin-top: 40px;
     background-color: #ffffffed;
     border-radius: 42px;
-  }
-
-  .image-button {
-    padding: 0px;
   }
 
 </style>

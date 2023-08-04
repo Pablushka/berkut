@@ -62,7 +62,7 @@
     "/new_user": NewUserPage,
     "/new_user_validation/:email?": NewUserValidationPage,
     "/admin_users": AdminUserPage,
-    "/photo_page": PhotoPage,
+    "/photo_page/:gallery_id": PhotoPage,
   };
 
   let cookie_user = JSON.parse(getCookie("berkut_session.user"));
