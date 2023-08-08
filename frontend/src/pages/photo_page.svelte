@@ -4,21 +4,27 @@
   //import fm_01 from "../../public/img/galleries/1/1.jpg";
   import {push, pop, replace} from 'svelte-spa-router';
   import {onMount} from "svelte";
+
+  export let params = {}
   
   //let endpoint = "http://127.0.0.1:5000/gallery/1/photo"
-  const gallery_id = new URLSearchParams (window.location.search).has("gallery_id") 
+  console.log (params)
+  const gallery_id = params.gallery_id
   
   let endpoint =`http://127.0.0.1:5000/gallery/${gallery_id}/photo`
   let photos = []
 
+  let items = []
 
   onMount(async () => {
     let response = await fetch(endpoint)
     photos = await response.json()
-    console.log(photos)
+    console.log(`/img/galleries/${gallery_id}/${photos[0].image}`)
+    items = photos.map((photo) => {
+      return `/img/galleries/${gallery_id}/${photo.image}`
+    })
   })
 
-  const items = photos
 
   // const items = [
   //   fm_01,
@@ -26,12 +32,14 @@
 
   let activeIndex = 0
 
-  const openCarousel = () => {
+  const openCarousel = (index) => {
     let carousel_container = document.getElementById("carousel")
     let gallery_container = document.getElementById("gallery")
     carousel_container.classList.remove("ocultadito")
     carousel_container.classList.add("show-carousel")
     gallery_container.classList.add("ocultadito")
+    activeIndex = index
+    console.log(index)
   }
 
   const closeCarousel = () => {
@@ -71,24 +79,15 @@
   <h1 class="mt-5"><span class="gallery_text">Feria Medieval del Sur</span></h1>
   <div class="gallerys">
 
-    {#each photos as {image, gallery_id}}
+    {#each photos as {image, gallery_id}, index}
       <div class="card">
         <div>
-          <img class="gallery_photo" on:click={openCarousel} src="/img/galleries/{gallery_id}/{image}" alt="la foto no sale AHHHHHHH"/>
+          <img class="gallery_photo" on:click={() => openCarousel(index)} src="/img/galleries/{gallery_id}/{image}" alt="la foto no sale AHHHHHHH"/>
         </div>
       </div>
     {/each}
 
-      <!-- <img class="gallery_photo" on:click={openCarousel} src={fm_01} alt="Natalia Cesario" /> 
-      <img class="gallery_photo" on:click={openCarousel} src={fm_02} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_03} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_04} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_05} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_06} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_07} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_08} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_09} alt="Natalia Cesario" />
-      <img class="gallery_photo" on:click={openCarousel} src={fm_10} alt="Natalia Cesario" /> -->
+      <!-- <img class="gallery_photo" on:click={openCarousel} src={fm_01} alt="Natalia Cesario" /> -->
 
   </div>
 </div>

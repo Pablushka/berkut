@@ -38,6 +38,8 @@
   } from "sveltestrap";
   import MembersPage from "./pages/members_page.svelte";
   import PhotoPage from "./pages/photo_page.svelte";
+  import AdminGallery from "./pages/admin_gallery.svelte";
+  import AdminPhotos from "./pages/admin_photos.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
@@ -63,6 +65,9 @@
     "/new_user_validation/:email?": NewUserValidationPage,
     "/admin_users": AdminUserPage,
     "/photo_page/:gallery_id": PhotoPage,
+    "/admin_gallery": AdminGallery,
+    "/admin_photos": AdminPhotos
+
   };
 
   let cookie_user = JSON.parse(getCookie("berkut_session.user"));

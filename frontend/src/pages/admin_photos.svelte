@@ -1,0 +1,1 @@
+<h1> esta es la pag de admin de photos</h1>
