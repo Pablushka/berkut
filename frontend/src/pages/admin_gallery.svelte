@@ -15,7 +15,7 @@
                 <button>Eliminar</button>
             </div>
         </div>
-        <div>
+        <div class="contenedor_img">
             <div class="photo_card">
                 <div class="img"><h2>PUSH Photo</h2></div>
                 <div class="img"><h2>Photo</h2></div>
@@ -23,12 +23,20 @@
                 <div class="img"><h2>Photo</h2></div>
                 <div class="img"><h2>Photo</h2></div>
                 <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                
             </div>
-            <div>
+            <!-- <div>
                 <button>Cargar</button>
                 <button>Editar</button>
                 <button>Eliminar</button>
-            </div>
+            </div> -->
         </div>
     </div>
     
@@ -45,6 +53,12 @@
         
     }
 
+    .contenedor_img{
+        width: 80%;
+        height:min-content;
+        overflow-y: auto;
+    }
+
     .contenedor{
         display: flex ;
         position: relative ;
@@ -59,15 +73,14 @@
     }
 
     .flyer_card{
-    align-items: center ;
-    display: flex ;
-    flex-direction: column;
-    overflow: hidden;
-    padding: 16px;
-    width: 416px;
-    background-color: rgba(54, 52, 52, 0.163);
-    justify-content: space-evenly;
-    border-bottom-left-radius: inherit;
+        align-items: center ;
+        display: flex ;
+        flex-direction: column;
+        padding: 16px;
+        width: 30%;
+        background-color: rgba(54, 52, 52, 0.163);
+        justify-content: space-evenly;
+        border-bottom-left-radius: inherit;
 
     }
 
@@ -75,7 +88,6 @@
         margin: 10px;
         padding: 10px;
         position: relative;
-        flex: 1;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
