@@ -108,6 +108,8 @@
     font-family: PR Viking;
     font-size: 50pt;
     text-align: center;
+    text-decoration: underline;
+
   }
   
   .anti-pajaro {

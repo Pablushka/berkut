@@ -123,7 +123,10 @@
                 <DropdownItem header class="titular">Administrador</DropdownItem
                 >
                 <DropdownItem>
-                  <a href="#/admin_users" class="link">Administrar Usuarios</a>
+                  <a href="#/admin_users" class="link">Usuarios</a>
+                </DropdownItem>
+                <DropdownItem>
+                  <a href="#/admin_gallery" class="link">Galerias</a>
                 </DropdownItem>
                 <DropdownItem>
                   <a href="#/post_edit" class="link">Editar posts</a>
