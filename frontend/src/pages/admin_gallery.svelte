@@ -5,10 +5,10 @@
     <h1 class="titel">esta es la pag de admin gallery</h1>
     <div class="contenedor">
         <div class="flyer_card">
-    <!--acá se cargan los flyers para caratula de galeria-->
+<!--quiero que acá se suban los flyers de galeria-->
             <div class="img"><h2>PUSH Flyer</h2></div>
             <div><p>flyer:----<br>titulo:----<br>fecha:----</p></div>
-    <!--acá se cargan los datos en DB-->
+<!--quiero que los botones hagan la carga, editen y eliminen en DB-->
             <div>
                 <button>Cargar</button>
                 <button>Editar</button>
@@ -17,6 +17,8 @@
         </div>
         <div class="contenedor_img">
             <div class="photo_card">
+<!--quiero que el primer div sea el que haga el push de la foto y 
+se muestren las fotos dentro de la galeria si esta ya existe-->
                 <div class="img"><h2>PUSH Photo</h2></div>
                 <div class="img"><h2>Photo</h2></div>
                 <div class="img"><h2>Photo</h2></div>
@@ -30,9 +32,19 @@
                 <div class="img"><h2>Photo</h2></div>
                 <div class="img"><h2>Photo</h2></div>
                 <div class="img"><h2>Photo</h2></div>
-                
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
+                <div class="img"><h2>Photo</h2></div>
             </div>
-            <!-- <div>
+            <!--este dive es opcional 
+                <div>
                 <button>Cargar</button>
                 <button>Editar</button>
                 <button>Eliminar</button>
@@ -50,13 +62,8 @@
         margin-top: 40px;
         background-color: #ffffffed;
         border-radius: 42px;
+        height: 700px;
         
-    }
-
-    .contenedor_img{
-        width: 80%;
-        height:min-content;
-        overflow-y: auto;
     }
 
     .contenedor{
@@ -65,8 +72,15 @@
         background-color: rgba(255, 255, 255, 0);
         flex-direction: row ;
         border-radius: 42px;
+        height: 88%;
     }
     
+    .contenedor_img{
+        width: 80%;
+        height:600px;
+        overflow-y: auto;
+        margin-right: 20px;
+    }
     .titel {
         font-family: Viking-Normal;
         margin: 15px;
@@ -81,7 +95,7 @@
         background-color: rgba(54, 52, 52, 0.163);
         justify-content: space-evenly;
         border-bottom-left-radius: inherit;
-
+        font-size: 30px;
     }
 
     .photo_card{
@@ -100,16 +114,16 @@
         padding: 40px;
         width: 200px;
         height: 200px;
-        margin-bottom: 10px;
+        margin: 10px;
 
     }
 
     button{
-        background-color: green;
+        background-color: rgba(0, 15, 128, 0.892);
         font-size: 20px;
         border: none;
         color: white;
-        padding: 14px 24px;
+        padding: 10px 20px;
         text-align: center;
         display: inline-block;
         margin-bottom:25px;

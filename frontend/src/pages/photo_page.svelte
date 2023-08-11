@@ -7,7 +7,6 @@
 
   export let params = {}
   
-  //let endpoint = "http://127.0.0.1:5000/gallery/1/photo"
   console.log (params)
   const gallery_id = params.gallery_id
   
@@ -24,11 +23,6 @@
       return `/img/galleries/${gallery_id}/${photo.image}`
     })
   })
-
-
-  // const items = [
-  //   fm_01,
-  // ];
 
   let activeIndex = 0
 
@@ -80,7 +74,7 @@
   <div class="gallerys">
 
     {#each photos as {image, gallery_id}, index}
-      <div class="card">
+      <div>
         <div>
           <img class="gallery_photo" on:click={() => openCarousel(index)} src="/img/galleries/{gallery_id}/{image}" alt="la foto no sale AHHHHHHH"/>
         </div>
@@ -98,13 +92,16 @@
     border-radius: 3%;
     max-width: 300px;
     margin: 10px;
+    border: 10px;
+    border-style: outset;
+    border-color: #8f8f8f;
   }
 
   .gallerys {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;      
+    justify-content: space-evenly;
+    align-items: center;
   }
   
   .gallery_text {
