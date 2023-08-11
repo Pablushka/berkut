@@ -42,30 +42,8 @@
             }); 
     }
 
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.style.display = 'none';
-    document.body.appendChild(input);
-
-    var myDiv = document.getElementById("flyer");
-    myDiv.addEventListener('click', function() {
-        input.click();
-    });
-
-    input.onchange = function(e) { 
-        var file = e.target.files[0]; 
-        var reader = new FileReader();
-        reader.readAsDataURL(file); 
-
-        reader.onload = function(readerEvent) {
-            var content = readerEvent.target.result; 
-            var myImg = document.getElementById("myImg");
-            myImg.setAttribute('src', content);
-        }
-    };
-
-
-  
+    
+    
 </script>
 
 <div class="anti-pajaro">
@@ -73,8 +51,31 @@
     <div class="contenedor">
         <div class="flyer_card">
 <!--quiero que acá se suban los flyers de galeria-->
-            <div id="flyer">PUSH Flyer</div>
-            <img id="myImg" width="150px" src="" alt="Sin foto"/>
+                <div id="myDiv"><img id="myImg" width="150px" src="" alt="Sin foto"/>PUSH Flyer</div>
+                
+                <script>
+                    var input = document.createElement('input');
+                    input.type = 'file';
+                    input.style.display = 'none';
+                    document.body.appendChild(input);
+                    
+                    var myDiv = document.getElementById('myDiv');
+                    myDiv.addEventListener('click', function() {
+                        input.click();
+                    });
+                    
+                    input.onchange = function(e) { 
+                        var file = e.target.files[0]; 
+                        var reader = new FileReader();
+                        reader.readAsDataURL(file); 
+                    
+                        reader.onload = function(readerEvent) {
+                            var content = readerEvent.target.result; 
+                            var myImg = document.getElementById('myImg');
+                            myImg.setAttribute('src', content);
+                        }
+                    };
+                </script>
             <div>
                 <Form>
                     <input value="" id="field_id" type="hidden" name="id" />
@@ -182,7 +183,7 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
 
     }
 
-    #flyer{
+    #myDiv{
         border-radius: 45px;
         text-align: center;
         border:solid 1px;
