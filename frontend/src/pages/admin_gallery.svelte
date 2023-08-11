@@ -73,9 +73,8 @@
     <div class="contenedor">
         <div class="flyer_card">
 <!--quiero que acá se suban los flyers de galeria-->
-            <div id="flyer" class="img-flyer">PUSH Flyer
-                <img id="myImg" width="150px" src="" alt="Sin foto"/>
-            </div>
+            <div id="flyer">PUSH Flyer</div>
+            <img id="myImg" width="150px" src="" alt="Sin foto"/>
             <div>
                 <Form>
                     <input value="" id="field_id" type="hidden" name="id" />
@@ -183,7 +182,7 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
 
     }
 
-    .img-flyer{
+    #flyer{
         border-radius: 45px;
         text-align: center;
         border:solid 1px;
