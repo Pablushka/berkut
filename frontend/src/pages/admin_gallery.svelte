@@ -1,4 +1,5 @@
 <script>
+    import { each } from "svelte/internal";
     import {
         Form,
         Button,
@@ -11,12 +12,20 @@
         ModalFooter,
         ModalHeader,
     } from "sveltestrap";
+
     let formLabel = "";
+    let my_galleries = [];
+    
+    async function getGallery() {
+        let response = await fetch("http://localhost:5000//galleries");
+        let galleries = await response.json();
+        return galleries;
+    }
 
     const saveGallery= () =>{
         let title = document.getElementById("field_title").value;
         let date = document.getElementById("field_date").value;
-
+        
         let gallery = {
             title: title,
             date: date,
@@ -42,7 +51,32 @@
             }); 
     }
 
-    
+    const deleteGallery= ()=> {
+        let confirmed = confirm(
+            "¿Está usted seguro que quiere hacer mierda la galeria?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        fetch(`http://localhost:5000/gallery/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+        },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+                getGallery().then((galleries) => {
+                    my_galleries = galleries;
+                });
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    };
     
 </script>
 
@@ -96,7 +130,7 @@
             <div>
                 <button on:click={()=> saveGallery()}>Cargar</button>
                 <button>Editar</button>
-                <button>Eliminar</button>
+                <button on:click={()=> deleteGallery()}>Eliminar</button>
             </div>
         </div>
         <div class="contenedor_img">
@@ -187,11 +221,12 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         border-radius: 45px;
         text-align: center;
         border:solid 1px;
-        padding-top: 75px;
         width: 200px;
         height: 200px;
         margin: 10px;
         cursor:not-allowed;
+        background-position: center;
+        background-size: cover;
     }
 
     button{

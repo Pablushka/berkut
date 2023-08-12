@@ -9,3 +9,20 @@ Content-Type: application/json
 ###
 
 GET http://127.0.0.1:5000/galleries HTTP/1.1
+
+###
+
+PATCH http://127.0.0.1:5000/gallery HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "1",
+    "flyer": "1.jpg",
+    "title": "esto esta bien verdad?",
+    "date": "2020-01-10"
+
+}
+
+###
+
+DELETE http://127.0.0.1:5000/gallery/6  HTTP/1.1

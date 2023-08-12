@@ -403,8 +403,10 @@ def create_or_update_event():
             # return event as json
             return jsonify(event.to_dict())
         
+
+        
 @app.route('/gallery', methods=['POST', 'PATCH'])
-def create_gallery():
+def create_or_edit_gallery():
     if request.method == 'POST':
 
         data = request.get_json()
@@ -420,6 +422,39 @@ def create_gallery():
             db.session.commit()
 
             return jsonify(gallery.to_dict())
+        
+    if request.method == 'PATCH':
+
+        data = request.get_json()
+
+        if data:
+
+            id = data['id']
+            flyer = data['flyer']
+            title = data['title']
+            date = data['date']
+            datetime_object = datetime.strptime(date, '%Y-%m-%d')
+
+            gallery = Gallery.query.get_or_404(id, description="Gallery not found")
+
+            gallery.flyer = flyer
+            gallery.title = title
+            gallery.date = datetime_object
+
+            db.session.commit()
+
+            return jsonify(gallery.to_dict())
+        
+@app.route('/gallery/<int:id>', methods=['DELETE'])
+def deleteGallery(id):
+
+    gallery = Gallery.query.get_or_404(id, description="Gallery not found")
+
+    db.session.delete(gallery)
+    db.session.commit()
+
+    return jsonify(gallery.to_dict())
+
         
 @app.route('/photo', methods=['POST'])
 def create_photo():
