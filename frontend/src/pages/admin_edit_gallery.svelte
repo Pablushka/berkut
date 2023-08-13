@@ -128,7 +128,7 @@
     <h3 class="titulo">Galerias</h3>
     <table class="table table-striped table-hover">
         <thead>
-          <tr class="text">
+          <tr>
             <th>Flyer</th>
             <th>Titulo</th>
             <th>Fecha</th>
@@ -205,7 +205,7 @@
 <style>
       
     .page-container {
-        background-color: #4d4c4a7d;
+        background-color: #e3e2df7d;
         padding: 35px;
         margin-top: 39px;
         border-radius: 25px;
@@ -232,13 +232,8 @@
     .titulo{
         font-size: 65px;
         text-align: center;
-        color: aliceblue;
         font-family: monospace;
         text-decoration: underline;
-    }
-
-    .text{
-        color:#fff
     }
 
 </style>
