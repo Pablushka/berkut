@@ -157,10 +157,10 @@
 </script>
 
 <div class="page-container">
-  <h3>Eventos</h3>
+  <h3 class="titulo">Eventos</h3>
   <table class="table table-striped table-hover">
     <thead>
-      <tr>
+      <tr class="text">
         <th>Fecha</th>
         <th>Titulo</th>
         <th>Texto</th>
@@ -174,10 +174,10 @@
         <td style="white-space: nowrap;">{event.title}</td>
         <td>{event.text}</td>
         <td>
-          <button on:click={()=>form_fill(event)} class="btn btn-primary btn-sm btn-berkut">Editar</button>
+          <button on:click={()=>form_fill(event)} class="btn btn-primary btn-sm btn-berkut boton-uno">Editar</button>
         </td>
         <td>
-          <button class="btn btn-danger btn-sm btn-berkut" on:click={()=>{deleteEvent(event.id)}}>Eliminar</button>
+          <button class="btn btn-danger btn-sm btn-berkut boton-dos" on:click={()=>{deleteEvent(event.id)}}>Eliminar</button>
         </td>
       </tr>
       {/each}
@@ -240,7 +240,7 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" on:click={newEvent} class="btn btn-primary">
+<button type="button" on:click={newEvent} class="btn btn-primary big-boton">
   Nuevo Evento
 </button>
 
@@ -437,19 +437,46 @@
 <style>
   
   .page-container {
-    background-color: #f0dfc1eb;
-    padding: 38px;
+    background-color: #4d4c4a7d;
+    padding: 35px;
     margin-top: 39px;
     border-radius: 25px;
     text-align: left;
+    font-family: cursive;
+    font-size: x-large;
   }
 
   .btn-berkut {
-    width: 77px;
-  } 
+    width: 95px;
+    height: 45px;
+  }
 
-  .event-field {
-   text-align: left;
+  .big-boton{
+    width: -webkit-fill-available;
+    background-color: #084298;
+    border: ridge;
+  }
+
+  .boton-uno{
+    border: ridge;
+    background-color: #084298;
+  }
+
+  .boton-dos{
+    border: ridge;
+    background-color: #c00011;
+  }
+
+  .titulo{
+    font-size: 65px;
+    text-align: center;
+    color: aliceblue;
+    font-family: monospace;
+    text-decoration: underline;
+  }
+
+  .text{
+        color:#fff
   }
 
 </style>

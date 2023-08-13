@@ -235,13 +235,14 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
     }
 
     button{
-        background-color: rgba(0, 15, 128, 0.892);
+        background-color: #084298;
         font-size: 20px;
-        border: none;
+        border: ridge;
         color: white;
         padding: 10px 20px;
         text-align: center;
         display: inline-block;
         margin-bottom:25px;
     }
+
 </style>
