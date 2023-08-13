@@ -51,7 +51,7 @@
             }); 
     }
 
-    const deleteGallery= ()=> {
+    const deleteGallery = (id) => {
         let confirmed = confirm(
             "¿Está usted seguro que quiere hacer mierda la galeria?"
         );
@@ -85,7 +85,7 @@
     <div class="contenedor">
         <div class="flyer_card">
 <!--quiero que acá se suban los flyers de galeria-->
-                <div id="myDiv"><img id="myImg" width="150px" src="" alt="Sin foto"/>PUSH Flyer</div>
+            <div id="myDiv"><img id="myImg" width="150px" src="" alt="Sin foto"/>PUSH Flyer</div>
                 
                 <script>
                     var input = document.createElement('input');

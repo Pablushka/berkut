@@ -445,6 +445,7 @@ def create_or_edit_gallery():
 
             return jsonify(gallery.to_dict())
         
+# Elimina la galeria de la base de datos por ID
 @app.route('/gallery/<int:id>', methods=['DELETE'])
 def deleteGallery(id):
 

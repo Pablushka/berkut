@@ -113,15 +113,8 @@
 
             <DropdownMenu>
               {#if cookie_user}
-                <DropdownItem header class="titular">Time line</DropdownItem>
-                <DropdownItem>
-                  <a href="#/admin_timeline" class="link">Administrar Eventos</a
-                  >
-                </DropdownItem>
-
-                <DropdownItem divider />
-                <DropdownItem header class="titular">Administrador</DropdownItem
-                >
+              
+                <DropdownItem header class="titular">Administrador</DropdownItem>
                 <DropdownItem>
                   <a href="#/admin_users" class="link">Usuarios</a>
                 </DropdownItem>
@@ -129,7 +122,7 @@
                   <a href="#/admin_gallery" class="link">Galerias</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="#/post_edit" class="link">Editar posts</a>
+                  <a href="#/admin_timeline" class="link">Eventos</a>
                 </DropdownItem>
 
                 <DropdownItem divider />
