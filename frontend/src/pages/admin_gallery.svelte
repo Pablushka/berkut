@@ -12,6 +12,11 @@
         ModalFooter,
         ModalHeader,
     } from "sveltestrap";
+    import {push} from 'svelte-spa-router';
+
+    const openEditGallery = () => {
+        push(`/edit_gallery`)
+    }
 
     let formLabel = "";
     let my_galleries = [];
@@ -129,8 +134,8 @@
 <!--quiero que los botones hagan la carga, editen y eliminen en DB-->
             <div>
                 <button on:click={()=> saveGallery()}>Cargar</button>
-                <button>Editar</button>
-                <button on:click={()=> deleteGallery()}>Eliminar</button>
+                <button on:click={()=> openEditGallery()}>Editar</button>
+<!--                <button on:click={()=> deleteGallery()}>Eliminar</button>-->
             </div>
         </div>
         <div class="contenedor_img">

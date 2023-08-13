@@ -432,14 +432,13 @@ def create_or_edit_gallery():
             id = data['id']
             flyer = data['flyer']
             title = data['title']
-            date = data['date']
-            datetime_object = datetime.strptime(date, '%Y-%m-%d')
+            new_date = datetime.strptime(data['date'], "%d-%m-%Y")
 
             gallery = Gallery.query.get_or_404(id, description="Gallery not found")
 
             gallery.flyer = flyer
             gallery.title = title
-            gallery.date = datetime_object
+            gallery.date = new_date
 
             db.session.commit()
 

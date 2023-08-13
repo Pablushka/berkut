@@ -40,6 +40,7 @@
   import PhotoPage from "./pages/photo_page.svelte";
   import AdminGallery from "./pages/admin_gallery.svelte";
   import AdminPhotos from "./pages/admin_photos.svelte";
+  import AdminEditGallery from "./pages/admin_edit_gallery.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
@@ -66,7 +67,8 @@
     "/admin_users": AdminUserPage,
     "/photo_page/:gallery_id": PhotoPage,
     "/admin_gallery": AdminGallery,
-    "/admin_photos": AdminPhotos
+    "/admin_photos": AdminPhotos,
+    "/edit_gallery": AdminEditGallery
 
   };
 
