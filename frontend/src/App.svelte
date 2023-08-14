@@ -120,9 +120,22 @@
                 <DropdownItem>
                   <a href="#/admin_users" class="link">Usuarios</a>
                 </DropdownItem>
-                <DropdownItem>
-                  <a href="#/admin_gallery" class="link">Galerias</a>
-                </DropdownItem>
+                <ButtonDropdown {isAdminOpen}>
+                  <DropdownToggle
+                    color="secondary"
+                    caret 
+                    on:click={() => (isAdminOpen = !isAdminOpen)}>
+                    Galerias
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem>
+                      <a href="#/admin_gallery" class="link">Crear</a>
+                    </DropdownItem>                    
+                    <DropdownItem>
+                      <a href="#/edit_gallery" class="link">Editar</a>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
                 <DropdownItem>
                   <a href="#/admin_timeline" class="link">Eventos</a>
                 </DropdownItem>
@@ -217,4 +230,12 @@
   :global(.boton-color) {
     background-color: blue-800;
   }
+
+  .gallery{
+    background-color: #6563631c;
+    border: hidden;
+    color: black;
+    padding-left: 14px;
+  }
+
 </style>

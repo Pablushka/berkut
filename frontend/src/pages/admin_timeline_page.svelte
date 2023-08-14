@@ -62,12 +62,12 @@
 
   onMount(async () => {
     my_events = await getEvents();
- })
+  })
 
   const deleteEvent = (id) => {
 
-    let confirmed = confirm("¿Está usted seguro que quiere hacer mierda el evento?");
-
+    let confirmed = confirm(
+      "¿Está usted seguro que quiere hacer mierda el evento?");
     if (!confirmed) {
       return;
     }

@@ -38,10 +38,8 @@
         current_gallery = the_gallery;
     };
     
-    let radioGroup;
     let my_galleries=[];
-    let modal;
-    
+
     async function getGalleries() {
     
         let response = await fetch("http://localhost:5000/galleries");
@@ -98,10 +96,8 @@
             date: new_date,
         };
 
-        let httpMethod = id == '' ? "POST" : "PATCH";
-
         fetch("http://localhost:5000/gallery", {
-            method: httpMethod,
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -109,9 +105,12 @@
         })
         .then((response) => response.json())
         .then((data) => {
-                console.log("Success:", data);
-                document.getElementById("flyer").style.cursor = "pointer";
-                document.getElementById("title").innerText = gallery.title;
+            console.log("Success:", data);
+            getEvents().then((galleries) => {
+                my_galleries = galleries;
+            });
+
+            toggle();
         })
 
         .catch((error) => {
@@ -138,7 +137,7 @@
         <tbody>
           {#each my_galleries as gallery}
           <tr>
-            <td>{gallery.flyer}</td>
+            <td style="white-space: nowrap;">{gallery.flyer}</td>
             <td style="white-space: nowrap;">{gallery.title}</td>
             <td style="white-space: nowrap;">{gallery.date}</td>
             <td>
