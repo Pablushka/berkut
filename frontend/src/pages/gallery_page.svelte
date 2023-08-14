@@ -48,7 +48,9 @@
   .gallerys {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: stretch;
     
   }
 
@@ -60,6 +62,9 @@
     border-radius: 20px;
     padding: 10px;
     border: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .gallerys .card p {

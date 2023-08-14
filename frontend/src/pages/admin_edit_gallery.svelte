@@ -118,7 +118,6 @@
         }); 
     }
     
-    
     let formLabel = "text-align: left; font-weight: bold;";
     
 </script>
@@ -195,7 +194,7 @@
     
         </Modal>
     
-      </div>
+    </div>
     
 </div>
     

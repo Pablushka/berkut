@@ -417,7 +417,7 @@ def create_or_edit_gallery():
             date = data['date']
             datetime_object = datetime.strptime(date, '%d-%m-%Y')
         
-            gallery = Gallery(title=title,  flyer=flyer, date=datetime_object)
+            gallery = Gallery(flyer=flyer, title=title, date=datetime_object)
             db.session.add(gallery)
             db.session.commit()
 
