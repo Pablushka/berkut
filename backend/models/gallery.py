@@ -21,5 +21,5 @@ class Gallery(db.Model):
             'id': self.id,
             'title': self.title,
             'flyer': self.flyer,
-            'date': self.date
+            'date': self.date.strftime("%d-%m-%Y"),
         }
