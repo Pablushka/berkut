@@ -55,33 +55,6 @@
                 console.error("Error:", error);
             }); 
     }
-
-    const deleteGallery = (id) => {
-        let confirmed = confirm(
-            "¿Está usted seguro que quiere hacer mierda la galeria?"
-        );
-
-        if (!confirmed) {
-            return;
-        }
-
-        fetch(`http://localhost:5000/gallery/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-        },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Success:", data);
-                getGallery().then((galleries) => {
-                    my_galleries = galleries;
-                });
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
-    };
     
 </script>
 
@@ -134,8 +107,6 @@
 <!--quiero que los botones hagan la carga, editen y eliminen en DB-->
             <div>
                 <button on:click={()=> saveGallery()}>Cargar</button>
-                <button on:click={()=> openEditGallery()}>Editar</button>
-<!--                <button on:click={()=> deleteGallery()}>Eliminar</button>-->
             </div>
         </div>
         <div class="contenedor_img">
