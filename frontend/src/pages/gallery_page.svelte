@@ -23,7 +23,7 @@
 </script>
 
 <div class="anti-pajaro">
-  <h1 class="mt-5"><span class="gallery_text">Recuerdos de Eventos Pasados</span></h1>
+  <h1 class="mt-5"><span class="titel">Recuerdos de Eventos Pasados</span></h1>
 
   <div class="gallerys">
     {#each galleries as {flyer, title, id}}

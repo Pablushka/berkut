@@ -14,18 +14,7 @@
     } from "sveltestrap";
     import {push} from 'svelte-spa-router';
 
-    const openEditGallery = () => {
-        push(`/edit_gallery`)
-    }
-
     let formLabel = "";
-    let my_galleries = [];
-    
-    async function getGallery() {
-        let response = await fetch("http://localhost:5000//galleries");
-        let galleries = await response.json();
-        return galleries;
-    }
 
     const saveGallery= () =>{
         let title = document.getElementById("field_title").value;
@@ -104,7 +93,7 @@
                     </FormGroup>
                 </Form>
             </div>
-<!--quiero que los botones hagan la carga, editen y eliminen en DB-->
+<!--quiero que el boton haga la carga en DB-->
             <div>
                 <button on:click={()=> saveGallery()}>Cargar</button>
             </div>
@@ -153,11 +142,7 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         overflow-y: auto;
         margin-right: 20px;
     }
-    .titel {
-        font-family: Viking-Normal;
-        margin: 15px;
-        text-decoration: underline;
-    }
+
 
     .flyer_card{
         align-items: center ;

@@ -7,7 +7,7 @@
   };
 </script>
 
-<h1 class="mt-5"><span class="months_titel"> Calendario de Ferias </span></h1>
+<h1 class="mt-5"><span class="titel"> Calendario de Ferias </span></h1>
 
 <div class="months">
   <MonthCalendar month="Enero" onClick={monthClick} />
@@ -32,9 +32,4 @@
     justify-content: space-around;
   }
 
-  .months_titel {
-    font-family: PR Viking;
-    font-size: 50pt;
-    text-align: center;
-  }
 </style>

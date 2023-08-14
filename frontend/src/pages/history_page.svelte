@@ -27,7 +27,7 @@
 </script>
 
 <h1 class="mt-5">
-  <span class="titel_text">Historia del grupo y coso...</span>
+  <span class="titel">Historia del grupo y coso...</span>
 </h1>
 {#await my_events}
   <p>
@@ -41,9 +41,5 @@
 {/await}
 
 <style>
-  .titel_text {
-    font-family: PR Viking;
-    font-size: 50pt;
-    text-align: center;
-  }
+
 </style>

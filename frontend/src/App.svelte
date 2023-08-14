@@ -238,4 +238,13 @@
     padding-left: 14px;
   }
 
+  :global(.titel) {
+        font-family: PR Viking;
+        margin: 15px;
+        text-decoration: underline;
+        font-size: 65px;
+        text-align: center;
+  }
+
+
 </style>

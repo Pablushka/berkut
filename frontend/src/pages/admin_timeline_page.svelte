@@ -157,7 +157,7 @@
 </script>
 
 <div class="page-container">
-  <h3 class="titulo">Eventos</h3>
+  <h3 class="titel">Eventos</h3>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -465,13 +465,6 @@
   .boton-dos{
     border: ridge;
     background-color: #c00011;
-  }
-
-  .titulo{
-    font-size: 65px;
-    text-align: center;
-    font-family: monospace;
-    text-decoration: underline;
   }
 
 </style>

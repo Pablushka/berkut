@@ -13,7 +13,7 @@
 </script>
 
 <div class="anti-pajaro">
-  <h1 class="mt-5"><span class="member_text">Integrantes del grupo</span></h1>
+  <h1 class="mt-5"><span class="titel">Integrantes del grupo</span></h1>
   <h2 class="member_text">Un vistazo a los miembros</h2>
 
   <div class="members">
@@ -164,7 +164,7 @@
 
   .member_text {
     font-family: PR Viking;
-    font-size: 50pt;
+    font-size: 35pt;
     text-align: center;
 
   }
