@@ -49,6 +49,7 @@
             }); 
     }
 
+
     const uploadFlyer = (gallery_id) => {
         let form = document.createElement("form");
         form.setAttribute("method", "post");
@@ -73,7 +74,7 @@
         
 
     }
-    
+  
     onMount (() => {
 
         let input = document.createElement('input');
@@ -97,8 +98,13 @@
         };
     })
     
-    const selectImg= () => {
+    const selectFlyer= () => {
         let input= document.getElementById("myFlyer");
+        input.click()
+    }
+    
+    const selectPhoto= () =>{
+        let input= document.getElementById("myPhoto");
         input.click()
     }
 
@@ -108,10 +114,7 @@
     <h1 id="title" class="titel">New Gallery</h1>
     <div class="contenedor">
         <div class="flyer_card">
-<!--quiero que acá se suban los flyers de galeria-->
-            <div id="myDiv" on:click={()=> selectImg()}><img id="myImg" width="150px" src="" alt="Sin foto"/>PUSH Flyer</div>
-                
-
+            <div id="myDiv" on:click={()=> selectFlyer()}><img id="myImg" width="150px" src="" alt="Elige un FLYER"/></div>
             <div>
                 <Form>
                     <input value="" id="field_id" type="hidden" name="id" />
@@ -128,8 +131,7 @@
                     </FormGroup>
                 </Form>
             </div>
-<!--quiero que el boton haga la carga en DB-->
-            <div>
+            <div >
                 <button id="myButton" on:click={()=> saveGallery()}>Cargar</button>
             </div>
         </div>
@@ -137,12 +139,13 @@
             <div class="photo_card">
 <!--quiero que el primer div sea el que haga el push de la foto y 
 se muestren las fotos dentro de la galeria si esta ya existe-->
-                <div class="img"><h2>PUSH Photo</h2></div>
+                <div  id="mySecDiv" on:click={()=> selectPhoto()}><img id="mySecImg" width="150px" src="" alt="Elige una IMAGEN"/></div>
             </div>
-            <!--este dive es opcional 
+            <!--este dive es opcional -->
                 <div>
-                <button>Cargar</button>
-                <button>Editar</button>
+                    <button>Cargar</button>
+                </div>
+            <!--    <button>Editar</button>
                 <button>Eliminar</button>
             </div> -->
         </div>
@@ -189,7 +192,7 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         justify-content: space-evenly;
         border-bottom-left-radius: inherit;
         font-size: 30px;
-        height: 710px;
+        height: 695px;
     }
 
     .photo_card{
@@ -199,30 +202,27 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        font-size: 30px;
     }
 
-    .img{
+    #myImg, #mySecImg{
         border-radius: 45px;
-        text-align: center;
-        border:solid 1px;
-        padding-top: 75px;
         width: 200px;
         height: 200px;
-        margin: 10px;
-        cursor: pointer;
-
-    }
-
-    #myDiv{
-        border-radius: 45px;
-        text-align: center;
-        border:solid 1px;
-        width: 200px;
-        height: 200px;
-        margin: 10px;
-        cursor:not-allowed;
         background-position: center;
-        background-size: cover;
+        background-size: contain;
+    }
+
+    #myDiv, #mySecDiv{
+        border-radius: 45px;
+        text-align: center;
+        border:solid 1px;
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        cursor:pointer;
+        background-position: center;
+        background-size: contain;
     }
 
     button{
