@@ -38,9 +38,9 @@
   } from "sveltestrap";
   import MembersPage from "./pages/members_page.svelte";
   import PhotoPage from "./pages/photo_page.svelte";
-  import AdminGallery from "./pages/admin_gallery.svelte";
+  import AdminGallery from "./pages/new_gallery_page.svelte";
   import AdminPhotos from "./pages/admin_photos.svelte";
-  import AdminEditGallery from "./pages/admin_edit_gallery.svelte";
+  import AdminEditGallery from "./pages/edit_gallery_page.svelte";
 
   let isOpen = false;
   let isAdminOpen = false;
