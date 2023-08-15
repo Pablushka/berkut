@@ -106,7 +106,7 @@
         .then((response) => response.json())
         .then((data) => {
             console.log("Success:", data);
-            getEvents().then((galleries) => {
+            getGalleries().then((galleries) => {
                 my_galleries = galleries;
             });
 

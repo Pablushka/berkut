@@ -10,7 +10,7 @@ from models.user import User
 from models.gallery import Gallery
 from models.photo import Photo
 from werkzeug.utils import secure_filename
-from sqlalchemy import select
+from sqlalchemy import select, update
 import os
 import pyotp
 from qr import new_qr_code
@@ -107,6 +107,14 @@ def upload(filetype, gallery_id):
         if filetype == "flyer":
             filename = str(gallery_id) + "." + filename.split(".")[1]
             file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+
+            gallery = Gallery.query.get_or_404(gallery_id, description="Gallery not found")
+            gallery.flyer = filename
+            
+            db.session.commit()
+
+
         else:
             gallery_folder = str(gallery_id)
             gallery_path = os.path.join(UPLOAD_FOLDER, gallery_folder)
@@ -415,7 +423,7 @@ def create_or_edit_gallery():
             flyer = data['flyer']
             title = data['title']
             date = data['date']
-            datetime_object = datetime.strptime(date, '%d-%m-%Y')
+            datetime_object = datetime.strptime(date, '%Y-%m-%d')
         
             gallery = Gallery(flyer=flyer, title=title, date=datetime_object)
             db.session.add(gallery)

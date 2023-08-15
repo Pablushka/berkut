@@ -1,5 +1,5 @@
 <script>
-    import { each } from "svelte/internal";
+    import { each, onMount } from "svelte/internal";
     import {
         Form,
         Button,
@@ -34,17 +34,74 @@
             body: JSON.stringify(gallery),
         })
             .then((response) => response.json())
-            .then((data) => {
-                console.log("Success:", data);
-                document.getElementById("flyer").style.cursor = "pointer";
+            .then((new_gallery) => {
+                console.log("Success:", new_gallery);
+                document.getElementById("myImg").style.cursor = "pointer";
                 document.getElementById("title").innerText = gallery.title;
+                uploadFlyer(new_gallery.id);
+                document.getElementById("myButton").disabled = true;
+                document.getElementById("myButton").style.cursor = "not-allowed";
             })
+
 
             .catch((error) => {
                 console.error("Error:", error);
             }); 
     }
+
+    const uploadFlyer = (gallery_id) => {
+        let form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("enctype", "multipart/form-data");
+        form.setAttribute("action",`http://127.0.0.1:5000/upload/flyer/${gallery_id}`);
+
+        form.onsubmit = (e) =>{
+            e.preventDefault()
+        }
+        let fileInput = document.getElementById("myFlyer");
+
+        form.appendChild(fileInput);
+
+        document.body.appendChild(form);
+        let formData = new FormData(form);
+        fetch(`http://127.0.0.1:5000/upload/flyer/${gallery_id}`, {
+            method: "POST",
+            body: formData,
+        }).then(response => response.json()).then(data =>{
+            console.log("success", data)
+        })
+        
+
+    }
     
+    onMount (() => {
+
+        let input = document.createElement('input');
+        input.id = 'myFlyer'; 
+        input.type = 'file';
+        input.name = 'file';
+        input.style.display = 'none';
+        document.body.appendChild(input);
+
+        
+        input.onchange = function(e) { 
+            let file = e.target.files[0]; 
+            let reader = new FileReader();
+            reader.readAsDataURL(file); 
+            
+            reader.onload = function(readerEvent) {
+                let content = readerEvent.target.result; 
+                let myImg = document.getElementById('myImg');
+                myImg.setAttribute('src', content);
+            }
+        };
+    })
+    
+    const selectImg= () => {
+        let input= document.getElementById("myFlyer");
+        input.click()
+    }
+
 </script>
 
 <div class="anti-pajaro">
@@ -52,31 +109,9 @@
     <div class="contenedor">
         <div class="flyer_card">
 <!--quiero que acá se suban los flyers de galeria-->
-            <div id="myDiv"><img id="myImg" width="150px" src="" alt="Sin foto"/>PUSH Flyer</div>
+            <div id="myDiv" on:click={()=> selectImg()}><img id="myImg" width="150px" src="" alt="Sin foto"/>PUSH Flyer</div>
                 
-                <script>
-                    var input = document.createElement('input');
-                    input.type = 'file';
-                    input.style.display = 'none';
-                    document.body.appendChild(input);
-                    
-                    var myDiv = document.getElementById('myDiv');
-                    myDiv.addEventListener('click', function() {
-                        input.click();
-                    });
-                    
-                    input.onchange = function(e) { 
-                        var file = e.target.files[0]; 
-                        var reader = new FileReader();
-                        reader.readAsDataURL(file); 
-                    
-                        reader.onload = function(readerEvent) {
-                            var content = readerEvent.target.result; 
-                            var myImg = document.getElementById('myImg');
-                            myImg.setAttribute('src', content);
-                        }
-                    };
-                </script>
+
             <div>
                 <Form>
                     <input value="" id="field_id" type="hidden" name="id" />
@@ -95,7 +130,7 @@
             </div>
 <!--quiero que el boton haga la carga en DB-->
             <div>
-                <button on:click={()=> saveGallery()}>Cargar</button>
+                <button id="myButton" on:click={()=> saveGallery()}>Cargar</button>
             </div>
         </div>
         <div class="contenedor_img">
