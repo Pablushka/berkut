@@ -458,6 +458,9 @@ def deleteGallery(id):
 
     gallery = Gallery.query.get_or_404(id, description="Gallery not found")
 
+    for photo in gallery.photos: 
+            db.session.delete(photo) 
+
     db.session.delete(gallery)
     db.session.commit()
 

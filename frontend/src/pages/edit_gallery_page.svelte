@@ -62,6 +62,14 @@
             return;
         }
 
+        confirmed = confirm(
+            "Al borrar la galeria perdera todas las imagenes, ¿está seguro que quiere borrar TODO?"
+        );
+
+        if (!confirm) {
+            return;
+        }
+
         fetch(`http://localhost:5000/gallery/${id}`, {
             method: "DELETE",
             headers: {

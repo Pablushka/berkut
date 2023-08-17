@@ -13,8 +13,10 @@
         ModalHeader,
     } from "sveltestrap";
     import {push} from 'svelte-spa-router';
+    import NewPhoto from "../components/new_photo.svelte";
 
     let formLabel = "";
+    let containerPhoto
 
     const saveGallery= () =>{
         let title = document.getElementById("field_title").value;
@@ -154,17 +156,19 @@
                 myImg.setAttribute('src', content);
             }
         };
+
     })
     
     const selectFlyer= () => {
         let input= document.getElementById("myFlyer");
         input.click()
     }
-    
-    const selectPhoto= () =>{
-        let input= document.getElementById("myPhoto");
-        input.click()
+
+    const onPhotoLoaded = () =>{
+        let blankPhoto = NewPhoto
+        containerPhoto.appendChild(blankPhoto)
     }
+
 
 </script>
 
@@ -194,10 +198,10 @@
             </div>
         </div>
         <div class="contenedor_img">
-            <div class="photo_card">
+            <div bind:this={containerPhoto} id="containerPhoto" class="photo_card">
 <!--quiero que el primer div sea el que haga el push de la foto y 
 se muestren las fotos dentro de la galeria si esta ya existe-->
-                <div  id="mySecDiv" on:click={()=> selectPhoto()}><img id="mySecImg" width="150px" src="" alt="Elige una IMAGEN"/></div>
+                <NewPhoto on:photoLoaded={()=> onPhotoLoaded}/>   
             </div>
             <!--este dive es opcional -->
                 <div>
@@ -263,7 +267,7 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         font-size: 30px;
     }
 
-    #myImg, #mySecImg{
+    #myImg, #photoImg{
         border-radius: 45px;
         width: 200px;
         height: 200px;
@@ -271,7 +275,7 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         background-size: contain;
     }
 
-    #myDiv, #mySecDiv{
+    #myDiv, #photoDiv{
         border-radius: 45px;
         text-align: center;
         border:solid 1px;
