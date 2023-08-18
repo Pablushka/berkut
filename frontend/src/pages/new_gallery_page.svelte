@@ -77,61 +77,7 @@
 
     }
 
-
-
-
     const savePhoto= () =>{
-        let image = document.getElementById("field_image").value;
-        let gallery_id = document.getElementById("field_gallery_id").value;
-        
-        let photo = {
-            image: image,
-            gallery_id: gallery_id,
-        };
-
-        fetch("http://localhost:5000/photo", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(photo),
-        })
-            .then((response) => response.json())
-            .then((new_photo) => {
-                console.log("Success:", new_photo);
-                document.getElementById("mySecImg").style.cursor = "pointer";
-                document.getElementById("image").innerText = photo.image;
-                uploadPhoto(new_photo.id);
-            })
-
-            .catch((error) => {
-                console.error("Error:", error);
-            }); 
-    }
-
-
-    const uploadPhoto = (gallery_id) => {
-        let form = document.createElement("form");
-        form.setAttribute("method", "post");
-        form.setAttribute("enctype", "multipart/form-data");
-        form.setAttribute("action",`http://127.0.0.1:5000/upload/photo/${gallery_id}`);
-
-        form.onsubmit = (e) =>{
-            e.preventDefault()
-        }
-        let fileInput = document.getElementById("myPhoto");
-
-        form.appendChild(fileInput);
-
-        document.body.appendChild(form);
-        let formData = new FormData(form);
-        fetch(`http://127.0.0.1:5000/upload/photo/${gallery_id}`, {
-            method: "POST",
-            body: formData,
-        }).then(response => response.json()).then(data =>{
-            console.log("success", data)
-        })
-        
 
     }
   
