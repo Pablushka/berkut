@@ -17,6 +17,7 @@
 
     let formLabel = "";
     let containerPhoto
+    let new_photo
 
     const saveGallery= () =>{
         let title = document.getElementById("field_title").value;
@@ -77,8 +78,11 @@
 
     }
 
-    const savePhoto= () =>{
-
+    const newPhoto= () =>{
+        new_photo = new NewPhoto({
+            target: containerPhoto, //document.getElementById("containerPhoto"),
+            props: {},
+        })
     }
   
     onMount (() => {
@@ -151,7 +155,7 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
             </div>
             <!--este dive es opcional -->
                 <div>
-                    <button on:click={()=> savePhoto}>Cargar</button>
+                    <button on:click={()=> newPhoto()}>Add Foto</button>
                 </div>
             <!--    <button>Editar</button>
                 <button>Eliminar</button>

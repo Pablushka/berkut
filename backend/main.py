@@ -19,6 +19,7 @@ from datetime import datetime, timedelta
 import pyotp
 from mails import send_registration_email
 from qr import new_qr_code
+import shutil
 
 
 # Lista de tipos de imágenes permitidas
@@ -457,9 +458,19 @@ def create_or_edit_gallery():
 def deleteGallery(id):
 
     gallery = Gallery.query.get_or_404(id, description="Gallery not found")
+    gallery_path = os.path.join(UPLOAD_FOLDER, str(id))
+    flyer_path = os.path.join(os.path.join(UPLOAD_FOLDER, gallery.flyer))
+    
+    try: 
+        shutil.rmtree(gallery_path)
+        os.remove(flyer_path)
+    except:
+        pass
 
+    
     for photo in gallery.photos: 
-            db.session.delete(photo) 
+            db.session.delete(photo)
+             
 
     db.session.delete(gallery)
     db.session.commit()

@@ -1,5 +1,7 @@
 <script>
     import {createEventDispatcher} from 'svelte';
+    import HacerMierdaIcon from '../../public/img/icons/hacer_mierda_rojo.png';
+    import {get_current_component} from "svelte/internal";
 
     let inputPhoto
     let photoImg
@@ -24,15 +26,40 @@
     const selectPhoto= () =>{
         inputPhoto.click()
     }
+
+    const deletePhoto= () =>{
+        get_current_component().$destroy()
+
+    }
+
 </script>
 
 
 <div  id="photoDiv" on:click={()=> selectPhoto()}>
+    <div class="delete-icon-container">
+        <img class="delete-icon" on:click={()=> deletePhoto()} src={HacerMierdaIcon} alt="eliminar">
+    </div>
     <input bind:this={inputPhoto} on:change={newPhoto} type="file" name="file" style="display: none;">
     <img bind:this={photoImg} class="photoImg" src="" alt="Elige una IMAGEN"/>
 </div>
 
 <style>
+
+    .delete-icon-container{
+        position: absolute;
+        float: right;
+    }
+
+    .delete-icon{
+        width: 60px;
+        height: 60px;
+    }
+
+    .delete-icon:hover{
+        width: 70px;
+        height: 70px;        
+    }
+
     .photoImg{
         border-radius: 45px;
         width: 200px;
