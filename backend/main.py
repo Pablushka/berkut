@@ -106,7 +106,7 @@ def upload(filetype, gallery_id):
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         if filetype == "flyer":
-            filename = str(gallery_id) + "." + filename.split(".")[1]
+            filename = str(gallery_id) + "." + filename.split(".")[-1]
             file.save(os.path.join(UPLOAD_FOLDER, filename))
 
 

@@ -14,6 +14,7 @@
     } from "sveltestrap";
     import {push} from 'svelte-spa-router';
     import NewPhoto from "../components/new_photo.svelte";
+    import { get } from "svelte/store";
 
     let formLabel = "";
     let containerPhoto
@@ -29,6 +30,10 @@
             flyer:"", 
         };
 
+        if (!validate()){
+            return
+        }
+
         fetch("http://localhost:5000/gallery", {
             method: "POST",
             headers: {
@@ -41,28 +46,83 @@
                 console.log("Success:", new_gallery);
                 document.getElementById("myImg").style.cursor = "pointer";
                 document.getElementById("title").innerText = gallery.title;
-                uploadFlyer(new_gallery.id);
+                uploadImg(new_gallery.id, "flyer");
                 document.getElementById("myButton").disabled = true;
                 document.getElementById("myButton").style.cursor = "not-allowed";
+                uploadImg(new_gallery.id, "photo");
             })
 
 
             .catch((error) => {
                 console.error("Error:", error);
-            }); 
+            });
+
+            
+        
+    }
+
+    const validate = () => {
+        let flyer = document.getElementById("myImg")
+        let title = document.getElementById("field_title")
+        let date = document.getElementById("field_date")
+
+        if (flyer.naturalWidth <= 0){
+            alert("No se puede crear galeria sin flyer")
+            return false
+        }
+
+        if (title.value === ""){
+            alert("No puede crear galeria sin titulo")
+            return false
+        }
+        if (!(title.value.length >= 15 && title.value.length <= 100)){
+            alert("El titulo de la galeria no puede ser menos a 15 caracteres ni mayor a 100")
+            return false
+        }
+
+        if (date.value === ""){
+            alert("No puede crear galeria sin fecha")
+            return false
+        }
+
+        return true
+        
     }
 
 
-    const uploadFlyer = (gallery_id) => {
+    const uploadImg = (gallery_id, type) => {
         let form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("enctype", "multipart/form-data");
-        form.setAttribute("action",`http://127.0.0.1:5000/upload/flyer/${gallery_id}`);
+        form.setAttribute("action",`http://127.0.0.1:5000/upload/${type}/${gallery_id}`);
 
         form.onsubmit = (e) =>{
             e.preventDefault()
         }
-        let fileInput = document.getElementById("myFlyer");
+        
+        let fileInput
+
+        if (type === "flyer"){
+            fileInput = document.getElementById("myFlyer");
+        }
+        else {
+            let photo_list = Array.from(document.getElementsByClassName("photo-div"))
+            photo_list.forEach(div => {
+                let photo = div.getElementsByTagName("img")
+
+                const formData = new FormData();
+
+                formData.append("file", toBlob(photo), "" )
+
+                fetch(`http://127.0.0.1:5000/upload/photo/${gallery_id}`, {
+                    method: "POST",
+                    body: formData,
+                }).then(response => response.json()).then(data =>{
+                    console.log("success", data)
+                })
+            });
+        
+        }
 
         form.appendChild(fileInput);
 
@@ -119,6 +179,18 @@
         containerPhoto.appendChild(blankPhoto)
     }
 
+    const toBlob = (img) => {
+        let return_blob
+        let canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special size
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        canvas.toBlob(function(blob) {
+            return_blob = blob
+        })
+    
+        return return_blob
+    }
 
 </script>
 
@@ -144,7 +216,7 @@
                 </Form>
             </div>
             <div >
-                <button id="myButton" on:click={()=> saveGallery()}>Cargar</button>
+                <button id="myButton" on:click={()=> saveGallery()}>Crear Galeria</button>
             </div>
         </div>
         <div class="contenedor_img">

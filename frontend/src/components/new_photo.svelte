@@ -6,6 +6,8 @@
     let inputPhoto
     let photoImg
     
+    const my_component = get_current_component()
+    
     const dispatch = createEventDispatcher()
     
     const newPhoto = (e)=> { 
@@ -28,14 +30,14 @@
     }
 
     const deletePhoto= () =>{
-        get_current_component().$destroy()
+        my_component.$destroy()
 
     }
 
 </script>
 
 
-<div  id="photoDiv" on:click={()=> selectPhoto()}>
+<div  id="photoDiv"  class="photo-div" on:click={()=> selectPhoto()}>
     <div class="delete-icon-container">
         <img class="delete-icon" on:click={()=> deletePhoto()} src={HacerMierdaIcon} alt="eliminar">
     </div>
