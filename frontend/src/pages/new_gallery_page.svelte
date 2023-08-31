@@ -289,15 +289,16 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         font-size: 30px;
     }
 
-    #myImg, #photoImg{
+    #myImg{
         border-radius: 45px;
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         background-position: center;
         background-size: contain;
     }
 
-    #myDiv, #photoDiv{
+    #myDiv{
         border-radius: 45px;
         text-align: center;
         border:solid 1px;
