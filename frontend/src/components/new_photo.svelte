@@ -36,12 +36,11 @@
 
 </script>
 
-
 <div  id="photoDiv"  class="photo-div" on:click={()=> selectPhoto()}>
     <div class="delete-icon-container">
         <img class="delete-icon" on:click={()=> deletePhoto()} src={HacerMierdaIcon} alt="eliminar">
     </div>
-    <input bind:this={inputPhoto} on:change={newPhoto} type="file" name="file" style="display: none;">
+    <input class="input-file" bind:this={inputPhoto} on:change={newPhoto} type="file" name="file" style="display: none;">
     <img bind:this={photoImg} class="photoImg" src="" alt="Elige una IMAGEN"/>
 </div>
 
@@ -81,5 +80,9 @@
         cursor:pointer;
         background-position: center;
         background-size: contain;
+    }
+
+    .ocultadito{
+        display: none;
     }
 </style>

@@ -16,6 +16,13 @@
     import NewPhoto from "../components/new_photo.svelte";
     import { get } from "svelte/store";
 
+    export let params = {}
+  
+    console.log (params)
+    const gallery_id = params.gallery_id
+
+    
+
     let formLabel = "";
     let containerPhoto
     let new_photo
@@ -34,7 +41,7 @@
             return
         }
 
-        fetch("http://localhost:5000/gallery", {
+        fetch("http://127.0.0.1:5000/gallery", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -89,6 +96,14 @@
         
     }
 
+    const upload = (formData, gallery_id, type)=>{
+        fetch(`http://127.0.0.1:5000/upload/${type}/${gallery_id}`, {
+            method: "POST",
+            body: formData,
+        }).then(response => response.json()).then(data =>{
+            console.log("success", data)
+        })
+    }
 
     const uploadImg = (gallery_id, type) => {
         let form = document.createElement("form");
@@ -103,39 +118,22 @@
         let fileInput
 
         if (type === "flyer"){
-            fileInput = document.getElementById("myFlyer");
+            fileInput = document.getElementById("myFlyer")
+            form.appendChild(fileInput)
+            document.body.appendChild(form)
+            let formData = new FormData(form)
+            upload(formData, gallery_id, type)
         }
+
         else {
-            let photo_list = Array.from(document.getElementsByClassName("photo-div"))
-            photo_list.forEach(div => {
-                let photo = div.getElementsByTagName("img")
-
-                const formData = new FormData();
-
-                formData.append("file", toBlob(photo), "" )
-
-                fetch(`http://127.0.0.1:5000/upload/photo/${gallery_id}`, {
-                    method: "POST",
-                    body: formData,
-                }).then(response => response.json()).then(data =>{
-                    console.log("success", data)
-                })
-            });
-        
+            let photo_list = Array.from(document.getElementsByClassName("input-file"))
+            photo_list.forEach(input => {
+                form.appendChild(input)
+                let formData = new FormData(form)
+                upload(formData, gallery_id, type)
+                form.removeChild(input)
+            });      
         }
-
-        form.appendChild(fileInput);
-
-        document.body.appendChild(form);
-        let formData = new FormData(form);
-        fetch(`http://127.0.0.1:5000/upload/flyer/${gallery_id}`, {
-            method: "POST",
-            body: formData,
-        }).then(response => response.json()).then(data =>{
-            console.log("success", data)
-        })
-        
-
     }
 
     const newPhoto= () =>{
