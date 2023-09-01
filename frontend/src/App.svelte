@@ -66,7 +66,7 @@
     "/new_user_validation/:email?": NewUserValidationPage,
     "/admin_users": AdminUserPage,
     "/photo_page/:gallery_id": PhotoPage,
-    "/admin_gallery/:gallery_id?": AdminGallery,
+    "/admin_gallery/:id?": AdminGallery,
     "/admin_photos": AdminPhotos,
     "/edit_gallery": AdminEditGallery
 

@@ -19,7 +19,7 @@
     export let params = {}
   
     console.log (params)
-    const gallery_id = params.gallery_id
+    const gallery_id = params.id
 
     
     if (gallery_id >= 1){
