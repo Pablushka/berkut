@@ -39,8 +39,8 @@
     //     current_gallery = the_gallery;
     // };
 
-    const openEditGallery = (id) => {
-        push(`/admin_gallery/${id}`)
+    const openEditGallery = (current_gallery) => {
+        push(`/admin_gallery/${current_gallery.id}`)
     }
     
     let my_galleries=[];
