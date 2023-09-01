@@ -3,7 +3,8 @@
     
     import { onMount } from 'svelte';
     import { Form, Button, FormGroup, FormText, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'sveltestrap';
-    import {bad_words_validator} from '../helpers/admin_helpers.js'
+    import {bad_words_validator} from '../helpers/admin_helpers.js';
+    import {push, pop, replace} from 'svelte-spa-router';
     
     let bad_words = ['culo', 'puto el que lee', 'macri', 'chupito el pame']
     
@@ -33,10 +34,14 @@
         document.getElementById("field_date").value = new_date;
     }
     
-    const form_fill = (the_gallery) => {
-        toggle();
-        current_gallery = the_gallery;
-    };
+    // const form_fill = (the_gallery) => {
+    //     toggle();
+    //     current_gallery = the_gallery;
+    // };
+
+    const openEditGallery = (gallery_id) => {
+        push(`/admin_gallery/${gallery_id}`)
+    }
     
     let my_galleries=[];
 
@@ -148,7 +153,7 @@
             <td style="white-space: nowrap;">{gallery.title}</td>
             <td style="white-space: nowrap;">{gallery.date}</td>
             <td>
-            <button on:click={()=>form_fill(gallery)} class="btn btn-primary btn-sm btn-berkut boton-uno">Editar</button>
+            <button on:click={()=>openEditGallery(gallery)} class="btn btn-primary btn-sm btn-berkut boton-uno">Editar</button>
             </td>
             <td>
               <button class="btn btn-danger btn-sm btn-berkut boton-dos" on:click={()=>{deleteGallery(gallery.id)}}>Eliminar</button>

@@ -22,6 +22,9 @@
     const gallery_id = params.gallery_id
 
     
+    if (gallery_id >= 1){
+
+    }
 
     let formLabel = "";
     let containerPhoto
