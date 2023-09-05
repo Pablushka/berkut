@@ -23,3 +23,12 @@ class Gallery(db.Model):
             'flyer': self.flyer,
             'date': self.date.strftime("%d-%m-%Y"),
         }
+    
+    def gallery_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'flyer': self.flyer,
+            'date': self.date.strftime("%d-%m-%Y"),
+            'photos': [photo.to_dict() for photo in self.photos],
+        }

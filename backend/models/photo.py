@@ -22,5 +22,5 @@ class Photo(db.Model):
             'image': self.image,
             'type': self.type,
             'gallery_id': self.gallery_id,
-            'gallery': self.gallery.to_dict()
         }
+    

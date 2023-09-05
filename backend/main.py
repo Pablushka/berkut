@@ -512,6 +512,10 @@ def get_galleries():
     return jsonify([gallery.to_dict() for gallery in galleries])
     #return jsonify(galleries)
 
+@app.route('/gallery/<int:gallery_id>')
+def get_gallery(gallery_id):
+    gallery = Gallery.query.get_or_404(gallery_id)
+    return jsonify(gallery.gallery_dict())
 
 @app.route('/gallery/<int:gallery_id>/<string:type>')
 def get_photos(gallery_id, type):

@@ -15,20 +15,28 @@
     import {push} from 'svelte-spa-router';
     import NewPhoto from "../components/new_photo.svelte";
     import { get } from "svelte/store";
-
-    export let params = {}
-  
-    console.log (params)
-    const gallery_id = params.id
-
     
-    if (gallery_id >= 1){
-
-    }
+    export let params = {}
 
     let formLabel = "";
     let containerPhoto
     let new_photo
+    let gallery
+    let fullGallery
+  
+    console.log (params)
+    const gallery_id = params.id
+ 
+    if (gallery_id >= 1){
+        /// hacer un GET para tener la info de la galeria por su ID y de las fotos
+        /// completar la pagina con los datos que se tengan
+        /// sumar los botones para EDITAR y ELIMINAR 
+        /// tambien hay que hacer que al momento de poner una imagen 
+        /// en el DIV ya no se pueda hacer clik en este
+       
+
+    }
+
 
     const saveGallery= () =>{
         let title = document.getElementById("field_title").value;
@@ -145,8 +153,15 @@
             props: {},
         })
     }
+
+    const getFullGallery = async() => {
+        let endpoint =`http://127.0.0.1:5000/gallery/${gallery_id}`
+        let response = await fetch(endpoint)
+        gallery = await response.json()
+        return gallery
+    }
   
-    onMount (() => {
+    onMount (async () => {
 
         let input = document.createElement('input');
         input.id = 'myFlyer'; 
@@ -154,6 +169,8 @@
         input.name = 'file';
         input.style.display = 'none';
         document.body.appendChild(input);
+        fullGallery = await getFullGallery()
+        console.log("galeria:", fullGallery) 
 
         
         input.onchange = function(e) { 
@@ -196,22 +213,22 @@
 </script>
 
 <div class="anti-pajaro">
-    <h1 id="title" class="titel">New Gallery</h1>
+    <h1 id="title" class="titel">{fullGallery?.title}</h1>
     <div class="contenedor">
         <div class="flyer_card">
-            <div id="myDiv" on:click={()=> selectFlyer()}><img id="myImg" width="150px" src="" alt="Elige un FLYER"/></div>
+            <div id="myDiv" on:click={()=> selectFlyer()}><img id="myImg" width="150px" src="/img/galleries/{fullGallery?.flyer}" alt={fullGallery?.title}/></div>
             <div>
                 <Form>
                     <input value="" id="field_id" type="hidden" name="id" />
             
                     <FormGroup style={formLabel}>
                     <Label for="field_title">Titulo</Label>
-                    <Input type="text" value="" id="field_title" name="title" />
+                    <Input type="text" value="{fullGallery?.title}" id="field_title" name="title" />
                     </FormGroup>
             
                     <FormGroup style={formLabel}>
                     <Label for="field_date">Fecha</Label>
-                    <Input type="date" value="" id="field_date" name="date">
+                    <Input type="date" value="{fullGallery?.date.split("-")[2]+ "-" + fullGallery?.date.split("-")[1]+ "-" + fullGallery?.date.split("-")[0]}" id="field_date" name="date">
                     </Input>
                     </FormGroup>
                 </Form>
