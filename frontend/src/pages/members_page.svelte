@@ -13,116 +13,116 @@
 </script>
 
 <div class="anti-pajaro">
-  <h1 class="mt-5"><span class="titel">Integrantes del grupo</span></h1>
+  <h1 class="mt-5"><span class="title">Integrantes del grupo</span></h1>
   <h2 class="member_text">Un vistazo a los miembros</h2>
 
   <div class="members">
     <div class="card">
       <div>
-        <img class="member_photo" src={trini} alt="Natalia Cesario" />
+        <img class="member_photo" src={trini} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Trini</h3>
+        <h3 class="member_title">Trini</h3>
         <p class="member_text">Druida, lectora de la fortuna</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={ale} alt="Natalia Cesario" />
+        <img class="member_photo" src={ale} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Alejandra</h3>
+        <h3 class="member_title">Alejandra</h3>
         <p class="member_text">Encargada de redes sociales</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={jonny} alt="Natalia Cesario" />
+        <img class="member_photo" src={jonny} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Jonny</h3>
+        <h3 class="member_title">Jonny</h3>
         <p class="member_text">Jarl, encargado de relaciones publicas</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={maga} alt="Natalia Cesario" />
+        <img class="member_photo" src={maga} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Magali</h3>
+        <h3 class="member_title">Magali</h3>
         <p class="member_text">Modista principal del grupo</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={mati_p} alt="Natalia Cesario" />
+        <img class="member_photo" src={mati_p} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Matias M</h3>
+        <h3 class="member_title">Matias M</h3>
         <p class="member_text">Guerrero encargado de lanzas</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={victor} alt="Natalia Cesario" />
+        <img class="member_photo" src={victor} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Victor</h3>
+        <h3 class="member_title">Victor</h3>
         <p class="member_text">Maestro carpintero</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={mati_b} alt="Natalia Cesario" />
+        <img class="member_photo" src={mati_b} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Matias B</h3>
+        <h3 class="member_title">Matias B</h3>
         <p class="member_text">Locutor oficial del grupo</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={mati_s} alt="Natalia Cesario" />
+        <img class="member_photo" src={mati_s} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Matias S</h3>
+        <h3 class="member_title">Matias S</h3>
         <p class="member_text">Segundo jarl, encargado de armas</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={nati} alt="Natalia Cesario" />
+        <img class="member_photo" src={nati} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Natalia</h3>
+        <h3 class="member_title">Natalia</h3>
         <p class="member_text">Segunda modista del grupo</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={nico} alt="Natalia Cesario" />
+        <img class="member_photo" src={nico} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Nicolas</h3>
+        <h3 class="member_title">Nicolas</h3>
         <p class="member_text">Encargado de la cocina</p>
       </div>
     </div>
 
     <div class="card">
       <div>
-        <img class="member_photo" src={pablo_a} alt="Natalia Cesario" />
+        <img class="member_photo" src={pablo_a} alt="Miembro del grupo Berkut" />
       </div>
       <div class="contenedor_member_text">
-        <h3 class="member_titel">Pablo A</h3>
+        <h3 class="member_title">Pablo A</h3>
         <p class="member_text">Guerrero encargado de armas</p>
       </div>
     </div>
@@ -158,7 +158,7 @@
     font-size: 1.5em;
   }
 
-  .member_titel {
+  .member_title {
     font-family: Viking-Normal;
   }
 

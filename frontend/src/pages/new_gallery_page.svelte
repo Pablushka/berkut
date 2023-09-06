@@ -14,6 +14,7 @@
     } from "sveltestrap";
     import {push} from 'svelte-spa-router';
     import NewPhoto from "../components/new_photo.svelte";
+    import GetPhotos from "../components/get_photos.svelte";
     import { get } from "svelte/store";
     
     export let params = {}
@@ -213,7 +214,7 @@
 </script>
 
 <div class="anti-pajaro">
-    <h1 id="title" class="titel">{fullGallery?.title}</h1>
+    <h1 id="title" class="title">{fullGallery?.title}</h1>
     <div class="contenedor">
         <div class="flyer_card">
             <div id="myDiv" on:click={()=> selectFlyer()}><img id="myImg" width="150px" src="/img/galleries/{fullGallery?.flyer}" alt={fullGallery?.title}/></div>
