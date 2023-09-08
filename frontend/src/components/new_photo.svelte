@@ -3,6 +3,8 @@
     import HacerMierdaIcon from '../../public/img/icons/hacer_mierda_rojo.png';
     import {get_current_component} from "svelte/internal";
 
+    export let src = ""
+
     let inputPhoto
     let photoImg
     
@@ -41,7 +43,7 @@
         <img class="delete-icon" on:click={()=> deletePhoto()} src={HacerMierdaIcon} alt="eliminar">
     </div>
     <input class="input-file" bind:this={inputPhoto} on:change={newPhoto} type="file" name="file" style="display: none;">
-    <img bind:this={photoImg} class="photoImg" src="" alt="Elige una IMAGEN"/>
+    <img bind:this={photoImg} class="photoImg" src="{src}" alt="Elige una IMAGEN"/>
 </div>
 
 <style>

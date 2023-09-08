@@ -1,41 +1,26 @@
 <script>
-    import { each, onMount } from "svelte/internal";
+    import { onMount } from "svelte/internal";
     import {
         Form,
-        Button,
         FormGroup,
-        FormText,
         Input,
         Label,
-        Modal,
-        ModalBody,
-        ModalFooter,
-        ModalHeader,
     } from "sveltestrap";
-    import {push} from 'svelte-spa-router';
-    import NewPhoto from "../components/new_photo.svelte";
-    import GetPhotos from "../components/get_photos.svelte";
-    import { get } from "svelte/store";
+    import PhotoGallery from "../components/photo_gallery.svelte";
     
     export let params = {}
 
     let formLabel = "";
-    let containerPhoto
-    let new_photo
+    let photitos
     let gallery
-    let fullGallery
-  
+    
     console.log (params)
     const gallery_id = params.id
- 
-    if (gallery_id >= 1){
-        /// hacer un GET para tener la info de la galeria por su ID y de las fotos
-        /// completar la pagina con los datos que se tengan
-        /// sumar los botones para EDITAR y ELIMINAR 
-        /// tambien hay que hacer que al momento de poner una imagen 
-        /// en el DIV ya no se pueda hacer clik en este
-       
 
+    const getFullGallery = async() => {
+        let endpoint =`http://127.0.0.1:5000/gallery/${gallery_id}`
+        let response = await fetch(endpoint)
+        return response.json()
     }
 
 
@@ -74,9 +59,7 @@
 
             .catch((error) => {
                 console.error("Error:", error);
-            });
-
-            
+            });        
         
     }
 
@@ -147,20 +130,6 @@
             });      
         }
     }
-
-    const newPhoto= () =>{
-        new_photo = new NewPhoto({
-            target: containerPhoto, //document.getElementById("containerPhoto"),
-            props: {},
-        })
-    }
-
-    const getFullGallery = async() => {
-        let endpoint =`http://127.0.0.1:5000/gallery/${gallery_id}`
-        let response = await fetch(endpoint)
-        gallery = await response.json()
-        return gallery
-    }
   
     onMount (async () => {
 
@@ -170,10 +139,10 @@
         input.name = 'file';
         input.style.display = 'none';
         document.body.appendChild(input);
-        fullGallery = await getFullGallery()
-        console.log("galeria:", fullGallery) 
-
-        
+        gallery = await getFullGallery()
+        photitos= gallery.photos
+        console.log("galeria", photitos) 
+  
         input.onchange = function(e) { 
             let file = e.target.files[0]; 
             let reader = new FileReader();
@@ -193,43 +162,26 @@
         input.click()
     }
 
-    const onPhotoLoaded = () =>{
-        let blankPhoto = NewPhoto
-        containerPhoto.appendChild(blankPhoto)
-    }
-
-    const toBlob = (img) => {
-        let return_blob
-        let canvas = document.createElement('canvas');
-        canvas.width = this.naturalWidth; // or 'width' if you want a special size
-        canvas.height = this.naturalHeight; // or 'height' if you want a special size
-        canvas.getContext('2d').drawImage(img, 0, 0);
-        canvas.toBlob(function(blob) {
-            return_blob = blob
-        })
-    
-        return return_blob
-    }
 
 </script>
 
 <div class="anti-pajaro">
-    <h1 id="title" class="title">{fullGallery?.title}</h1>
+    <h1 id="title" class="title">{gallery?.title}</h1>
     <div class="contenedor">
         <div class="flyer_card">
-            <div id="myDiv" on:click={()=> selectFlyer()}><img id="myImg" width="150px" src="/img/galleries/{fullGallery?.flyer}" alt={fullGallery?.title}/></div>
+            <div id="myDiv" on:click={()=> selectFlyer()}><img id="myImg" width="150px" src="/img/galleries/{gallery?.flyer}" alt={gallery?.title}/></div>
             <div>
                 <Form>
                     <input value="" id="field_id" type="hidden" name="id" />
             
                     <FormGroup style={formLabel}>
                     <Label for="field_title">Titulo</Label>
-                    <Input type="text" value="{fullGallery?.title}" id="field_title" name="title" />
+                    <Input type="text" value="{gallery?.title}" id="field_title" name="title" />
                     </FormGroup>
             
                     <FormGroup style={formLabel}>
                     <Label for="field_date">Fecha</Label>
-                    <Input type="date" value="{fullGallery?.date.split("-")[2]+ "-" + fullGallery?.date.split("-")[1]+ "-" + fullGallery?.date.split("-")[0]}" id="field_date" name="date">
+                    <Input type="date" value="{gallery?.date.split("-")[2]+ "-" + gallery?.date.split("-")[1]+ "-" + gallery?.date.split("-")[0]}" id="field_date" name="date">
                     </Input>
                     </FormGroup>
                 </Form>
@@ -238,23 +190,12 @@
                 <button id="myButton" on:click={()=> saveGallery()}>Crear Galeria</button>
             </div>
         </div>
-        <div class="contenedor_img">
-            <div bind:this={containerPhoto} id="containerPhoto" class="photo_card">
-<!--quiero que el primer div sea el que haga el push de la foto y 
-se muestren las fotos dentro de la galeria si esta ya existe-->
-                <NewPhoto on:photoLoaded={()=> onPhotoLoaded}/>   
-            </div>
-            <!--este dive es opcional -->
-                <div>
-                    <button on:click={()=> newPhoto()}>Add Foto</button>
-                </div>
-            <!--    <button>Editar</button>
-                <button>Eliminar</button>
-            </div> -->
-        </div>
+        <PhotoGallery photoList={photitos}/>
+
     </div>
     
 </div>
+
 
 <style>
     
@@ -276,14 +217,6 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         border-radius: 42px;
         height: 88%;
     }
-    
-    .contenedor_img{
-        width: 80%;
-        height:705px;
-        overflow-y: auto;
-        margin-right: 20px;
-    }
-
 
     .flyer_card{
         align-items: center ;
@@ -296,16 +229,6 @@ se muestren las fotos dentro de la galeria si esta ya existe-->
         border-bottom-left-radius: inherit;
         font-size: 30px;
         height: 695px;
-    }
-
-    .photo_card{
-        margin: 10px;
-        padding: 10px;
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        font-size: 30px;
     }
 
     #myImg{
