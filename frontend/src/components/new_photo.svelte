@@ -3,7 +3,8 @@
   import HacerMierdaIcon from "../../public/img/icons/hacer_mierda_rojo.png";
   import { get_current_component } from "svelte/internal";
 
-  export let src = "";
+  export let src =
+    "https://htmlburger.com/blog/wp-content/uploads/2021/07/The-Best-50-Website-Preloaders-Around-the-Web-Example-07.gif";
 
   let inputPhoto;
   let photoImg;
@@ -77,6 +78,7 @@
     object-fit: cover;
     background-position: center;
     background-size: contain;
+    font-size: 15pt;
   }
 
   #photoDiv {

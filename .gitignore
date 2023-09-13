@@ -5,3 +5,4 @@ instance/
 .venv/
 backend/.env
 frontend/public/img/galleries/
+

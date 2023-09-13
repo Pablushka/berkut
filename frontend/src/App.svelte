@@ -68,8 +68,7 @@
     "/photo_page/:gallery_id": PhotoPage,
     "/admin_gallery/:id?": AdminGallery,
     "/admin_photos": AdminPhotos,
-    "/edit_gallery": AdminEditGallery
-
+    "/edit_gallery": AdminEditGallery,
   };
 
   let cookie_user = JSON.parse(getCookie("berkut_session.user"));
@@ -115,22 +114,23 @@
 
             <DropdownMenu>
               {#if cookie_user}
-              
-                <DropdownItem header class="titular">Administrador</DropdownItem>
+                <DropdownItem header class="titular">Administrador</DropdownItem
+                >
                 <DropdownItem>
                   <a href="#/admin_users" class="link">Usuarios</a>
                 </DropdownItem>
                 <ButtonDropdown {isAdminOpen}>
                   <DropdownToggle
                     color="secondary"
-                    caret 
-                    on:click={() => (isAdminOpen = !isAdminOpen)}>
+                    caret
+                    on:click={() => (isAdminOpen = !isAdminOpen)}
+                  >
                     Galerias
                   </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem>
                       <a href="#/admin_gallery" class="link">Crear</a>
-                    </DropdownItem>                    
+                    </DropdownItem>
                     <DropdownItem>
                       <a href="#/edit_gallery" class="link">Editar</a>
                     </DropdownItem>
@@ -231,20 +231,22 @@
     background-color: blue-800;
   }
 
-  .gallery{
+  /* .gallery{
     background-color: #6563631c;
     border: hidden;
     color: black;
     padding-left: 14px;
-  }
+  } */
 
   :global(.titel) {
-        font-family: PR Viking;
-        margin: 15px;
-        text-decoration: underline;
-        font-size: 65px;
-        text-align: center;
+    font-family: PR Viking;
+    margin: 15px;
+    text-decoration: underline;
+    font-size: 65px;
+    text-align: center;
   }
 
-
+  main {
+    width: 100%;
+  }
 </style>

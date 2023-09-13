@@ -2,7 +2,6 @@
   import { onMount } from "svelte/internal";
   import { Form, FormGroup, Input, Label } from "sveltestrap";
   import PhotoGallery from "../components/photo_gallery.svelte";
-  import PhotoPage from "./photo_page.svelte";
 
   export let params = {};
 
@@ -169,8 +168,8 @@
   };
 </script>
 
-<div class="anti-pajaro">
-  <h1 id="title" class="title">{gallery?.title}</h1>
+<div class="page-container anti-pajaro">
+  <h1 id="title" class="title">{gallery?.title ?? "Sin título aún"}</h1>
   <div class="contenedor">
     <div class="flyer_card">
       <div id="myDiv" on:click={() => selectFlyer()}>
@@ -218,14 +217,13 @@
     </div>
 
     {#await getFullGallery(params.id) then gallery}
-      <PhotoGallery photoList={gallery?.photos} />
+      <PhotoGallery {gallery} />
     {/await}
   </div>
 </div>
 
 <style>
   .anti-pajaro {
-    width: 1500px;
     border: solid 3px;
     margin-top: 40px;
     background-color: #ffffffed;
@@ -247,12 +245,12 @@
     display: flex;
     flex-direction: column;
     padding: 16px;
-    width: 30%;
     background-color: rgba(54, 52, 52, 0.163);
     justify-content: space-evenly;
-    border-bottom-left-radius: inherit;
+    border-radius: inherit;
     font-size: 30px;
     height: 695px;
+    margin-left: 10px;
   }
 
   #myImg {

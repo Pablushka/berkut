@@ -1,29 +1,40 @@
 <script>
+  import { onMount } from "svelte";
   import NewPhoto from "../components/new_photo.svelte";
 
-  export let photoList = [];
-
-  console.log("PhotoGallery: ", photoList);
+  export let gallery = null;
 
   let containerPhoto;
+  let new_photos = [];
   let new_photo;
+  let blank_photo;
 
-  console.log("PhotoGallery:", photoList);
+  onMount(() => {
+    if (gallery != null) {
+      console.log("PhotoGallery:", gallery);
+      gallery.photos
+        .filter((p) => p.type === "photo")
+        .forEach((photo) => {
+          console.log(photo.image);
+          new_photos.push(
+            new NewPhoto({
+              target: containerPhoto,
+              props: { src: `/img/galleries/${gallery.id}/${photo.image}` },
+            })
+          );
+        });
+    }
 
-  if (photoList != null && photoList.length != 0) {
-    photoList.forEach((photo) => {
-      new_photo = new NewPhoto({
-        target: containerPhoto,
-        props: { src: photo.image },
-      });
-
-      //   containerPhoto.appendChild(new_photo);
-    });
-  }
+    // blank_photo.$on("photoLoaded", onPhotoLoaded);
+  });
 
   const onPhotoLoaded = () => {
-    let blankPhoto = NewPhoto;
-    containerPhoto.appendChild(blankPhoto);
+    blank_photo = new NewPhoto({
+      target: containerPhoto,
+      props: {},
+    });
+
+    blank_photo.$on("photoLoaded", onPhotoLoaded);
   };
 
   const newPhoto = () => {
@@ -35,11 +46,9 @@
 </script>
 
 <div class="contenedor_img">
-  <div bind:this={containerPhoto} id="containerPhoto" class="photo_card">
-    <NewPhoto on:photoLoaded={() => onPhotoLoaded()} />
-  </div>
+  <div bind:this={containerPhoto} id="containerPhoto" class="photo_card" />
   <div>
-    <button on:click={() => newPhoto()}>Add Foto</button>
+    <button on:click={newPhoto}>Add Foto</button>
   </div>
 </div>
 
