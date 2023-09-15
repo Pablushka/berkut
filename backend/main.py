@@ -535,6 +535,38 @@ def server_error_404(e):
     app.logger.error('Resource does not exists. %s', e)
     return "Resource does not exists", 404
 
+@app.route('/gallery/<int:gallery_id>', methods= ['PATCH'])
+def edit_gallery(gallery_id):
+    gallery = request.get_json()
+    
+    if gallery:
+        id = gallery['id']
+        flyer= gallery['flyer']
+        title= gallery['title']
+        new_date = datetime.strptime(gallery['date'], "%d-%m-%Y")
+
+        gallery_db = Gallery.query.get_or_404(id, description="Gallery not found")
+
+        gallery_db.flyer = flyer
+        gallery_db.title = title
+        gallery_db.date = new_date
+
+        print(gallery_db)
+        print(gallery)
+
+        if gallery.photos != gallery_db.photos:
+            new_photos = [photo for photo in gallery_db.photos if photo not in gallery.photos]
+            print(new_photos)
+            for photo in new_photos:
+                new_photo = Photo(image= photo.image, gallery_id= photo.gallery_id)
+                db.session.add(new_photo)
+
+
+        db.session.commit()
+        return {"ok": True, "message": "Gallery update"}
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
