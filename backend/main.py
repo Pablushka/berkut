@@ -546,6 +546,7 @@ def edit_gallery(gallery_id):
         new_date = datetime.strptime(gallery['date'], "%d-%m-%Y")
 
         gallery_db = Gallery.query.get_or_404(id, description="Gallery not found")
+        photos_db = [x["image"] for x in gallery_db.gallery_dict()["photos"] if x["type"] == "photo"]
 
         gallery_db.flyer = flyer
         gallery_db.title = title
@@ -554,12 +555,19 @@ def edit_gallery(gallery_id):
         print(gallery_db)
         print(gallery)
 
-        if gallery.photos != gallery_db.photos:
-            new_photos = [photo for photo in gallery_db.photos if photo not in gallery.photos]
+        if gallery["photos"] != photos_db:
+            new_photos = [photo for photo in gallery["photos"] if photo not in photos_db]
             print(new_photos)
             for photo in new_photos:
-                new_photo = Photo(image= photo.image, gallery_id= photo.gallery_id)
+                new_photo = Photo(image= photo, gallery_id= gallery["id"], type = "photo")
                 db.session.add(new_photo)
+
+            delete_photos = [photo for photo in photos_db if photo not in gallery["photos"]]
+            for photo in delete_photos:
+                photo_db = db.session.query(Photo).filter_by(image=photo).first()
+                db.session.delete(photo_db)
+                os.remove(f"{UPLOAD_FOLDER}/{photo_db.gallery_id}/{photo}")
+
 
 
         db.session.commit()

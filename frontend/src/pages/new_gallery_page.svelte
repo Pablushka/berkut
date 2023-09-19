@@ -8,8 +8,9 @@
   let formLabel = "";
   let photitos;
   let gallery;
+  let action = "Crear"
 
-  console.log(params);
+  console.log(params); 
 
   const getFullGallery = async (gallery_id) => {
     if (gallery_id == null) {
@@ -141,6 +142,10 @@
     document.body.appendChild(input);
     gallery = await getFullGallery(params.id);
 
+    if (params.id){
+      action = "Editar"
+    } 
+
     if (gallery == null) {
       photitos = [];
     } else {
@@ -211,7 +216,7 @@
       </div>
       <div>
         <button id="myButton" on:click={() => saveGallery()}
-          >Crear Galeria</button
+          >{action} Galeria</button
         >
       </div>
     </div>
