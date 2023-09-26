@@ -7,7 +7,7 @@
 
   let formLabel = "";
   let photitos;
-  let gallery;
+  let gallery = null;
   let action = "Crear"
 
   console.log(params); 
@@ -73,7 +73,7 @@
       alert("No puede crear galeria sin titulo");
       return false;
     }
-    if (!(title.value.length >= 15 && title.value.length <= 100)) {
+    if (!(title.value.length >= 10 && title.value.length <= 100)) {
       alert(
         "El titulo de la galeria no puede ser menos a 15 caracteres ni mayor a 100"
       );
@@ -141,6 +141,7 @@
     input.style.display = "none";
     document.body.appendChild(input);
     gallery = await getFullGallery(params.id);
+    console.log ("params.id", params.id)
 
     if (params.id){
       action = "Editar"

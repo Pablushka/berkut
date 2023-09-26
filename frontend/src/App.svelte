@@ -11,17 +11,9 @@
   import AdminTimelinePage from "./pages/admin_timeline_page.svelte";
   import NewUserPage from "./pages/new_user_page.svelte";
   import NewUserValidationPage from "./pages/new_user_validation_page.svelte";
-  import { getCookie, setCookie } from "./helpers/cookies";
+  import { getCookie } from "./helpers/cookies";
   import AdminUserPage from "./pages/admin_user_page.svelte";
-  import { push, pop, replace } from "svelte-spa-router";
-
-  // full camelcase: HomePage, UnaLindaVariable
-  // camelcase: homePage, unaLindaVariable
-
   import {
-    Col,
-    Container,
-    Row,
     Collapse,
     Navbar,
     NavbarToggler,
@@ -29,7 +21,6 @@
     Nav,
     NavItem,
     NavLink,
-    Dropdown,
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
@@ -41,6 +32,8 @@
   import AdminGallery from "./pages/new_gallery_page.svelte";
   import AdminPhotos from "./pages/admin_photos.svelte";
   import AdminEditGallery from "./pages/edit_gallery_page.svelte";
+  import {link} from 'svelte-spa-router';
+
 
   let isOpen = false;
   let isAdminOpen = false;
@@ -129,7 +122,7 @@
                   </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem>
-                      <a href="#/admin_gallery" class="link">Crear</a>
+                      <a use:link href="/admin_gallery/" class="link">Crear</a>
                     </DropdownItem>
                     <DropdownItem>
                       <a href="#/edit_gallery" class="link">Editar</a>

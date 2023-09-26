@@ -4,12 +4,10 @@
     import { onMount } from 'svelte';
     import { Form, Button, FormGroup, FormText, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'sveltestrap';
     import {bad_words_validator} from '../helpers/admin_helpers.js';
-    import {push, pop, replace} from 'svelte-spa-router';
+    import { push } from 'svelte-spa-router';
     
     let bad_words = ['culo', 'puto el que lee', 'macri', 'chupito el pame']
-    
     let open = false;
-    
     let current_gallery = null;
       
     const toggle = () => (open = !open);
